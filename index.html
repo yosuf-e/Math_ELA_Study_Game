@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
   <meta charset="utf-8" />
   <link rel="icon" type="image/png" href="https://cdn-icons-png.magnific.com/512/732/732600.png">
@@ -11,57 +12,132 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- FontAwesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
-    :root { --particle-color: #facc15; }
+    :root {
+      --particle-color: #facc15;
+    }
 
     /* Floating animation */
-    .floating { animation: float 6s ease-in-out infinite; }
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+
     @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
     }
 
-    .wobble { animation: wobble 0.4s ease; }
+    .wobble {
+      animation: wobble 0.4s ease;
+    }
+
     @keyframes wobble {
-      0% { transform: translateX(0); }
-      25% { transform: translateX(-4px); }
-      50% { transform: translateX(4px); }
-      75% { transform: translateX(-2px); }
-      100% { transform: translateX(0); }
+      0% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-4px);
+      }
+
+      50% {
+        transform: translateX(4px);
+      }
+
+      75% {
+        transform: translateX(-2px);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
     }
 
-    .bounce { animation: bounce 0.5s ease; }
+    .bounce {
+      animation: bounce 0.5s ease;
+    }
+
     @keyframes bounce {
-      0% { transform: scale(1); }
-      30% { transform: scale(1.1); }
-      60% { transform: scale(0.95); }
-      100% { transform: scale(1); }
+      0% {
+        transform: scale(1);
+      }
+
+      30% {
+        transform: scale(1.1);
+      }
+
+      60% {
+        transform: scale(0.95);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
 
     canvas#confettiCanvas {
       position: fixed;
       pointer-events: none;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       z-index: 60;
     }
 
     /* Unified theme variables (simple) */
-    .theme-dark { --bg-main: #0f172a; --bg-card: #0f172a; --text-main: #f1f5f9; --text-soft: #cbd5e1; --card-border: #334155; }
-    .theme-light { --bg-main: #f8fafc; --bg-card: #ffffff; --text-main: #0f172a; --text-soft: #475569; --card-border: #cbd5e1; }
+    .theme-dark {
+      --bg-main: #0f172a;
+      --bg-card: #0f172a;
+      --text-main: #f1f5f9;
+      --text-soft: #cbd5e1;
+      --card-border: #334155;
+    }
 
-    body { background-color: var(--bg-main); color: var(--text-main); transition: background-color .3s, color .3s; }
-    .theme-card { background-color: var(--bg-card); border: 1px solid var(--card-border); }
-    .theme-text-soft { color: var(--text-soft); }
+    .theme-light {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #0f172a;
+      --text-soft: #475569;
+      --card-border: #cbd5e1;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      transition: background-color .3s, color .3s;
+    }
+
+    .theme-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--card-border);
+    }
+
+    .theme-text-soft {
+      color: var(--text-soft);
+    }
 
     /* Modal sizing */
-    #gameModal .modal-inner { width: 80%; height: 80%; }
+    #gameModal .modal-inner {
+      width: 80%;
+      height: 80%;
+    }
 
     /* Small helpers */
-    .hidden { display: none; }
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 
@@ -110,11 +186,16 @@
 
       <!-- Nav -->
       <nav class="max-w-6xl mx-auto px-4 pb-3 flex gap-2 md:gap-4 text-xs md:text-sm">
-        <button data-route="home" class="route-btn px-3 py-2 rounded-full bg-slate-800 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-house"></i><span>Home</span></button>
-        <button data-route="math" class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-calculator text-red-400"></i><span>Math Arena</span></button>
-        <button data-route="story" class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-book-open text-blue-400"></i><span>Reading Lab (ELA)</span></button>
-        <button data-route="shop" class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-store"></i><span>Reward Shop</span></button>
-        <button data-route="profile" class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-id-card"></i><span>Profile & Stats</span></button>
+        <button data-route="home"
+          class="route-btn px-3 py-2 rounded-full bg-slate-800 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-house"></i><span>Home</span></button>
+        <button data-route="math"
+          class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-calculator text-red-400"></i><span>Math Arena</span></button>
+        <button data-route="story"
+          class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-book-open text-blue-400"></i><span>Reading Lab (ELA)</span></button>
+        <button data-route="shop"
+          class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-store"></i><span>Reward Shop</span></button>
+        <button data-route="profile"
+          class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-id-card"></i><span>Profile & Stats</span></button>
       </nav>
     </header>
 
@@ -136,8 +217,10 @@
               </div>
 
               <div class="flex gap-3 mt-4">
-                <button data-route="math" class="route-btn px-4 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold shadow-lg">Enter Math Arena</button>
-                <button data-route="story" class="route-btn px-4 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold shadow-lg">Explore Story Lab</button>
+                <button data-route="math"
+                  class="route-btn px-4 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold shadow-lg">Enter Math Arena</button>
+                <button data-route="story"
+                  class="route-btn px-4 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold shadow-lg">Explore Story Lab</button>
               </div>
             </div>
 
@@ -190,13 +273,16 @@
 
                 <h3 class="text-sm font-semibold mt-3">Mode</h3>
                 <div class="flex gap-2">
-                  <button id="modeCalm" class="flex-1 px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 text-xs font-semibold">Calm Mode</button>
-                  <button id="modeSprint" class="flex-1 px-3 py-2 rounded-lg bg-amber-500 text-slate-900 text-xs font-semibold">Beat the Clock</button>
+                  <button id="modeCalm"
+                    class="flex-1 px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 text-xs font-semibold">Calm Mode</button>
+                  <button id="modeSprint"
+                    class="flex-1 px-3 py-2 rounded-lg bg-amber-500 text-slate-900 text-xs font-semibold">Beat the Clock</button>
                 </div>
 
                 <div id="sprintTimerBox" class="mt-3 hidden text-xs flex items-center gap-2"><i class="fa-solid fa-stopwatch text-amber-400"></i><span>Time left:</span><span id="sprintTimer" class="font-bold text-amber-300">60s</span></div>
 
-                <button id="startMath" class="mt-4 w-full px-4 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold">Start Challenge</button>
+                <button id="startMath"
+                  class="mt-4 w-full px-4 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold">Start Challenge</button>
               </div>
 
               <div class="theme-card rounded-2xl p-4 text-xs">
@@ -222,8 +308,10 @@
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center gap-3">
-                  <input id="mathAnswer" type="text" placeholder="Type your answer here..." class="flex-1 rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm" />
-                  <button id="submitMath" class="px-4 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold">Submit</button>
+                  <input id="mathAnswer" type="text" placeholder="Type your answer here..."
+                    class="flex-1 rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm" />
+                  <button id="submitMath"
+                    class="px-4 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold">Submit</button>
                 </div>
 
                 <p id="mathFeedback" class="text-sm mt-2"></p>
@@ -241,14 +329,15 @@
 
               <div class="theme-card rounded-2xl p-4 space-y-3">
                 <h3 class="text-sm font-semibold">Reading Level</h3>
-                <label class="text-xs flex items-center justify-between"><span>Age 5 – Simple & Fun</span><span class="text-yellow-300"><i class="fa-solid fa-face-smile"></i></span></label>
-                <label class="text-xs flex items-center justify-between"><span>Middle School – Adventure & Drama</span><span class="text-cyan-300"><i class="fa-solid fa-dragon"></i></span></label>
-                <label class="text-xs flex items-center justify-between"><span>High School – Deep Themes & Sci-Fi</span><span class="text-pink-300"><i class="fa-solid fa-meteor"></i></span></label>
+                <label class="text-xs flex items-center justify-between"><span class="text-yellow-300"><i class="fa-solid fa-face-smile"></i></span><span>Age 5 – Simple & Fun</span></label>
+                <label class="text-xs flex items-center justify-between"><span class="text-cyan-300"><i class="fa-solid fa-dragon"></i></span><span>Middle School – Adventure & Drama</span></label>
+                <label class="text-xs flex items-center justify-between"><span class="text-pink-300"><i class="fa-solid fa-meteor"></i></span><span>High School – Deep Themes & Sci-Fi</span></label>
 
                 <input id="storyComplexity" type="range" min="1" max="3" value="1" class="w-full mt-2" />
                 <p id="storyComplexityLabel" class="text-xs theme-text-soft mt-1">Age 5 – Basic</p>
 
-                <button id="startStory" class="mt-3 w-full px-4 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold">Load Story & Questions</button>
+                <button id="startStory"
+                  class="mt-3 w-full px-4 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold">Load Story & Questions</button>
               </div>
 
               <div class="theme-card rounded-2xl p-4 text-xs space-y-2">
@@ -267,7 +356,8 @@
               <div id="storyQuizBox" class="theme-card rounded-3xl p-6 space-y-3 hidden">
                 <h3 class="text-lg font-semibold flex items-center gap-2"><i class="fa-solid fa-question text-emerald-300"></i>Reading Comprehension MCQ</h3>
                 <div id="storyQuizQuestions" class="space-y-4 text-sm"></div>
-                <button id="submitStoryQuiz" class="mt-2 px-4 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold">Submit Answers</button>
+                <button id="submitStoryQuiz"
+                  class="mt-2 px-4 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold">Submit Answers</button>
                 <p id="storyQuizFeedback" class="text-xs mt-2"></p>
               </div>
             </div>
@@ -282,37 +372,67 @@
 
             <div class="grid md:grid-cols-3 gap-4">
               <!-- Car Games -->
-            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
-              <img src="https://imgs.crazygames.com/smash-karts_1x1/20260210123937/smash-karts_1x1-cover?format=auto&quality=100&metadata=none&width=1200" height="100" width="100" class="rounded-xl">
-              <h3 class="text-sm font-semibold">Smash Karts</h3>
-              <button class="open-game px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold"
-                data-url="https://smashkarts.io/"
-                data-cost="120">
-                Play 3‑Mins (120 Coins)
-              </button>
+              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+                <img src="https://imgs.crazygames.com/smash-karts_1x1/20260210123937/smash-karts_1x1-cover?format=auto&quality=100&metadata=none&width=1200" height="100" width="100" class="rounded-xl">
+                <h3 class="text-sm font-semibold">Smash Karts</h3>
+                <button class="open-game px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold"
+                  data-url="https://smashkarts.io/" data-cost="130">
+                  Play 3‑Mins (130 Coins)
+                </button>
+              </div>
+
+              <!-- Adventure Games -->
+              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+                <img src="https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=188,height=188,fit=cover,f=auto/94f0d123275fb73da13aaed4a2725184/adventure-logo.png" height="100" width="100" class="rounded-xl">
+                <h3 class="text-sm font-semibold">Adventure Game</h3>
+                <button class="open-game px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold"
+                  data-url="https://vectaria.io/" data-cost="90">
+                  Play 3‑Mins (90 Coins)
+                </button>
+              </div>
+
+              <!-- Subway Surfers Game-->
+              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+                <img src="https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=1200,height=1200,fit=cover,f=png/1c920b9279c2bedec567c1b58129ae8f/subway-surfers-logo.png" height="100" width="100" class="rounded-xl">
+                <h3 class="text-sm font-semibold">Subway Surfers Game</h3>
+                <button class="open-game px-3 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold"
+                  data-url="https://running-games.io/subway-run" data-cost="150">
+                  Play 3‑Mins (150 Coins)
+                </button>
+              </div>
+
+              <!-- Temple Run Game-->
+              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+                <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/TempleRun.jpg" height="100" width="100" class="rounded-xl">
+                <h3 class="text-sm font-semibold">Temple Run Game</h3>
+                <button class="open-game px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold"
+                  data-url="https://temple-run.com/" data-cost="150">
+                  Play 3‑Mins (150 Coins)
+                </button>
+              </div>
+
+              <!-- Fire Boy & Water Girl Game-->
+              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk7e0y5fGlmD5aNGyyX6AF7P-fJFyg6RS1LiS2Kk6X4WW_qZeyZR4HHkBQfe1AZsU31_mUrqcq2nYH2djKAiBgbchq-YofK0CX8IBT&s=10" height="100" width="100" class="rounded-xl">
+                <h3 class="text-sm font-semibold">Fire Boy & Water Girl Game</h3>
+                <button class="open-game px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold"
+                  data-url="https://www.fireboynwatergirl.com/?p=game&id=1" data-cost="120">
+                  Play 3‑Mins (120 Coins)
+                </button>
+              </div>
+
+              <!-- World Guessr Game-->
+              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+                <img src="https://imgs.crazygames.com/worldguessr_1x1/20241018082521/worldguessr_1x1-cover?format=auto&quality=100&metadata=none&width=1200" height="100" width="100" class="rounded-xl">
+                <h3 class="text-sm font-semibold">World Guessr Game</h3>
+                <button class="open-game px-3 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold"
+                  data-url="https://www.worldguessr.com/" data-cost="80">
+                  Play 3‑Mins (80 Coins)
+                </button>
+              </div>
             </div>
-      
-            <!-- Adventure Games -->
-            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
-              <img src="https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=188,height=188,fit=cover,f=auto/94f0d123275fb73da13aaed4a2725184/adventure-logo.png" height="100" width="100" class="rounded-xl">
-              <h3 class="text-sm font-semibold">Adventure Game</h3>
-              <button class="open-game px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold"
-                data-url="https://vectaria.io/"
-                data-cost="160">
-                Play 3‑Mins (160 Coins)
-              </button>
-            </div>
-      
-            <!-- Brain Test Game-->
-            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
-              <img src="https://m.media-amazon.com/images/I/71SlEFNv9CL.png" height="100" width="100" class="rounded-xl">
-              <h3 class="text-sm font-semibold">Brain Test Game</h3>
-              <button class="open-game px-3 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold"
-                data-url="https://braintest.games/online"
-                data-cost="100">
-                Play 3‑Mins (100 Coins)
-              </button>
-            </div>
+          </div>
+        </section>
 
         <!-- PROFILE -->
         <section id="route-profile" class="route-section hidden">
@@ -332,23 +452,26 @@
 
               <div class="theme-card rounded-2xl p-4 space-y-2">
                 <h3 class="text-sm font-semibold mb-2">Unlocked Items</h3>
-                <p>Magic Sound FX: <span id="profileSoundMagic" class="font-bold text-slate-200">Unlocked</span></p>
+                <p>Magic Sound FX: <span id="profileSoundMagic" class="font-bold text-slate-200">Locked</span></p>
               </div>
             </div>
 
-            <button id="resetProgress" class="mt-3 px-4 py-2 rounded-lg bg-rose-500 text-slate-900 font-semibold">Reset Progress (Local Only)</button>
+            <button id="resetProgress"
+              class="mt-3 px-4 py-2 rounded-lg bg-rose-500 text-slate-900 font-semibold">Reset Progress (Local Only)</button>
           </div>
         </section>
 
       </div>
     </main>
+
   </div>
 
   <!-- Game Modal (embedded iframe) -->
   <div id="gameModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur flex items-center justify-center z-50">
     <div class="bg-slate-900 rounded-3xl p-4 modal-inner relative w-[80%] h-[80%]">
       <iframe id="gameFrame" src="" class="w-full h-full rounded-xl border-0"></iframe>
-      <button id="closeGame" class="absolute top-3 right-3 px-3 py-2 bg-rose-500 text-white rounded-lg font-semibold">Close</button>
+      <button id="closeGame"
+        class="absolute top-3 right-3 px-3 py-2 bg-rose-500 text-white rounded-lg font-semibold">Close</button>
       <p id="gameTimer" class="absolute bottom-3 right-3 text-sm text-yellow-300 font-bold"></p>
     </div>
   </div>
@@ -357,7 +480,7 @@
   <script>
     /* ---------- Utilities & State ---------- */
     const defaultState = {
-      level: 1, xp: 0, coins: 0, streak: 0, bestStreak: 0,
+      level: 1, xp: 0, coins: 10, streak: 0, bestStreak: 0,
       mathSolved: 0, storiesCompleted: 0,
       unlocked: { sound_magic: true },
       avatarTitle: "Rookie Explorer"
@@ -367,7 +490,7 @@
       try {
         const s = localStorage.getItem("brainquest_state");
         if (s) return JSON.parse(s);
-      } catch (e) {}
+      } catch (e) { }
       return { ...defaultState };
     }
     let state = loadState();
@@ -382,23 +505,23 @@
     const confettiCanvas = document.getElementById("confettiCanvas");
     const ctx = confettiCanvas.getContext("2d");
     let confettiPieces = [];
-    function resizeCanvas(){ confettiCanvas.width = innerWidth; confettiCanvas.height = innerHeight; }
+    function resizeCanvas() { confettiCanvas.width = innerWidth; confettiCanvas.height = innerHeight; }
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
     function spawnConfetti() {
       confettiPieces = [];
-      for (let i=0;i<80;i++){
-        confettiPieces.push({ x: Math.random()*confettiCanvas.width, y: Math.random()*confettiCanvas.height-50, r: Math.random()*6+2, c: `hsl(${Math.random()*360},80%,60%)`, v: Math.random()*3+2 });
+      for (let i = 0; i < 80; i++) {
+        confettiPieces.push({ x: Math.random() * confettiCanvas.width, y: Math.random() * confettiCanvas.height - 50, r: Math.random() * 6 + 2, c: `hsl(${Math.random() * 360},80%,60%)`, v: Math.random() * 3 + 2 });
       }
       const duration = 2000;
       const start = performance.now();
-      function frame(t){
+      function frame(t) {
         const elapsed = t - start;
-        ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
-        confettiPieces.forEach(p => { ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle = p.c; ctx.fill(); p.y += p.v; });
+        ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+        confettiPieces.forEach(p => { ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = p.c; ctx.fill(); p.y += p.v; });
         if (elapsed < duration) requestAnimationFrame(frame);
-        else { confettiPieces = []; ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height); }
+        else { confettiPieces = []; ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height); }
       }
       requestAnimationFrame(frame);
     }
@@ -421,7 +544,7 @@
     routeButtons.forEach(btn => btn.addEventListener("click", () => showRoute(btn.dataset.route)));
     function showRoute(route) { routeSections.forEach(sec => sec.classList.toggle("hidden", sec.id !== `route-${route}`)); }
 
-    /* ---------- HUD / Profile ---------- */
+    /* ---------- HUD / Profile (Fixed rendering logic) ---------- */
     const hudLevel = document.getElementById("hudLevel");
     const hudXP = document.getElementById("hudXP");
     const hudCoins = document.getElementById("hudCoins");
@@ -436,13 +559,15 @@
     const profileAvatar = document.getElementById("profileAvatar");
     const profileSoundMagic = document.getElementById("profileSoundMagic");
 
-    function updateHUD(){
+    function updateHUD() {
       hudLevel.textContent = state.level;
       hudXP.textContent = state.xp;
       hudCoins.textContent = state.coins;
       hudStreak.textContent = state.streak;
       hudAvatar.textContent = state.avatarTitle;
       storyCompletedCount.textContent = state.storiesCompleted;
+
+      // Update Profile stats
       profileLevel.textContent = state.level;
       profileXP.textContent = state.xp;
       profileCoins.textContent = state.coins;
@@ -450,7 +575,8 @@
       profileAvatar.textContent = state.avatarTitle;
       profileSoundMagic.textContent = state.unlocked.sound_magic ? "Unlocked" : "Locked";
     }
-    function updateHomeStats(){
+
+    function updateHomeStats() {
       document.getElementById("homeXP").textContent = state.xp;
       document.getElementById("homeBestStreak").textContent = state.bestStreak;
       document.getElementById("homeMathSolved").textContent = state.mathSolved;
@@ -499,56 +625,56 @@
     startMathBtn.addEventListener("click", startMathSession);
     submitMathBtn.addEventListener("click", submitMathAnswer);
 
-    function startMathSession(){
+    function startMathSession() {
       mathFeedback.textContent = ""; mathAnswer.value = ""; mathCorrect.textContent = "0"; mathIncorrect.textContent = "0"; mathStreak.textContent = "0";
-      currentMathMeta = { correct:0, incorrect:0, streak:0 };
-      const grade = parseInt(mathGrade.value,10);
+      currentMathMeta = { correct: 0, incorrect: 0, streak: 0 };
+      const grade = parseInt(mathGrade.value, 10);
       mathGradeLabel.textContent = `Grade ${grade} Challenge`;
-      if (mathMode === "sprint"){
+      if (mathMode === "sprint") {
         sprintTimeLeft = 60; sprintTimer.textContent = sprintTimeLeft + "s";
         if (sprintInterval) clearInterval(sprintInterval);
-        sprintInterval = setInterval(()=>{ sprintTimeLeft--; sprintTimer.textContent = sprintTimeLeft + "s"; if (sprintTimeLeft<=0){ clearInterval(sprintInterval); mathFeedback.textContent="Time's up! Great effort."; mathFeedback.className="text-xs text-amber-300"; } },1000);
-      } else { if (sprintInterval) clearInterval(sprintInterval); }
+        sprintInterval = setInterval(() => { sprintTimeLeft--; sprintTimer.textContent = sprintTimeLeft + "s"; if (sprintTimeLeft <= 0) { clearInterval(sprintInterval); mathFeedback.textContent = "Time's up! Great effort."; mathFeedback.className = "text-xs text-amber-300"; } }, 1000);
+      } else if (sprintInterval) clearInterval(sprintInterval);
       generateMathProblem();
     }
 
-    function generateMathProblem(){
-      const grade = parseInt(mathGrade.value,10);
-      let question="", answer=null, wordProblem="", visual="";
-      if (grade === 1){
-        let a = randInt(1,10), b = randInt(1,10);
-        if (b > a) [a,b] = [b,a];
-        const op = Math.random()<0.5 ? "+" : "-";
+    function generateMathProblem() {
+      const grade = parseInt(mathGrade.value, 10);
+      let question = "", answer = null, wordProblem = "", visual = "";
+      if (grade === 1) {
+        let a = randInt(1, 10), b = randInt(1, 10);
+        if (b > a) [a, b] = [b, a];
+        const op = Math.random() < 0.5 ? "+" : "-";
         question = `${a} ${op} ${b} = ?`;
         answer = op === "+" ? a + b : a - b;
-        visual = "🍎".repeat(Math.min(a,10)) + " " + "🍎".repeat(Math.min(b,10));
+        visual = "🍎".repeat(Math.min(a, 10)) + " " + "🍎".repeat(Math.min(b, 10));
         wordProblem = `You have ${a} apples and ${op === "+" ? "get" : "lose"} ${b}. How many apples now?`;
-      } else if (grade === 2){
-        let a = randInt(10,99), b = randInt(10,99);
-        if (b > a) [a,b] = [b,a];
-        const op = Math.random()<0.5 ? "+" : "-";
+      } else if (grade === 2) {
+        let a = randInt(10, 99), b = randInt(10, 99);
+        if (b > a) [a, b] = [b, a];
+        const op = Math.random() < 0.5 ? "+" : "-";
         question = `${a} ${op} ${b} = ?`;
         answer = op === "+" ? a + b : a - b;
         wordProblem = `A classroom has ${a} books. They ${op === "+" ? "receive" : "lose"} ${b}. Total books?`;
-      } else if (grade === 3){
-        const type = Math.random()<0.5 ? "mul" : "div";
-        const a = randInt(1,10), b = randInt(1,10);
-        if (type === "mul"){ question = `${a} × ${b} = ?`; answer = a*b; wordProblem = `There are ${a} bags with ${b} marbles each. Total marbles?`; }
-        else { const product = a*b; question = `${product} ÷ ${a} = ?`; answer = b; wordProblem = `You share ${product} candies among ${a} friends. Each gets?`; }
-        visual = "🍰".repeat(Math.min(a,10));
-      } else if (grade === 4){
-        const type = Math.random()<0.5 ? "longdiv" : "decimal";
-        if (type === "longdiv"){ const divisor = randInt(2,9), quotient = randInt(2,9), dividend = divisor*quotient; question = `${dividend} ÷ ${divisor} = ?`; answer = quotient; wordProblem = `Divide ${dividend} students into groups of ${divisor}. Groups?`; }
-        else { const a = randInt(10,99)/10, b = randInt(10,99)/10, op = Math.random()<0.5 ? "+" : "-"; question = `${a.toFixed(1)} ${op} ${b.toFixed(1)} = ?`; answer = parseFloat((op === "+" ? a+b : a-b).toFixed(1)); wordProblem = `You run ${a.toFixed(1)} km and ${b.toFixed(1)} km. Total?`; }
-      } else if (grade === 5){
-        const type = Math.random()<0.5 ? "fraction" : "pemdas";
-        if (type === "fraction"){ const denom = randInt(2,9), n1 = randInt(1,denom-1), n2 = randInt(1,denom-1); question = `${n1}/${denom} + ${n2}/${denom} = ?`; answer = `${n1+n2}/${denom}`; wordProblem = `You drink ${n1}/${denom} of juice then ${n2}/${denom}. Total?`; }
-        else { const a = randInt(1,9), b = randInt(1,9), c = randInt(1,9); question = `${a} + ${b} × ${c} = ?`; answer = a + b*c; wordProblem = `Use PEMDAS to solve.`; }
-      } else if (grade === 6){
-        const type = randInt(1,3);
-        if (type === 1){ const x = randInt(-10,10), a = randInt(1,10), b = randInt(-10,10), y = a*x + b; question = `${a}x + ${b} = ${y}. Find x.`; answer = x; wordProblem = `Solve for x.`; }
-        else if (type === 2){ const a = randInt(-10,10), b = randInt(-10,10); question = `${a} + (${b}) = ?`; answer = a + b; wordProblem = `Add integers carefully.`; }
-        else { const a = randInt(2,10), b = randInt(2,10), gcd = greatestCommonDivisor(a,b); question = `Simplify ${a}:${b}`; answer = `${a/gcd}:${b/gcd}`; wordProblem = `Simplify the ratio.`; }
+      } else if (grade === 3) {
+        const type = Math.random() < 0.5 ? "mul" : "div";
+        const a = randInt(1, 10), b = randInt(1, 10);
+        if (type === "mul") { question = `${a} × ${b} = ?`; answer = a * b; wordProblem = `There are ${a} bags with ${b} marbles each. Total marbles?`; }
+        else { const product = a * b; question = `${product} ÷ ${a} = ?`; answer = b; wordProblem = `You share ${product} candies among ${a} friends. Each gets?`; }
+        visual = "🍰".repeat(Math.min(a, 10));
+      } else if (grade === 4) {
+        const type = Math.random() < 0.5 ? "longdiv" : "decimal";
+        if (type === "longdiv") { const divisor = randInt(2, 9), quotient = randInt(2, 9), dividend = divisor * quotient; question = `${dividend} ÷ ${divisor} = ?`; answer = quotient; wordProblem = `Divide ${dividend} students into groups of ${divisor}. Groups?`; }
+        else { const a = randInt(10, 99) / 10, b = randInt(10, 99) / 10, op = Math.random() < 0.5 ? "+" : "-"; question = `${a.toFixed(1)} ${op} ${b.toFixed(1)} = ?`; answer = parseFloat((op === "+" ? a + b : a - b).toFixed(1)); wordProblem = `You run ${a.toFixed(1)} km and ${b.toFixed(1)} km. Total?`; }
+      } else if (grade === 5) {
+        const type = Math.random() < 0.5 ? "fraction" : "pemdas";
+        if (type === "fraction") { const denom = randInt(2, 9), n1 = randInt(1, denom - 1), n2 = randInt(1, denom - 1); question = `${n1}/${denom} + ${n2}/${denom} = ?`; answer = `${n1 + n2}/${denom}`; wordProblem = `You drink ${n1}/${denom} of juice then ${n2}/${denom}. Total?`; }
+        else { const a = randInt(1, 9), b = randInt(1, 9), c = randInt(1, 9); question = `${a} + ${b} × ${c} = ?`; answer = a + b * c; wordProblem = `Use PEMDAS to solve.`; }
+      } else if (grade === 6) {
+        const type = randInt(1, 3);
+        if (type === 1) { const x = randInt(-10, 10), a = randInt(1, 10), b = randInt(-10, 10), y = a * x + b; question = `${a}x + ${b} = ${y}. Find x.`; answer = x; wordProblem = `Solve for x.`; }
+        else if (type === 2) { const a = randInt(-10, 10), b = randInt(-10, 10); question = `${a} + (${b}) = ?`; answer = a + b; wordProblem = `Add integers carefully.`; }
+        else { const a = randInt(2, 10), b = randInt(2, 10), gcd = greatestCommonDivisor(a, b); question = `Simplify ${a}:${b}`; answer = `${a / gcd}:${b / gcd}`; wordProblem = `Simplify the ratio.`; }
       }
       currentMathAnswer = answer;
       mathQuestion.textContent = question;
@@ -556,14 +682,18 @@
       mathVisual.textContent = visual;
     }
 
-    function submitMathAnswer(){
+    function submitMathAnswer() {
       if (currentMathAnswer === null) return;
       const raw = mathAnswer.value.trim();
       if (!raw) return;
       let correct = false;
-      if (typeof currentMathAnswer === "number") { const userVal = parseFloat(raw); correct = Math.abs(userVal - currentMathAnswer) < 0.0001; }
-      else correct = raw === String(currentMathAnswer);
-      if (correct){
+      // Handle floating point comparisons for decimal answers
+      if (typeof currentMathAnswer === "number") { 
+          const userVal = parseFloat(raw); 
+          correct = Math.abs(userVal - currentMathAnswer) < 0.0001; 
+      } else correct = raw === String(currentMathAnswer);
+
+      if (correct) {
         if (state.unlocked.sound_magic) { soundCorrect.currentTime = 0; soundCorrect.play(); }
         spawnConfetti();
         currentMathMeta.correct++; currentMathMeta.streak++;
@@ -581,19 +711,19 @@
     }
 
     /* ---------- Helpers ---------- */
-    function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
-    function greatestCommonDivisor(a,b){ a=Math.abs(a); b=Math.abs(b); while(b){ const t=b; b=a%b; a=t; } return a; }
+    function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+    function greatestCommonDivisor(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { const t = b; b = a % b; a = t; } return a; }
 
     /* ---------- XP / Coins / Streak helpers ---------- */
-    function addXP(amount){ state.xp += amount; state.level = Math.floor(state.xp/100)+1; updateAvatarTitle(); saveState(); }
-    function addCoins(amount){ state.coins += amount; saveState(); }
-    function incrementStreak(){ state.streak++; if (state.streak > state.bestStreak) state.bestStreak = state.streak; saveState(); }
-    function resetStreak(){ state.streak = 0; saveState(); }
-    function updateAvatarTitle(){ if (state.level >= 10) state.avatarTitle = "Galactic Scholar"; else if (state.level >= 7) state.avatarTitle = "Quantum Thinker"; else if (state.level >= 4) state.avatarTitle = "Curious Voyager"; else state.avatarTitle = "Rookie Explorer"; }
+    function addXP(amount) { state.xp += amount; state.level = Math.floor(state.xp / 100) + 1; updateAvatarTitle(); saveState(); }
+    function addCoins(amount) { state.coins += amount; saveState(); }
+    function incrementStreak() { state.streak++; if (state.streak > state.bestStreak) state.bestStreak = state.streak; saveState(); }
+    function resetStreak() { state.streak = 0; saveState(); }
+    function updateAvatarTitle() { if (state.level >= 10) state.avatarTitle = "Galactic Scholar"; else if (state.level >= 7) state.avatarTitle = "Quantum Thinker"; else if (state.level >= 4) state.avatarTitle = "Curious Voyager"; else state.avatarTitle = "Rookie Explorer"; }
 
     /* ---------- ELA (JSON load) ---------- */
     let elaData = [];
-    fetch("ela_data.json").then(r => r.json()).then(d => { elaData = d.stories || []; }).catch(()=>{ elaData = []; });
+    fetch("ela_data.json").then(r => r.json()).then(d => { elaData = d.stories || []; }).catch(() => { elaData = []; });
 
     const storyComplexity = document.getElementById("storyComplexity");
     const storyComplexityLabel = document.getElementById("storyComplexityLabel");
@@ -606,29 +736,29 @@
     let currentElaStory = null;
 
     storyComplexity.addEventListener("input", () => {
-      const v = parseInt(storyComplexity.value,10);
-      storyComplexityLabel.textContent = v===1 ? "Age 5 – Basic" : v===2 ? "Middle School – Adventure" : "High School – Complex Sci-Fi";
+      const v = parseInt(storyComplexity.value, 10);
+      storyComplexityLabel.textContent = v === 1 ? "Age 5 – Basic" : v === 2 ? "Middle School – Adventure" : "High School – Complex Sci-Fi";
     });
 
     startStoryBtn.addEventListener("click", () => {
       storyText.innerHTML = ""; storyQuizQuestions.innerHTML = ""; storyQuizFeedback.textContent = ""; storyQuizBox.classList.add("hidden");
-      const level = parseInt(storyComplexity.value,10);
+      const level = parseInt(storyComplexity.value, 10);
       const candidates = elaData.filter(s => s.level === level);
-      if (!candidates.length){ storyText.innerHTML = "<p class='text-sm text-rose-300'>No stories found for this level in JSON file.</p>"; return; }
-      currentElaStory = candidates[Math.floor(Math.random()*candidates.length)];
+      if (!candidates.length) { storyText.innerHTML = "<p class='text-sm text-rose-300'>No stories found for this level in JSON file.</p>"; return; }
+      currentElaStory = candidates[Math.floor(Math.random() * candidates.length)];
       renderElaCitation(); renderElaQuiz();
     });
 
-    function renderElaCitation(){
+    function renderElaCitation() {
       storyText.innerHTML = "";
       currentElaStory.citation.forEach(p => { const el = document.createElement("p"); el.textContent = p; storyText.appendChild(el); });
     }
 
-    function renderElaQuiz(){
+    function renderElaQuiz() {
       storyQuizBox.classList.remove("hidden"); storyQuizQuestions.innerHTML = "";
       currentElaStory.questions.forEach((qObj, idx) => {
         const wrapper = document.createElement("div"); wrapper.className = "space-y-1";
-        const q = document.createElement("p"); q.textContent = `${idx+1}. ${qObj.question}`; wrapper.appendChild(q);
+        const q = document.createElement("p"); q.textContent = `${idx + 1}. ${qObj.question}`; wrapper.appendChild(q);
         qObj.choices.forEach((choice, cIdx) => {
           const label = document.createElement("label"); label.className = "flex items-center gap-2 text-xs";
           const input = document.createElement("input"); input.type = "radio"; input.name = `ela_q_${idx}`; input.value = cIdx;
@@ -645,15 +775,15 @@
       currentElaStory.questions.forEach((qObj, idx) => {
         const selected = document.querySelector(`input[name="ela_q_${idx}"]:checked`);
         if (!selected) return;
-        const chosenIndex = parseInt(selected.value,10);
+        const chosenIndex = parseInt(selected.value, 10);
         if (chosenIndex === qObj.correctIndex) correctCount++;
       });
       const total = currentElaStory.questions.length;
       const rewardCoins = correctCount * 20;
-      if (correctCount === total){
+      if (correctCount === total) {
         storyQuizFeedback.textContent = `Perfect! You answered all correctly. +${rewardCoins} Coins, +30 XP.`; storyQuizFeedback.className = "text-xs text-emerald-300";
         addCoins(rewardCoins); addXP(30); spawnConfetti();
-      } else if (correctCount > 0){
+      } else if (correctCount > 0) {
         storyQuizFeedback.textContent = `Nice job! You got ${correctCount}/${total}. +${rewardCoins} Coins, +15 XP.`; storyQuizFeedback.className = "text-xs text-cyan-300";
         addCoins(rewardCoins); addXP(15);
       } else {
@@ -673,8 +803,9 @@
     document.querySelectorAll(".open-game").forEach(btn => {
       btn.addEventListener("click", () => {
         const url = btn.dataset.url;
-        const cost = parseInt(btn.dataset.cost,10);
-        const timeLimit = parseInt(btn.dataset.time,10) || 180;
+        const cost = parseInt(btn.dataset.cost, 10);
+        // NOTE: The original code assumed a time limit was passed in data-time, but it wasn't explicitly set on the buttons. We keep this structure as is, assuming external games handle their own limits.
+        const timeLimit = parseInt(btn.dataset.time) || 180; // Default to 180s if no time is provided
 
         if (state.coins < cost) { alert("Not enough Brain Coins!"); return; }
 
@@ -698,7 +829,7 @@
             gameFrame.src = "";
             gameTimer.textContent = "Time’s up!";
             if (state.unlocked.sound_magic) { soundCorrect.currentTime = 0; soundCorrect.play(); }
-            setTimeout(()=> gameModal.classList.add("hidden"), 1200);
+            setTimeout(() => gameModal.classList.add("hidden"), 1200);
           }
         }, 1000);
       });
