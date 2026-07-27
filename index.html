@@ -621,116 +621,92 @@
       generateMathProblem();
     });
 
-    /* ---------- ELA / Story logic ---------- */
-    const storyText = document.getElementById('storyText');
-    const storyQuizBox = document.getElementById('storyQuizBox');
-    const storyQuizQuestions = document.getElementById('storyQuizQuestions');
-    const submitStoryQuizBtn = document.getElementById('submitStoryQuiz');
-    const storyQuizFeedback = document.getElementById('storyQuizFeedback');
-    const storyComplexity = document.getElementById('storyComplexity');
-    const storyComplexityLabel = document.getElementById('storyComplexityLabel');
-    const startStoryBtn = document.getElementById('startStory');
+    <!-- ========================= -->
+      <!--       ELA STORY         -->
+      <!-- ========================= -->
+      <section id="route-story" class="route-section hidden">
+        <div class="grid md:grid-cols-3 gap-6">
 
-    let elaData = [];
-    let currentElaStory = null;
+          <!-- LEFT: Controls -->
+          <div class="md:col-span-1 space-y-4">
+            <h2 class="text-xl font-bold flex items-center gap-2">
+              <i class="fa-solid fa-book-open text-blue-400"></i>
+              Reading Lab (ELA)
+            </h2>
 
-    storyComplexity.addEventListener('input', () => {
-      const val = parseInt(storyComplexity.value, 10);
-      if (val === 1) storyComplexityLabel.textContent = 'Age 5 – Basic';
-      else if (val === 2) storyComplexityLabel.textContent = 'Middle School – Adventure';
-      else storyComplexityLabel.textContent = 'High School – Complex Sci-Fi/Mystery';
-    });
+            <p class="text-xs text-slate-300">
+              Choose a reading level, read a story citation, then answer multiple-choice questions.
+              All story data is stored in a JSON file for easy maintenance.
+            </p>
 
-    fetch('ela_data.json').then(res => {
-      if (!res.ok) throw new Error('Failed to fetch ela_data.json');
-      return res.json();
-    }).then(data => {
-      elaData = data.stories || [];
-    }).catch(() => { elaData = []; });
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-3">
+              <h3 class="text-sm font-semibold">Reading Level</h3>
 
-    startStoryBtn.addEventListener('click', startNewElaStory);
+              <label class="text-xs flex items-center justify-between">
+                <span>Age 5 – Simple & Fun</span>
+                <span class="text-yellow-300"><i class="fa-solid fa-face-smile"></i></span>
+              </label>
 
-    function startNewElaStory() {
-      storyText.innerHTML = '';
-      storyQuizQuestions.innerHTML = '';
-      storyQuizFeedback.textContent = '';
-      storyQuizBox.classList.add('hidden');
+              <label class="text-xs flex items-center justify-between">
+                <span>Middle School – Adventure & Drama</span>
+                <span class="text-cyan-300"><i class="fa-solid fa-dragon"></i></span>
+              </label>
 
-      const level = parseInt(storyComplexity.value, 10);
-      const candidates = elaData.filter(s => s.level === level);
-      if (!candidates.length) {
-        storyText.innerHTML = "<p class='text-sm text-rose-300'>No stories found for this level. Please ensure 'ela_data.json' exists and has entries.</p>";
-        return;
-      }
+              <label class="text-xs flex items-center justify-between">
+                <span>High School – Deep Themes & Sci-Fi</span>
+                <span class="text-pink-300"><i class="fa-solid fa-meteor"></i></span>
+              </label>
 
-      currentElaStory = candidates[Math.floor(Math.random() * candidates.length)];
-      renderElaCitation();
-      renderElaQuiz();
-    }
+              <input id="storyComplexity" type="range" min="1" max="3" value="1" class="w-full mt-2" />
+              <p id="storyComplexityLabel" class="text-xs text-slate-300 mt-1">Age 5 – Basic</p>
 
-    function renderElaCitation() {
-      const s = currentElaStory;
-      storyText.innerHTML = '';
-      (s.citation || []).forEach(paragraph => {
-        const p = document.createElement('p');
-        p.textContent = paragraph;
-        storyText.appendChild(p);
-      });
-    }
+              <button id="startStory"
+                class="mt-3 w-full px-4 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold shadow-lg shadow-pink-500/40">
+                Load Story & Questions
+              </button>
+            </div>
 
-    function renderElaQuiz() {
-      storyQuizBox.classList.remove('hidden');
-      storyQuizQuestions.innerHTML = '';
-      (currentElaStory.questions || []).forEach((qObj, idx) => {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'space-y-2 p-2 border border-slate-700 rounded-lg';
-        const q = document.createElement('p');
-        q.textContent = `${idx + 1}. ${qObj.question}`;
-        wrapper.appendChild(q);
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 text-xs space-y-2">
+              <h3 class="text-sm font-semibold">Reading Progress</h3>
+              <p>Stories completed: <span id="storyCompletedCount" class="font-bold text-pink-300">0</span></p>
+              <p>Last reward: <span id="storyLastReward" class="font-bold text-emerald-300">0</span> Coins</p>
+            </div>
+          </div>
 
-        (qObj.options || []).forEach((opt, optIdx) => {
-          const label = document.createElement('label');
-          label.className = 'flex items-center gap-2 text-xs';
-          const input = document.createElement('input');
-          input.type = 'radio';
-          input.name = `ela-q-${idx}`;
-          input.value = optIdx;
-          label.appendChild(input);
-          const span = document.createElement('span');
-          span.textContent = opt;
-          label.appendChild(span);
-          wrapper.appendChild(label);
-        });
+          <!-- RIGHT: Story + MCQ -->
+          <div class="md:col-span-2 space-y-4">
 
-        storyQuizQuestions.appendChild(wrapper);
-      });
-    }
+            <!-- Story Citation -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-3xl p-6 space-y-4">
+              <h3 class="text-lg font-semibold flex items-center gap-2">
+                <i class="fa-solid fa-scroll text-yellow-300"></i>
+                Story Citation
+              </h3>
 
-    submitStoryQuizBtn.addEventListener('click', () => {
-      if (!currentElaStory) return;
-      let correctCount = 0;
-      (currentElaStory.questions || []).forEach((qObj, idx) => {
-        const selected = document.querySelector(`input[name="ela-q-${idx}"]:checked`);
-        if (!selected) return;
-        const chosenIndex = parseInt(selected.value, 10);
-        if (chosenIndex === qObj.answerIndex) correctCount++;
-      });
+              <div id="storyText" class="text-sm md:text-base leading-relaxed space-y-3"></div>
+            </div>
 
-      const total = (currentElaStory.questions || []).length;
-      if (correctCount === total && total > 0) {
-        storyQuizFeedback.textContent = `Perfect! You got all ${total} correct. +15 XP, +10 Coins.`;
-        storyQuizFeedback.className = 'text-xs text-emerald-300';
-        addXP(15);
-        addCoins(10);
-        state.storiesCompleted++;
-        storyLastReward.textContent = '10';
-        spawnConfetti();
-      } else {
-        storyQuizFeedback.textContent = `You got ${correctCount} out of ${total}. Keep reading and try again!`;
-        storyQuizFeedback.className = 'text-xs text-amber-300';
-      }
-      saveState();
-    });
+            <!-- MCQ Box -->
+            <div id="storyQuizBox"
+              class="bg-slate-800/80 border border-slate-700 rounded-3xl p-6 space-y-3 hidden">
+
+              <h3 class="text-lg font-semibold flex items-center gap-2">
+                <i class="fa-solid fa-question text-emerald-300"></i>
+                Reading Comprehension MCQ
+              </h3>
+
+              <div id="storyQuizQuestions" class="space-y-4 text-sm"></div>
+
+              <button id="submitStoryQuiz"
+                class="mt-2 px-4 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold">
+                Submit Answers
+              </button>
+
+              <p id="storyQuizFeedback" class="text-xs mt-2"></p>
+            </div>
+          </div>
+        </div>
+      </section>
 
     /* ---------- Game modal & timers (3 minutes for all games) ---------- */
     const gameModal = document.getElementById('gameModal');
