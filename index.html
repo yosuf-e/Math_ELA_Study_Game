@@ -1126,6 +1126,25 @@ closeGame.addEventListener("click", () => {
   gameModal.classList.add("hidden");
 });
 
+/* ========================= */
+/*   GAME PURCHASE HANDLER   */
+/* ========================= */
+
+document.querySelectorAll(".open-game").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const cost = parseInt(btn.dataset.cost);
+
+    // Check coins
+    if (state.coins < cost) {
+      alert("Not enough Brain Coins!");
+      return;
+    }
+
+    // Deduct coins
+    state.coins -= cost;
+    saveState();
+  });
+});
 
 /* ========================= */
 /*        ELA / STORY        */
