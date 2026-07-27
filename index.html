@@ -437,71 +437,53 @@
       <section id="route-shop" class="route-section hidden">
         <div class="space-y-4">
           <h2 class="text-xl font-bold flex items-center gap-2">
-            <i class="fa-solid fa-store text-amber-300"></i>
-            Reward Shop
+            <i class="fa-solid fa-gamepad text-amber-300"></i>
+            Game Rewards Zone
           </h2>
-
+      
           <p class="text-xs text-slate-300">
-            Spend Brain Coins to unlock badges, themes, and special sound effects.
-            Your purchases persist using local storage.
+            Enjoy quick 1‑minute game breaks! Each game opens in a safe embedded window and closes automatically.
           </p>
-
-          <div class="grid md:grid-cols-3 gap-4 text-xs">
-
-            <!-- Cosmic Badge -->
+      
+          <div class="grid md:grid-cols-3 gap-4">
+      
+            <!-- Car Games -->
             <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
-              <h3 class="text-sm font-semibold flex items-center gap-2">
-                <i class="fa-solid fa-medal text-yellow-300"></i>
-                Cosmic Badge
-              </h3>
-              <p>Unlock a glowing cosmic badge for your profile.</p>
-              <p>Cost: <span class="font-bold text-emerald-300">50</span> Coins</p>
-
-              <button data-item="badge_cosmic"
-                class="shop-buy mt-2 px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold">
-                Buy & Equip
+              <img src="https://imgs.crazygames.com/smash-karts_1x1/20260210123937/smash-karts_1x1-cover?format=auto&quality=100&metadata=none&width=1200" height="100" width="100" class="rounded-xl">
+              <h3 class="text-sm font-semibold">Smash Karts</h3>
+              <button class="open-game px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold"
+                data-url="https://smashkarts.io/"
+                data-cost="100">
+                Play 1‑Minute (100 Coins)
               </button>
-
-              <p id="shopStatus_badge_cosmic" class="mt-1 text-slate-400"></p>
             </div>
-
-            <!-- Neon Theme -->
+      
+            <!-- Adventure Games -->
             <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
-              <h3 class="text-sm font-semibold flex items-center gap-2">
-                <i class="fa-solid fa-palette text-cyan-300"></i>
-                Neon Theme
-              </h3>
-              <p>Unlock a vibrant neon background theme.</p>
-              <p>Cost: <span class="font-bold text-emerald-300">80</span> Coins</p>
-
-              <button data-item="theme_neon"
-                class="shop-buy mt-2 px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold">
-                Buy & Activate
+              <img src="https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=188,height=188,fit=cover,f=auto/94f0d123275fb73da13aaed4a2725184/adventure-logo.png" height="100" width="100" class="rounded-xl">
+              <h3 class="text-sm font-semibold">Adventure Game</h3>
+              <button class="open-game px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold"
+                data-url="https://vectaria.io/"
+                data-cost="160">
+                Play 1‑Minute (160 Coins)
               </button>
-
-              <p id="shopStatus_theme_neon" class="mt-1 text-slate-400"></p>
             </div>
-
-            <!-- Magic Sound FX -->
+      
+            <!-- Chess Game
             <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
-              <h3 class="text-sm font-semibold flex items-center gap-2">
-                <i class="fa-solid fa-music text-pink-300"></i>
-                Magic Sound FX
-              </h3>
-              <p>Unlock special success chime and error wobble sounds.</p>
-              <p>Cost: <span class="font-bold text-emerald-300">40</span> Coins</p>
-
-              <button data-item="sound_magic"
-                class="shop-buy mt-2 px-3 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold">
-                Buy & Enable
+              <img src="https://assets-configurator.chess.com/image/configurator/puzzles_1765899040725.webp" height="100" width="100" class="rounded-xl">
+              <h3 class="text-sm font-semibold">Chess</h3>
+              <button class="open-game px-3 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold"
+                data-url="https://www.chessonlinefree.com/play-chess-online"
+                data-cost="120">
+                Play 1‑Minute (120 Coins)
               </button>
-
-              <p id="shopStatus_sound_magic" class="mt-1 text-slate-400"></p>
-            </div>
-
+            </div>-->
+      
           </div>
         </div>
       </section>
+
 
       <!-- ========================= -->
       <!--     PROFILE SECTION       -->
@@ -542,16 +524,27 @@
 
           </div>
 
-          <button id="resetProgress"
-            class="mt-3 px-4 py-2 rounded-lg bg-rose-500 text-slate-900 font-semibold">
+          <button id="resetProgress" class="mt-3 px-4 py-2 rounded-lg bg-rose-500 text-slate-900 font-semibold">
             Reset Progress (Local Only)
           </button>
-        </div>
-      </section>
-
-    </div>
-  </main>
-</div>
+          </div>
+          </section>
+          <!-- Game Modal -->
+          <div id="gameModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur flex items-center justify-center z-50">
+            <div class="bg-slate-900 rounded-3xl p-4 w-[80%] h-[80%] relative">
+              <iframe id="gameFrame" src="" class="w-full h-full rounded-xl"></iframe>
+          
+              <button id="closeGame" class="absolute top-3 right-3 px-3 py-2 bg-rose-500 text-white rounded-lg font-semibold">
+                Close
+              </button>
+          
+              <p id="gameTimer" class="absolute bottom-3 right-3 text-sm text-yellow-300 font-bold"></p>
+            </div>
+          </div>
+          
+          </div>
+          </main>
+          </div>
 
 <!-- ========================= -->
 <!--     GLOBAL JAVASCRIPT     -->
@@ -664,9 +657,7 @@ const defaultState = {
   mathSolved: 0,
   storiesCompleted: 0,
   unlocked: {
-    badge_cosmic: false,
-    theme_neon: false,
-    sound_magic: false
+    sound_magic: true
   },
   avatarTitle: "Rookie Explorer"
 };
@@ -764,13 +755,7 @@ function updateHUD() {
   profileCoins.textContent = state.coins;
   profileBestStreak.textContent = state.bestStreak;
   profileAvatar.textContent = state.avatarTitle;
-
-  profileBadgeCosmic.textContent = state.unlocked.badge_cosmic ? "Unlocked" : "Locked";
-  profileThemeNeon.textContent = state.unlocked.theme_neon ? "Unlocked" : "Locked";
   profileSoundMagic.textContent = state.unlocked.sound_magic ? "Unlocked" : "Locked";
-
-  shopStatus_badge_cosmic.textContent = state.unlocked.badge_cosmic ? "Owned & Equipped" : "";
-  shopStatus_theme_neon.textContent = state.unlocked.theme_neon ? "Active Theme" : "";
   shopStatus_sound_magic.textContent = state.unlocked.sound_magic ? "Enabled FX" : "";
 
   applyThemeNeon();
@@ -789,8 +774,6 @@ shopButtons.forEach(btn => {
 
 function handleShopPurchase(item) {
   const costs = {
-    badge_cosmic: 50,
-    theme_neon: 80,
     sound_magic: 40
   };
 
@@ -916,20 +899,25 @@ function generateMathProblem() {
   let visual = "";
 
   if (grade === 1) {
-    const a = randInt(1, 10);
-    const b = randInt(1, 10);
-    const op = Math.random() < 0.5 ? "+" : "-";
-    question = `${a} ${op} ${b} = ?`;
-    answer = op === "+" ? a + b : a - b;
-    visual = "🍎".repeat(Math.min(a, 10)) + " " + "🍎".repeat(Math.min(b, 10));
-    wordProblem = `You have ${a} apples and ${op === "+" ? "get" : "lose"} ${b}. How many apples now?`;
-  } else if (grade === 2) {
-    const a = randInt(10, 99);
-    const b = randInt(10, 99);
-    const op = Math.random() < 0.5 ? "+" : "-";
-    question = `${a} ${op} ${b} = ?`;
-    answer = op === "+" ? a + b : a - b;
-    wordProblem = `A classroom has ${a} books. ${op === "+" ? "They receive" : "They lose"} ${b}. Total books?`;
+  let a = randInt(1, 10);
+  let b = randInt(1, 10);
+  // Ensure a >= b
+  if (b > a) [a, b] = [b, a];
+  const op = Math.random() < 0.5 ? "+" : "-";
+  question = `${a} ${op} ${b} = ?`;
+  answer = op === "+" ? a + b : a - b;
+  visual = "🍎".repeat(Math.min(a, 10)) + " " + "🍎".repeat(Math.min(b, 10));
+  wordProblem = `You have ${a} apples and ${op === "+" ? "get" : "lose"} ${b}. How many apples now?`;
+}
+  if (grade === 2) {
+  let a = randInt(10, 99);
+  let b = randInt(10, 99);
+  // Ensure a >= b
+  if (b > a) [a, b] = [b, a];
+  const op = Math.random() < 0.5 ? "+" : "-";
+  question = `${a} ${op} ${b} = ?`;
+  answer = op === "+" ? a + b : a - b;
+  wordProblem = `A classroom has ${a} books. They ${op === "+" ? "receive" : "lose"} ${b}. Total books?`;
   } else if (grade === 3) {
     const type = Math.random() < 0.5 ? "mul" : "div";
     const a = randInt(1, 10);
@@ -1090,6 +1078,54 @@ function greatestCommonDivisor(a, b) {
   }
   return a;
 }
+
+/* ========================= */
+/*     GAME REWARD LOGIC     */
+/* ========================= */
+
+const gameModal = document.getElementById("gameModal");
+const gameFrame = document.getElementById("gameFrame");
+const closeGame = document.getElementById("closeGame");
+const gameTimer = document.getElementById("gameTimer");
+
+let gameInterval = null;
+let gameTimeLeft = 150;
+
+document.querySelectorAll(".open-game").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const url = btn.dataset.url;
+
+    gameFrame.src = url;
+    gameModal.classList.remove("hidden");
+
+    gameTimeLeft = 150;
+    gameTimer.textContent = `Time Left: ${gameTimeLeft}s`;
+
+    if (gameInterval) clearInterval(gameInterval);
+
+    gameInterval = setInterval(() => {
+      gameTimeLeft--;
+      gameTimer.textContent = `Time Left: ${gameTimeLeft}s`;
+
+      if (gameTimeLeft <= 0) {
+        clearInterval(gameInterval);
+        gameFrame.src = "";
+        gameTimer.textContent = "Time's up!";
+        soundCorrect.play(); // sound effect
+        setTimeout(() => {
+          gameModal.classList.add("hidden");
+        }, 1500);
+      }
+    }, 1000);
+  });
+});
+
+closeGame.addEventListener("click", () => {
+  clearInterval(gameInterval);
+  gameFrame.src = "";
+  gameModal.classList.add("hidden");
+});
+
 
 /* ========================= */
 /*        ELA / STORY        */
