@@ -1,470 +1,1242 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4185/4185714.png">
-    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/4185/4185714.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Story Comprehension Suite</title>
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --container-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --success: #10b981;
-            --danger: #ef4444;
-            --border-color: #334155;
-        }
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2037/2037086.png">
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2037/2037086.png">
+  <title>BrainQuest Academy</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+  <!-- FontAwesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
 
-        .app-container {
-            background-color: var(--container-bg);
-            width: 100%;
-            max-width: 1200px;
-            aspect-ratio: 16 / 9;
-            border-radius: 16px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-            padding: 50px;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            border: 1px solid var(--border-color);
-        }
+  <style>
+    :root {
+      --particle-color: #facc15;
+    }
 
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    .floating { animation: float 6s ease-in-out infinite; }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
 
-        h1 {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 10px;
-            letter-spacing: -0.025em;
-        }
+    .wobble { animation: wobble 0.4s ease; }
+    @keyframes wobble {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      50% { transform: translateX(4px); }
+      75% { transform: translateX(-2px); }
+      100% { transform: translateX(0); }
+    }
 
-        p.subtitle {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
+    .bounce { animation: bounce 0.5s ease; }
+    @keyframes bounce {
+      0% { transform: scale(1); }
+      30% { transform: scale(1.1); }
+      60% { transform: scale(0.95); }
+      100% { transform: scale(1); }
+    }
 
-        .hidden {
-            display: none !important;
-        }
-
-        .level-selection {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: auto 0;
-        }
-
-        .level-card {
-            background-color: #334155;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            padding: 40px 30px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 300px;
-        }
-
-        .level-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-            background-color: #3b4252;
-        }
-
-        .level-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--text-main);
-        }
-
-        .level-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        button.action-btn {
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 14px 28px;
-            font-size: 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.2s, transform 0.1s;
-            font-weight: 600;
-        }
-
-        button.action-btn:hover {
-            background-color: var(--accent-hover);
-        }
-
-        button.action-btn:active {
-            transform: scale(0.98);
-        }
-
-        .story-area {
-            background-color: rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            border-left: 6px solid var(--accent);
-            border-radius: 0 12px 12px 0;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 30px;
-            max-height: 250px;
-            overflow-y: auto;
-        }
-
-        .quiz-container {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            justify-content: space-between;
-        }
-
-        .question-block {
-            margin-bottom: 20px;
-        }
-
-        .question-text {
-            font-size: 1.35rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--text-main);
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-        }
-
-        .option-btn {
-            background-color: #334155;
-            text-align: left;
-            padding: 18px 20px;
-            border-radius: 8px;
-            border: 2px solid transparent;
-            color: var(--text-main);
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .option-btn:hover {
-            background-color: #475569;
-            border-color: var(--text-muted);
-        }
-
-        .option-btn.selected {
-            border-color: var(--accent);
-            background-color: rgba(59, 130, 246, 0.25);
-        }
-
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 30px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
-        }
-
-        .progress-text {
-            color: var(--text-muted);
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        .results-area {
-            text-align: center;
-            margin: auto 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .results-area h2 {
-            font-size: 2.5rem;
-            color: var(--accent);
-        }
-
-        .results-area p {
-            font-size: 1.3rem;
-            color: var(--text-muted);
-        }
-
-        .error-box {
-            background-color: rgba(239, 68, 68, 0.1);
-            border: 1px solid var(--danger);
-            padding: 20px;
-            border-radius: 8px;
-            color: var(--danger);
-            text-align: center;
-            margin: auto;
-        }
-    </style>
+    canvas#confettiCanvas {
+      position: fixed;
+      pointer-events: none;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 50;
+    }
+    
+  </style>
 </head>
-<body>
 
-    <div class="app-container">
-        <header>
-            <h1>Advanced Literary & Analytical Suite</h1>
-            <p class="subtitle">Comprehensive Reading & Textual Critique Engine</p>
-        </header>
+<body class="bg-slate-900 text-slate-100 transition-colors duration-500">
 
-        <!-- Screen 1: Level Selection -->
-        <div id="level-screen" class="level-selection">
-            <div class="level-card" onclick="loadLevel('Middle School')">
-                <h3>Middle School</h3>
-                <p>Engage with foundational analytical texts, targeted vocabulary contexts, and thematic parsing designed for intermediate learners.</p>
-            </div>
-            <div class="level-card" onclick="loadLevel('High School')">
-                <h3>High School</h3>
-                <p>Evaluate advanced philosophical frameworks, high-level textual ambiguity, structural irony, and intricate narrative constructs.</p>
-            </div>
+<!-- Confetti Canvas -->
+<canvas id="confettiCanvas"></canvas>
+
+<!-- Correct Sound -->
+<audio id="soundCorrect">
+  <source src="https://cdn.pixabay.com/audio/2025/06/06/audio_033375aac8.mp3" type="audio/ogg">
+</audio>
+
+<!-- Wrong Sound -->
+<audio id="soundWrong">
+  <source src="https://cdn.pixabay.com/audio/2022/03/10/audio_8b0fae46ef.mp3" type="audio/ogg">
+</audio>
+
+<div id="app" class="min-h-screen flex flex-col">
+
+  <!-- HEADER / DASHBOARD -->
+  <header class="sticky top-0 z-40 bg-slate-900/80 backdrop-blur border-b border-slate-700">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+
+      <!-- Logo + Theme Toggle -->
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl text-yellow-400"><i class="fa-solid fa-brain"></i></span>
+          <div>
+            <h1 class="text-lg font-bold tracking-wide">BrainQuest Academy</h1>
+            <p class="text-xs text-slate-400">Gamified Math & Reading Adventures</p>
+          </div>
         </div>
 
-        <!-- Screen 2: Game Screen -->
-        <div id="game-screen" class="hidden quiz-container">
-            <div id="story-content" class="story-area"></div>
-            
-            <div id="quiz-area" class="quiz-container">
-                <div class="question-block">
-                    <div id="question-text" class="question-text"></div>
-                    <div id="options-container" class="options-grid"></div>
-                </div>
-                
-                <div class="controls">
-                    <span id="progress-text" class="progress-text"></span>
-                    <button id="next-btn" class="action-btn" onclick="nextQuestion()">Next Question</button>
-                </div>
-            </div>
+        <!-- Light Mode Toggle -->
+        <button id="themeToggle"
+          class="ml-4 px-3 py-1 rounded-full border border-slate-600 text-xs flex items-center gap-2">
+          <span class="theme-icon"><i class="fa-solid fa-sun text-yellow-300"></i></span>
+          <span id="themeLabel">Light Mode</span>
+        </button>
+      </div>
 
-            <div id="results-area" class="results-area hidden">
-                <h2 id="final-score-title">Assessment Complete</h2>
-                <p id="final-score-desc"></p>
-                <button class="action-btn" onclick="resetToMenu()">Return to Main Menu</button>
-            </div>
+      <!-- PLAYER HUD -->
+      <div class="flex items-center gap-4 text-xs md:text-sm">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-user-astronaut text-cyan-300"></i>
+          <span id="hudAvatar" class="font-semibold">Rookie Explorer</span>
         </div>
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-star text-yellow-400"></i>
+          <span>Level</span>
+          <span id="hudLevel" class="font-bold">1</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-bolt text-amber-400"></i>
+          <span>XP</span>
+          <span id="hudXP" class="font-bold">0</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-orange-500"><i class="fa-solid fa-fire"></i></span>
+          <span>Streak</span>
+          <span id="hudStreak" class="font-bold">0</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-emerald-400"><i class="fa-solid fa-coins"></i></span>
+          <span>Brain Coins</span>
+          <span id="hudCoins" class="font-bold">0</span>
+        </div>
+      </div>
     </div>
 
-    <script>
-        /* ==========================================================================
-           Application State Management Infrastructure
-           ========================================================================== */
-        class ApplicationState {
-            constructor() {
-                this.gameData = [];
-                this.currentStory = null;
-                this.currentQuestionIndex = 0;
-                this.userScore = 0;
-                this.selectedOptionIndex = null;
-                this.isInitialized = false;
-            }
+    <!-- NAVIGATION -->
+    <nav class="max-w-6xl mx-auto px-4 pb-3 flex gap-2 md:gap-4 text-xs md:text-sm">
+      <button data-route="home"
+        class="route-btn px-3 py-2 rounded-full bg-slate-800 text-slate-100 flex items-center gap-2">
+        <i class="fa-solid fa-house"></i><span>Home</span>
+      </button>
 
-            setGameData(data) {
-                this.gameData = data;
-                this.isInitialized = true;
-            }
+      <button data-route="math"
+        class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2">
+        <i class="fa-solid fa-calculator text-red-400"></i><span>Math Arena</span>
+      </button>
 
-            setCurrentStory(story) {
-                this.currentStory = story;
-                this.currentQuestionIndex = 0;
-                this.userScore = 0;
-                this.selectedOptionIndex = null;
-            }
+      <button data-route="story"
+        class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2">
+        <i class="fa-solid fa-book-open text-blue-400"></i><span>Reading Lab (ELA)</span>
+      </button>
 
-            incrementScore() {
-                this.userScore++;
-            }
+      <button data-route="shop"
+        class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2">
+        <i class="fa-solid fa-store"></i><span>Reward Shop</span>
+      </button>
 
-            setSelection(index) {
-                this.selectedOptionIndex = index;
-            }
+      <button data-route="profile"
+        class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2">
+        <i class="fa-solid fa-id-card"></i><span>Profile & Stats</span>
+      </button>
+    </nav>
+  </header>
 
-            advanceQuestion() {
-                this.currentQuestionIndex++;
-                this.selectedOptionIndex = null;
-            }
+  <!-- MAIN CONTENT WRAPPER -->
+  <main class="flex-1">
+    <div class="max-w-6xl mx-auto px-4 py-6 space-y-6">
 
-            isComplete() {
-                if (!this.currentStory) return true;
-                return this.currentQuestionIndex >= this.currentStory.questions.length;
-            }
-        }
-
-        const state = new ApplicationState();
-
-        /* ==========================================================================
-           Data Fetching Layer
-           ========================================================================== */
-        async function initializeApplication() {
-            try {
-                const response = await fetch('story_data.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                const data = await response.json();
-                state.setGameData(data);
-            } catch (error) {
-                console.error("Critical failure fetching story data payload:", error);
-                handleInitializationError();
-            }
-        }
-
-        function handleInitializationError() {
-            const levelScreen = document.getElementById('level-screen');
-            levelScreen.innerHTML = `
-                <div class="error-box">
-                    <h3>Configuration Error</h3>
-                    <p>Unable to locate or parse 'story_data.json'. Please ensure your JSON file is correctly formatted and hosted in the same local directory or active server environment.</p>
+      <!-- HOME SECTION -->
+    <section id="route-home" class="route-section">
+        <div class="grid md:grid-cols-2 gap-6 items-center">
+    
+            <!-- LEFT SIDE -->
+            <div class="space-y-4">
+                <h2 class="text-2xl md:text-3xl font-bold">
+                    Welcome to <span class="text-cyan-300">BrainQuest Academy</span>
+                </h2>
+    
+                <p class="text-sm md:text-base text-slate-300">
+                    Practice math, craft dynamic stories, and level up your brain with XP, streaks, and Brain Coins.
+                    Unlock avatars, themes, and special effects as you play.
+                </p>
+    
+                <!-- Mode Icons -->
+                <div class="flex flex-wrap gap-3">
+                    <div class="px-3 py-2 rounded-xl bg-slate-800 flex items-center gap-2 floating">
+                        <i class="fa-solid fa-stopwatch text-amber-400"></i>
+                        <span class="text-xs">Beat the Clock Mode</span>
+                    </div>
+    
+                    <div class="px-3 py-2 rounded-xl bg-slate-800 flex items-center gap-2 floating">
+                        <i class="fa-solid fa-peace text-emerald-400"></i>
+                        <span class="text-xs">Take Your Time Mode</span>
+                    </div>
+    
+                    <div class="px-3 py-2 rounded-xl bg-slate-800 flex items-center gap-2 floating">
+                        <i class="fa-solid fa-wand-magic-sparkles text-cyan-300"></i>
+                        <span class="text-xs">AI-style Story Generator</span>
+                    </div>
                 </div>
-            `;
-        }
+    
+                <!-- Buttons -->
+                <div class="flex gap-3 mt-4">
+                    <button data-route="math"
+                        class="route-btn px-4 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold shadow-lg shadow-cyan-500/40">
+                        Enter Math Arena
+                    </button>
+    
+                    <button data-route="story"
+                        class="route-btn px-4 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold shadow-lg shadow-emerald-500/40">
+                        Explore Story Lab
+                    </button>
+                </div>
+            </div>
+    
+            <!-- RIGHT SIDE: Live Stats Snapshot -->
+            <div class="relative">
+                <div class="absolute -top-4 -left-4 w-24 h-24 rounded-full bg-cyan-500/30 blur-2xl"></div>
+                <div class="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-emerald-500/30 blur-2xl"></div>
+    
+                <div class="relative bg-slate-800/80 border border-slate-700 rounded-3xl p-6 shadow-xl">
+                    <h3 class="text-lg font-semibold mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-trophy text-yellow-400"></i>
+                        Live Stats Snapshot
+                    </h3>
+    
+                    <div class="grid grid-cols-2 gap-3 text-xs">
+    
+                        <div class="bg-slate-900/60 rounded-xl p-3">
+                            <p class="text-slate-400">Total XP</p>
+                            <p id="homeXP" class="text-xl font-bold text-cyan-300">0</p>
+                        </div>
+    
+                        <div class="bg-slate-900/60 rounded-xl p-3">
+                            <p class="text-slate-400">Best Streak</p>
+                            <p id="homeBestStreak" class="text-xl font-bold text-amber-300">0</p>
+                        </div>
+    
+                        <div class="bg-slate-900/60 rounded-xl p-3">
+                            <p class="text-slate-400">Math Problems Solved</p>
+                            <p id="homeMathSolved" class="text-xl font-bold text-emerald-300">0</p>
+                        </div>
+    
+                        <div class="bg-slate-900/60 rounded-xl p-3">
+                            <p class="text-slate-400">Stories Completed</p>
+                            <p id="homeStoriesCompleted" class="text-xl font-bold text-pink-300">0</p>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </section>
 
-        /* ==========================================================================
-           UI Controller & Navigation Logic
-           ========================================================================== */
-        function loadLevel(level) {
-            if (!state.isInitialized || state.gameData.length === 0) {
-                alert("Data payload not yet synchronized. Please verify your connection or local server status.");
-                return;
-            }
 
-            const filteredStories = state.gameData.filter(item => item.level.toLowerCase() === level.toLowerCase());
-            
-            if (filteredStories.length === 0) {
-                alert(`No structural configurations found for level: ${level}`);
-                return;
-            }
+      <!-- ========================= -->
+      <!--      MATH SECTION         -->
+      <!-- ========================= -->
+      <section id="route-math" class="route-section hidden">
+        <div class="flex flex-col md:flex-row gap-6">
 
-            const randomIndex = Math.floor(Math.random() * filteredStories.length);
-            state.setCurrentStory(filteredStories[randomIndex]);
+          <!-- LEFT: Controls -->
+          <div class="md:w-1/3 space-y-4">
+            <h2 class="text-xl font-bold flex items-center gap-2">
+              <i class="fa-solid fa-calculator text-red-400"></i>
+              Math Arena
+            </h2>
 
-            transitionToGameScreen();
-            renderCurrentQuestion();
-        }
+            <p class="text-xs text-slate-300">
+              Choose a grade, select a mode, and solve as many problems as you can.
+              Earn XP and Brain Coins for each correct answer.
+            </p>
 
-        function transitionToGameScreen() {
-            document.getElementById('level-screen').classList.add('hidden');
-            document.getElementById('game-screen').classList.remove('hidden');
-            document.getElementById('quiz-area').classList.remove('hidden');
-            document.getElementById('results-area').classList.add('hidden');
-            document.getElementById('story-content').innerText = state.currentStory.story;
-        }
+            <div class="space-y-3 bg-slate-800/80 border border-slate-700 rounded-2xl p-4">
+              <h3 class="text-sm font-semibold mb-2">Grade Level</h3>
 
-        function renderCurrentQuestion() {
-            const questionData = state.currentStory.questions[state.currentQuestionIndex];
-            
-            document.getElementById('question-text').innerText = `${state.currentQuestionIndex + 1}. ${questionData.question}`;
-            document.getElementById('progress-text').innerText = `Analytical Query ${state.currentQuestionIndex + 1} of ${state.currentStory.questions.length}`;
-            
-            const optionsContainer = document.getElementById('options-container');
-            optionsContainer.innerHTML = '';
+              <select id="mathGrade"
+                class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-xs">
+                <option value="1">Grade 1 – Apples & Counting</option>
+                <option value="2">Grade 2 – Double Digits & Words</option>
+                <option value="3">Grade 3 – Times & Sharing</option>
+                <option value="4">Grade 4 – Long Division & Decimals</option>
+                <option value="5">Grade 5 – Fractions & PEMDAS</option>
+                <option value="6">Grade 6 – Algebra & Ratios</option>
+              </select>
 
-            questionData.options.forEach((optionText, optionIndex) => {
-                const optionButton = document.createElement('button');
-                optionButton.className = 'option-btn';
-                optionButton.innerText = optionText;
-                optionButton.onclick = () => handleOptionSelection(optionButton, optionIndex);
-                optionsContainer.appendChild(optionButton);
-            });
+              <h3 class="text-sm font-semibold mt-3">Mode</h3>
+              <div class="flex gap-2">
+                <button id="modeCalm"
+                  class="flex-1 px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 text-xs font-semibold">
+                  Calm Mode
+                </button>
 
-            updateControlButtons();
-        }
+                <button id="modeSprint"
+                  class="flex-1 px-3 py-2 rounded-lg bg-amber-500 text-slate-900 text-xs font-semibold">
+                  Beat the Clock
+                </button>
+              </div>
 
-        function handleOptionSelection(buttonElement, optionIndex) {
-            state.setSelection(optionIndex);
-            
-            const allOptionButtons = document.querySelectorAll('.option-btn');
-            allOptionButtons.forEach(btn => btn.classList.remove('selected'));
-            
-            buttonElement.classList.add('selected');
-        }
+              <div id="sprintTimerBox" class="mt-3 hidden text-xs flex items-center gap-2">
+                <i class="fa-solid fa-stopwatch text-amber-400"></i>
+                <span>Time left:</span>
+                <span id="sprintTimer" class="font-bold text-amber-300">60s</span>
+              </div>
 
-        function updateControlButtons() {
-            const nextButton = document.getElementById('next-btn');
-            if (state.currentQuestionIndex === state.currentStory.questions.length - 1) {
-                nextButton.innerText = "Finalize & Submit Evaluation";
-            } else {
-                nextButton.innerText = "Proceed to Next Query";
-            }
-        }
+              <button id="startMath"
+                class="mt-4 w-full px-4 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold shadow-lg shadow-cyan-500/40">
+                Start Challenge
+              </button>
+            </div>
 
-        function nextQuestion() {
-            if (state.selectedOptionIndex === null) {
-                alert("Please select a valid option before advancing.");
-                return;
-            }
+            <div class="space-y-2 bg-slate-800/80 border border-slate-700 rounded-2xl p-4 text-xs">
+              <h3 class="text-sm font-semibold mb-2">Math Progress</h3>
+              <p>Correct answers: <span id="mathCorrect" class="font-bold text-emerald-300">0</span></p>
+              <p>Incorrect answers: <span id="mathIncorrect" class="font-bold text-rose-300">0</span></p>
+              <p>Current streak: <span id="mathStreak" class="font-bold text-amber-300">0</span></p>
+            </div>
+          </div>
 
-            const currentQuestion = state.currentStory.questions[state.currentQuestionIndex];
-            if (state.selectedOptionIndex === currentQuestion.correctAnswer) {
-                state.incrementScore();
-            }
+          <!-- RIGHT: Problem Area -->
+          <div class="md:w-2/3">
+            <div class="bg-slate-800/80 border border-slate-700 rounded-3xl p-6 space-y-4">
 
-            state.advanceQuestion();
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold">Current Problem</h3>
+                <span id="mathGradeLabel" class="text-xs text-slate-400">Select a grade to begin</span>
+              </div>
 
-            if (!state.isComplete()) {
-                renderCurrentQuestion();
-            } else {
-                displayResults();
-            }
-        }
+              <div id="mathVisual" class="text-3xl text-center mb-2"></div>
 
-        function displayResults() {
-            document.getElementById('quiz-area').classList.add('hidden');
-            const resultsArea = document.getElementById('results-area');
-            resultsArea.classList.remove('hidden');
+              <div class="text-center">
+                <p id="mathQuestion" class="text-xl md:text-2xl font-bold mb-3"></p>
+                <p id="mathWordProblem" class="text-xs text-slate-300 mb-3"></p>
+              </div>
 
-            const totalQuestions = state.currentStory.questions.length;
-            const finalScore = state.userScore;
-            const percentageValue = Math.round((finalScore / totalQuestions) * 100);
+              <div class="flex flex-col md:flex-row items-center gap-3">
+                <input id="mathAnswer" type="text"
+                  placeholder="Type your answer here..."
+                  class="flex-1 rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm" />
 
-            let performanceSummary = "";
-            if (percentageValue >= 85) {
-                performanceSummary = "Exceptional textual parsing and profound analytical insight demonstrated.";
-            } else if (percentageValue >= 50) {
-                performanceSummary = "Competent comprehension baseline established. Refine structural inferences for optimal performance.";
-            } else {
-                performanceSummary = "Sub-optimal comprehension metrics registered. Re-evaluation of foundational source text recommended.";
-            }
+                <button id="submitMath"
+                  class="px-4 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold">
+                  Submit
+                </button>
+              </div>
 
-            document.getElementById('final-score-title').innerText = `Score: ${finalScore} / ${totalQuestions} (${percentageValue}%)`;
-            document.getElementById('final-score-desc').innerText = performanceSummary;
-        }
+              <p id="mathFeedback" class="text-sm mt-2"></p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        function resetToMenu() {
-            document.getElementById('game-screen').classList.add('hidden');
-            document.getElementById('level-screen').classList.remove('hidden');
-        }
+      <!-- ========================= -->
+      <!--       STORY / ELA         -->
+      <!-- ========================= -->
+      <section id="route-story" class="route-section hidden">
+        <div class="grid md:grid-cols-3 gap-6">
 
-        window.onload = initializeApplication;
-    </script>
+          <!-- LEFT: Controls -->
+          <div class="md:col-span-1 space-y-4">
+            <h2 class="text-xl font-bold flex items-center gap-2">
+              <i class="fa-solid fa-book-open text-blue-400"></i>
+              Reading Lab (ELA)
+            </h2>
+
+            <p class="text-xs text-slate-300">
+              Choose a reading level, read a story citation, then answer multiple-choice questions.
+              All story data is stored in a JSON file for easy maintenance.
+            </p>
+
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-3">
+              <h3 class="text-sm font-semibold">Reading Level</h3>
+
+              <label class="text-xs flex items-center justify-between">
+                <span>Age 5 – Simple & Fun</span>
+                <span class="text-yellow-300"><i class="fa-solid fa-face-smile"></i></span>
+              </label>
+
+              <label class="text-xs flex items-center justify-between">
+                <span>Middle School – Adventure & Drama</span>
+                <span class="text-cyan-300"><i class="fa-solid fa-dragon"></i></span>
+              </label>
+
+              <label class="text-xs flex items-center justify-between">
+                <span>High School – Deep Themes & Sci-Fi</span>
+                <span class="text-pink-300"><i class="fa-solid fa-meteor"></i></span>
+              </label>
+
+              <input id="storyComplexity" type="range" min="1" max="3" value="1" class="w-full mt-2" />
+              <p id="storyComplexityLabel" class="text-xs text-slate-300 mt-1">Age 5 – Basic</p>
+
+              <button id="startStory"
+                class="mt-3 w-full px-4 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold shadow-lg shadow-pink-500/40">
+                Load Story & Questions
+              </button>
+            </div>
+
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 text-xs space-y-2">
+              <h3 class="text-sm font-semibold">Reading Progress</h3>
+              <p>Stories completed: <span id="storyCompletedCount" class="font-bold text-pink-300">0</span></p>
+              <p>Last reward: <span id="storyLastReward" class="font-bold text-emerald-300">0</span> Coins</p>
+            </div>
+          </div>
+
+          <!-- RIGHT: Story + MCQ -->
+          <div class="md:col-span-2 space-y-4">
+
+            <!-- Story Citation -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-3xl p-6 space-y-4">
+              <h3 class="text-lg font-semibold flex items-center gap-2">
+                <i class="fa-solid fa-scroll text-yellow-300"></i>
+                Story Citation
+              </h3>
+
+              <div id="storyText" class="text-sm md:text-base leading-relaxed space-y-3"></div>
+            </div>
+
+            <!-- MCQ Box -->
+            <div id="storyQuizBox"
+              class="bg-slate-800/80 border border-slate-700 rounded-3xl p-6 space-y-3 hidden">
+
+              <h3 class="text-lg font-semibold flex items-center gap-2">
+                <i class="fa-solid fa-question text-emerald-300"></i>
+                Reading Comprehension MCQ
+              </h3>
+
+              <div id="storyQuizQuestions" class="space-y-4 text-sm"></div>
+
+              <button id="submitStoryQuiz"
+                class="mt-2 px-4 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold">
+                Submit Answers
+              </button>
+
+              <p id="storyQuizFeedback" class="text-xs mt-2"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================= -->
+      <!--        SHOP SECTION       -->
+      <!-- ========================= -->
+      <section id="route-shop" class="route-section hidden">
+        <div class="space-y-4">
+          <h2 class="text-xl font-bold flex items-center gap-2">
+            <i class="fa-solid fa-store text-amber-300"></i>
+            Reward Shop
+          </h2>
+
+          <p class="text-xs text-slate-300">
+            Spend Brain Coins to unlock badges, themes, and special sound effects.
+            Your purchases persist using local storage.
+          </p>
+
+          <div class="grid md:grid-cols-3 gap-4 text-xs">
+
+            <!-- Cosmic Badge -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+              <h3 class="text-sm font-semibold flex items-center gap-2">
+                <i class="fa-solid fa-medal text-yellow-300"></i>
+                Cosmic Badge
+              </h3>
+              <p>Unlock a glowing cosmic badge for your profile.</p>
+              <p>Cost: <span class="font-bold text-emerald-300">50</span> Coins</p>
+
+              <button data-item="badge_cosmic"
+                class="shop-buy mt-2 px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold">
+                Buy & Equip
+              </button>
+
+              <p id="shopStatus_badge_cosmic" class="mt-1 text-slate-400"></p>
+            </div>
+
+            <!-- Neon Theme -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+              <h3 class="text-sm font-semibold flex items-center gap-2">
+                <i class="fa-solid fa-palette text-cyan-300"></i>
+                Neon Theme
+              </h3>
+              <p>Unlock a vibrant neon background theme.</p>
+              <p>Cost: <span class="font-bold text-emerald-300">80</span> Coins</p>
+
+              <button data-item="theme_neon"
+                class="shop-buy mt-2 px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold">
+                Buy & Activate
+              </button>
+
+              <p id="shopStatus_theme_neon" class="mt-1 text-slate-400"></p>
+            </div>
+
+            <!-- Magic Sound FX -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+              <h3 class="text-sm font-semibold flex items-center gap-2">
+                <i class="fa-solid fa-music text-pink-300"></i>
+                Magic Sound FX
+              </h3>
+              <p>Unlock special success chime and error wobble sounds.</p>
+              <p>Cost: <span class="font-bold text-emerald-300">40</span> Coins</p>
+
+              <button data-item="sound_magic"
+                class="shop-buy mt-2 px-3 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold">
+                Buy & Enable
+              </button>
+
+              <p id="shopStatus_sound_magic" class="mt-1 text-slate-400"></p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================= -->
+      <!--     PROFILE SECTION       -->
+      <!-- ========================= -->
+      <section id="route-profile" class="route-section hidden">
+        <div class="space-y-4">
+          <h2 class="text-xl font-bold flex items-center gap-2">
+            <i class="fa-solid fa-id-card text-cyan-300"></i>
+            Profile & Stats
+          </h2>
+
+          <p class="text-xs text-slate-300">
+            Review your lifetime stats, unlocked items, and current avatar.
+            All data is stored locally in your browser.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-4 text-xs">
+
+            <!-- Player Overview -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+              <h3 class="text-sm font-semibold mb-2">Player Overview</h3>
+
+              <p>Current Level: <span id="profileLevel" class="font-bold text-cyan-300">1</span></p>
+              <p>Total XP: <span id="profileXP" class="font-bold text-emerald-300">0</span></p>
+              <p>Brain Coins: <span id="profileCoins" class="font-bold text-yellow-300">0</span></p>
+              <p>Best Streak: <span id="profileBestStreak" class="font-bold text-amber-300">0</span></p>
+              <p>Avatar Title: <span id="profileAvatar" class="font-bold text-pink-300">Rookie Explorer</span></p>
+            </div>
+
+            <!-- Unlocked Items -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+              <h3 class="text-sm font-semibold mb-2">Unlocked Items</h3>
+
+              <p>Cosmic Badge: <span id="profileBadgeCosmic" class="font-bold text-slate-200">Locked</span></p>
+              <p>Neon Theme: <span id="profileThemeNeon" class="font-bold text-slate-200">Locked</span></p>
+              <p>Magic Sound FX: <span id="profileSoundMagic" class="font-bold text-slate-200">Locked</span></p>
+            </div>
+
+          </div>
+
+          <button id="resetProgress"
+            class="mt-3 px-4 py-2 rounded-lg bg-rose-500 text-slate-900 font-semibold">
+            Reset Progress (Local Only)
+          </button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- ========================= -->
+<!--     GLOBAL JAVASCRIPT     -->
+<!-- ========================= -->
+<script>
+/* DOM shortcuts */
+const themeToggle = document.getElementById("themeToggle");
+const themeLabel = document.getElementById("themeLabel");
+const soundCorrect = document.getElementById("soundCorrect");
+const soundWrong = document.getElementById("soundWrong");
+
+/* Confetti setup */
+const confettiCanvas = document.getElementById("confettiCanvas");
+const ctx = confettiCanvas.getContext("2d");
+let confettiPieces = [];
+
+function resizeCanvas() {
+  confettiCanvas.width = window.innerWidth;
+  confettiCanvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+
+function spawnConfetti() {
+  // Create burst
+  confettiPieces = [];
+  for (let i = 0; i < 80; i++) {
+    confettiPieces.push({
+      x: Math.random() * confettiCanvas.width,
+      y: Math.random() * confettiCanvas.height - 50,
+      r: Math.random() * 6 + 2,
+      c: `hsl(${Math.random() * 360}, 80%, 60%)`,
+      v: Math.random() * 3 + 2
+    });
+  }
+
+  // Run animation for 3.5 seconds
+  let confettiDuration = 3500;
+  let startTime = performance.now();
+
+  function animateConfetti(time) {
+    let elapsed = time - startTime;
+    if (elapsed < confettiDuration) {
+      drawConfettiFrame();
+      requestAnimationFrame(animateConfetti);
+    } else {
+      // Clear confetti
+      confettiPieces = [];
+      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+    }
+  }
+
+  requestAnimationFrame(animateConfetti);
+}
+
+function drawConfettiFrame() {
+  ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+  confettiPieces.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = p.c;
+    ctx.fill();
+    p.y += p.v;
+  });
+}
+
+/* Theme toggle */
+let isLight = false;
+themeToggle.addEventListener("click", () => {
+  isLight = !isLight;
+  if (isLight) {
+    document.body.classList.remove("bg-slate-900", "text-slate-100");
+    document.body.classList.add("bg-slate-100", "text-slate-900");
+    themeLabel.textContent = "Dark Mode";
+    themeToggle.querySelector(".theme-icon").innerHTML =
+      '<i class="fa-solid fa-moon text-slate-700"></i>';
+  } else {
+    document.body.classList.add("bg-slate-900", "text-slate-100");
+    document.body.classList.remove("bg-slate-100", "text-slate-900");
+    themeLabel.textContent = "Light Mode";
+    themeToggle.querySelector(".theme-icon").innerHTML =
+      '<i class="fa-solid fa-sun text-yellow-300"></i>';
+  }
+});
+
+/* SPA Router */
+const routeButtons = document.querySelectorAll(".route-btn");
+const routeSections = document.querySelectorAll(".route-section");
+
+routeButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const route = btn.dataset.route;
+    showRoute(route);
+  });
+});
+
+function showRoute(route) {
+  routeSections.forEach(sec => {
+    sec.classList.toggle("hidden", sec.id !== `route-${route}`);
+  });
+}
+
+/* Local Storage State */
+const defaultState = {
+  level: 1,
+  xp: 0,
+  coins: 0,
+  streak: 0,
+  bestStreak: 0,
+  mathSolved: 0,
+  storiesCompleted: 0,
+  unlocked: {
+    badge_cosmic: false,
+    theme_neon: false,
+    sound_magic: false
+  },
+  avatarTitle: "Rookie Explorer"
+};
+
+let state = loadState();
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem("brainquest_state");
+    if (saved) return JSON.parse(saved);
+  } catch (e) {}
+  return { ...defaultState };
+}
+
+function saveState() {
+  localStorage.setItem("brainquest_state", JSON.stringify(state));
+  updateHUD();
+  updateHomeStats();
+}
+
+
+/* XP, Coins, Streak Logic */
+function addXP(amount) {
+  state.xp += amount;
+  state.level = Math.floor(state.xp / 100) + 1;
+  updateAvatarTitle();
+  saveState();
+}
+
+function addCoins(amount) {
+  state.coins += amount;
+  saveState();
+}
+
+function incrementStreak() {
+  state.streak++;
+  if (state.streak > state.bestStreak) state.bestStreak = state.streak;
+  saveState();
+}
+
+function resetStreak() {
+  state.streak = 0;
+  saveState();
+}
+
+function updateAvatarTitle() {
+  if (state.level >= 10) state.avatarTitle = "Galactic Scholar";
+  else if (state.level >= 7) state.avatarTitle = "Quantum Thinker";
+  else if (state.level >= 4) state.avatarTitle = "Curious Voyager";
+  else state.avatarTitle = "Rookie Explorer";
+}
+
+/* HUD Sync */
+const hudLevel = document.getElementById("hudLevel");
+const hudXP = document.getElementById("hudXP");
+const hudCoins = document.getElementById("hudCoins");
+const hudStreak = document.getElementById("hudStreak");
+const hudAvatar = document.getElementById("hudAvatar");
+
+const storyCompletedCount = document.getElementById("storyCompletedCount");
+const storyLastReward = document.getElementById("storyLastReward");
+
+const profileLevel = document.getElementById("profileLevel");
+const profileXP = document.getElementById("profileXP");
+const profileCoins = document.getElementById("profileCoins");
+const profileBestStreak = document.getElementById("profileBestStreak");
+const profileAvatar = document.getElementById("profileAvatar");
+const profileBadgeCosmic = document.getElementById("profileBadgeCosmic");
+const profileThemeNeon = document.getElementById("profileThemeNeon");
+const profileSoundMagic = document.getElementById("profileSoundMagic");
+
+const shopStatus_badge_cosmic = document.getElementById("shopStatus_badge_cosmic");
+const shopStatus_theme_neon = document.getElementById("shopStatus_theme_neon");
+const shopStatus_sound_magic = document.getElementById("shopStatus_sound_magic");
+
+function updateHomeStats() {
+  document.getElementById("homeXP").textContent = state.xp;
+  document.getElementById("homeBestStreak").textContent = state.bestStreak;
+  document.getElementById("homeMathSolved").textContent = state.mathSolved;
+  document.getElementById("homeStoriesCompleted").textContent = state.storiesCompleted;
+}
+
+
+function updateHUD() {
+  hudLevel.textContent = state.level;
+  hudXP.textContent = state.xp;
+  hudCoins.textContent = state.coins;
+  hudStreak.textContent = state.streak;
+  hudAvatar.textContent = state.avatarTitle;
+
+  storyCompletedCount.textContent = state.storiesCompleted;
+
+  profileLevel.textContent = state.level;
+  profileXP.textContent = state.xp;
+  profileCoins.textContent = state.coins;
+  profileBestStreak.textContent = state.bestStreak;
+  profileAvatar.textContent = state.avatarTitle;
+
+  profileBadgeCosmic.textContent = state.unlocked.badge_cosmic ? "Unlocked" : "Locked";
+  profileThemeNeon.textContent = state.unlocked.theme_neon ? "Unlocked" : "Locked";
+  profileSoundMagic.textContent = state.unlocked.sound_magic ? "Unlocked" : "Locked";
+
+  shopStatus_badge_cosmic.textContent = state.unlocked.badge_cosmic ? "Owned & Equipped" : "";
+  shopStatus_theme_neon.textContent = state.unlocked.theme_neon ? "Active Theme" : "";
+  shopStatus_sound_magic.textContent = state.unlocked.sound_magic ? "Enabled FX" : "";
+
+  applyThemeNeon();
+}
+
+
+/* Shop */
+const shopButtons = document.querySelectorAll(".shop-buy");
+
+shopButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const item = btn.dataset.item;
+    handleShopPurchase(item);
+  });
+});
+
+function handleShopPurchase(item) {
+  const costs = {
+    badge_cosmic: 50,
+    theme_neon: 80,
+    sound_magic: 40
+  };
+
+  const cost = costs[item];
+
+  if (state.unlocked[item]) {
+    alert("You already own this item!");
+    return;
+  }
+
+  if (state.coins < cost) {
+    alert("Not enough Brain Coins!");
+    return;
+  }
+
+  state.coins -= cost;
+  state.unlocked[item] = true;
+
+  if (item === "theme_neon") applyThemeNeon(true);
+  saveState();
+  alert("Purchase successful!");
+}
+
+/* Neon Theme */
+function applyThemeNeon(forceActivate = false) {
+  if (state.unlocked.theme_neon || forceActivate) {
+    document.body.style.backgroundImage =
+      "radial-gradient(circle at top, #22d3ee 0, transparent 40%), radial-gradient(circle at bottom, #f97316 0, transparent 40%)";
+  } else {
+    document.body.style.backgroundImage = "";
+  }
+}
+
+/* Reset Progress */
+const resetProgress = document.getElementById("resetProgress");
+resetProgress.addEventListener("click", () => {
+  if (confirm("Reset all progress? This only affects local storage.")) {
+    state = { ...defaultState };
+    saveState();
+  }
+});
+
+/* ========================= */
+/*        MATH LOGIC         */
+/* ========================= */
+const mathGrade = document.getElementById("mathGrade");
+const mathGradeLabel = document.getElementById("mathGradeLabel");
+const mathVisual = document.getElementById("mathVisual");
+const mathQuestion = document.getElementById("mathQuestion");
+const mathWordProblem = document.getElementById("mathWordProblem");
+const mathAnswer = document.getElementById("mathAnswer");
+const mathFeedback = document.getElementById("mathFeedback");
+const mathCorrect = document.getElementById("mathCorrect");
+const mathIncorrect = document.getElementById("mathIncorrect");
+const mathStreak = document.getElementById("mathStreak");
+const sprintTimerBox = document.getElementById("sprintTimerBox");
+const sprintTimer = document.getElementById("sprintTimer");
+const startMathBtn = document.getElementById("startMath");
+const submitMathBtn = document.getElementById("submitMath");
+const modeCalmBtn = document.getElementById("modeCalm");
+const modeSprintBtn = document.getElementById("modeSprint");
+
+let mathMode = "calm";
+let sprintInterval = null;
+let sprintTimeLeft = 60;
+let currentMathAnswer = null;
+let currentMathMeta = {};
+
+modeCalmBtn.addEventListener("click", () => {
+  mathMode = "calm";
+  sprintTimerBox.classList.add("hidden");
+});
+
+modeSprintBtn.addEventListener("click", () => {
+  mathMode = "sprint";
+  sprintTimerBox.classList.remove("hidden");
+});
+
+startMathBtn.addEventListener("click", () => {
+  startMathSession();
+});
+
+function startMathSession() {
+  mathFeedback.textContent = "";
+  mathAnswer.value = "";
+  mathCorrect.textContent = "0";
+  mathIncorrect.textContent = "0";
+  mathStreak.textContent = "0";
+
+  currentMathMeta = { correct: 0, incorrect: 0, streak: 0 };
+
+  const grade = parseInt(mathGrade.value, 10);
+  mathGradeLabel.textContent = `Grade ${grade} Challenge`;
+
+  if (mathMode === "sprint") {
+    sprintTimeLeft = 60;
+    sprintTimer.textContent = sprintTimeLeft + "s";
+
+    if (sprintInterval) clearInterval(sprintInterval);
+
+    sprintInterval = setInterval(() => {
+      sprintTimeLeft--;
+      sprintTimer.textContent = sprintTimeLeft + "s";
+
+      if (sprintTimeLeft <= 0) {
+        clearInterval(sprintInterval);
+        mathFeedback.textContent = "Time's up! Great effort.";
+        mathFeedback.className = "text-xs text-amber-300";
+      }
+    }, 1000);
+  } else {
+    if (sprintInterval) clearInterval(sprintInterval);
+  }
+
+  generateMathProblem();
+}
+
+function generateMathProblem() {
+  const grade = parseInt(mathGrade.value, 10);
+  let question = "";
+  let answer = null;
+  let wordProblem = "";
+  let visual = "";
+
+  if (grade === 1) {
+    const a = randInt(1, 10);
+    const b = randInt(1, 10);
+    const op = Math.random() < 0.5 ? "+" : "-";
+    question = `${a} ${op} ${b} = ?`;
+    answer = op === "+" ? a + b : a - b;
+    visual = "🍎".repeat(Math.min(a, 10)) + " " + "🍎".repeat(Math.min(b, 10));
+    wordProblem = `You have ${a} apples and ${op === "+" ? "get" : "lose"} ${b}. How many apples now?`;
+  } else if (grade === 2) {
+    const a = randInt(10, 99);
+    const b = randInt(10, 99);
+    const op = Math.random() < 0.5 ? "+" : "-";
+    question = `${a} ${op} ${b} = ?`;
+    answer = op === "+" ? a + b : a - b;
+    wordProblem = `A classroom has ${a} books. ${op === "+" ? "They receive" : "They lose"} ${b}. Total books?`;
+  } else if (grade === 3) {
+    const type = Math.random() < 0.5 ? "mul" : "div";
+    const a = randInt(1, 10);
+    const b = randInt(1, 10);
+
+    if (type === "mul") {
+      question = `${a} × ${b} = ?`;
+      answer = a * b;
+      wordProblem = `There are ${a} bags with ${b} marbles each. Total marbles?`;
+    } else {
+      const product = a * b;
+      question = `${product} ÷ ${a} = ?`;
+      answer = b;
+      wordProblem = `You share ${product} candies among ${a} friends. Each gets?`;
+    }
+    visual = "🍰".repeat(Math.min(a, 10));
+  } else if (grade === 4) {
+    const type = Math.random() < 0.5 ? "longdiv" : "decimal";
+
+    if (type === "longdiv") {
+      const divisor = randInt(2, 9);
+      const quotient = randInt(2, 9);
+      const dividend = divisor * quotient;
+      question = `${dividend} ÷ ${divisor} = ?`;
+      answer = quotient;
+      wordProblem = `Divide ${dividend} students into groups of ${divisor}. Groups?`;
+    } else {
+      const a = randInt(10, 99) / 10;
+      const b = randInt(10, 99) / 10;
+      const op = Math.random() < 0.5 ? "+" : "-";
+      question = `${a.toFixed(1)} ${op} ${b.toFixed(1)} = ?`;
+      answer = parseFloat((op === "+" ? a + b : a - b).toFixed(1));
+      wordProblem = `You run ${a.toFixed(1)} km and ${b.toFixed(1)} km. Total?`;
+    }
+  } else if (grade === 5) {
+    const type = Math.random() < 0.5 ? "fraction" : "pemdas";
+
+    if (type === "fraction") {
+      const denom = randInt(2, 9);
+      const n1 = randInt(1, denom - 1);
+      const n2 = randInt(1, denom - 1);
+      question = `${n1}/${denom} + ${n2}/${denom} = ?`;
+      answer = `${n1 + n2}/${denom}`;
+      wordProblem = `You drink ${n1}/${denom} of juice then ${n2}/${denom}. Total?`;
+    } else {
+      const a = randInt(1, 9);
+      const b = randInt(1, 9);
+      const c = randInt(1, 9);
+      question = `${a} + ${b} × ${c} = ?`;
+      answer = a + b * c;
+      wordProblem = `Use PEMDAS to solve.`;
+    }
+  } else if (grade === 6) {
+    const type = randInt(1, 3);
+
+    if (type === 1) {
+      const x = randInt(-10, 10);
+      const a = randInt(1, 10);
+      const b = randInt(-10, 10);
+      const y = a * x + b;
+      question = `${a}x + ${b} = ${y}. Find x.`;
+      answer = x;
+      wordProblem = `Solve for x.`;
+    } else if (type === 2) {
+      const a = randInt(-10, 10);
+      const b = randInt(-10, 10);
+      question = `${a} + (${b}) = ?`;
+      answer = a + b;
+      wordProblem = `Add integers carefully.`;
+    } else {
+      const a = randInt(2, 10);
+      const b = randInt(2, 10);
+      const gcd = greatestCommonDivisor(a, b);
+      question = `Simplify ${a}:${b}`;
+      answer = `${a / gcd}:${b / gcd}`;
+      wordProblem = `Simplify the ratio.`;
+    }
+  }
+
+  currentMathAnswer = answer;
+  mathQuestion.textContent = question;
+  mathWordProblem.textContent = wordProblem;
+  mathVisual.textContent = visual;
+}
+
+submitMathBtn.addEventListener("click", () => {
+  submitMathAnswer();
+});
+
+function submitMathAnswer() {
+  if (currentMathAnswer === null) return;
+
+  const raw = mathAnswer.value.trim();
+  if (!raw) return;
+
+  let correct = false;
+
+  if (typeof currentMathAnswer === "number") {
+    const userVal = parseFloat(raw);
+    correct = Math.abs(userVal - currentMathAnswer) < 0.0001;
+  } else {
+    correct = raw === String(currentMathAnswer);
+  }
+
+  if (correct) {
+    if (state.unlocked.sound_magic) soundCorrect.currentTime = 0;
+    if (state.unlocked.sound_magic) soundCorrect.play();
+
+    spawnConfetti();
+
+    currentMathMeta.correct++;
+    currentMathMeta.streak++;
+
+    mathCorrect.textContent = currentMathMeta.correct;
+    mathStreak.textContent = currentMathMeta.streak;
+
+    mathFeedback.textContent = "Correct! +10 XP, +5 Coins";
+    mathFeedback.className = "text-sm text-emerald-300 bounce";
+
+    addXP(10);
+    addCoins(5);
+    state.mathSolved++;
+    incrementStreak();
+    saveState();
+
+    mathAnswer.value = "";
+    generateMathProblem();
+  } else {
+    if (state.unlocked.sound_magic) soundWrong.currentTime = 0;
+    if (state.unlocked.sound_magic) soundWrong.play();
+
+    currentMathMeta.incorrect++;
+    currentMathMeta.streak = 0;
+
+    mathIncorrect.textContent = currentMathMeta.incorrect;
+    mathStreak.textContent = currentMathMeta.streak;
+
+    mathFeedback.textContent = "Incorrect. Try again!";
+    mathFeedback.className = "text-sm text-rose-300 wobble";
+
+    resetStreak();
+    saveState();
+  }
+}
+
+/* Helpers */
+function randInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function greatestCommonDivisor(a, b) {
+  a = Math.abs(a);
+  b = Math.abs(b);
+  while (b) {
+    const t = b;
+    b = a % b;
+    a = t;
+  }
+  return a;
+}
+
+/* ========================= */
+/*        ELA / STORY        */
+/* ========================= */
+const storyComplexity = document.getElementById("storyComplexity");
+const storyComplexityLabel = document.getElementById("storyComplexityLabel");
+const startStoryBtn = document.getElementById("startStory");
+const storyText = document.getElementById("storyText");
+const storyQuizBox = document.getElementById("storyQuizBox");
+const storyQuizQuestions = document.getElementById("storyQuizQuestions");
+const submitStoryQuizBtn = document.getElementById("submitStoryQuiz");
+const storyQuizFeedback = document.getElementById("storyQuizFeedback");
+
+let elaData = [];
+let currentElaStory = null;
+
+storyComplexity.addEventListener("input", () => {
+  const val = parseInt(storyComplexity.value, 10);
+  if (val === 1) storyComplexityLabel.textContent = "Age 5 – Basic";
+  else if (val === 2) storyComplexityLabel.textContent = "Middle School – Adventure";
+  else storyComplexityLabel.textContent = "High School – Complex Sci-Fi/Mystery";
+});
+
+/* Load JSON data for ELA */
+fetch("ela_data.json")
+  .then(res => res.json())
+  .then(data => {
+    elaData = data.stories || [];
+  })
+  .catch(() => {
+    elaData = [];
+  });
+
+startStoryBtn.addEventListener("click", () => {
+  startNewElaStory();
+});
+
+function startNewElaStory() {
+  storyText.innerHTML = "";
+  storyQuizQuestions.innerHTML = "";
+  storyQuizFeedback.textContent = "";
+  storyQuizBox.classList.add("hidden");
+
+  const level = parseInt(storyComplexity.value, 10);
+  const candidates = elaData.filter(s => s.level === level);
+
+  if (!candidates.length) {
+    storyText.innerHTML = "<p class='text-sm text-rose-300'>No stories found for this level in JSON file.</p>";
+    return;
+  }
+
+  currentElaStory = candidates[Math.floor(Math.random() * candidates.length)];
+
+  renderElaCitation();
+  renderElaQuiz();
+}
+
+function renderElaCitation() {
+  const s = currentElaStory;
+  storyText.innerHTML = "";
+
+  s.citation.forEach(paragraph => {
+    const p = document.createElement("p");
+    p.textContent = paragraph;
+    storyText.appendChild(p);
+  });
+}
+
+function renderElaQuiz() {
+  storyQuizBox.classList.remove("hidden");
+  storyQuizQuestions.innerHTML = "";
+
+  currentElaStory.questions.forEach((qObj, idx) => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "space-y-1";
+
+    const q = document.createElement("p");
+    q.textContent = `${idx + 1}. ${qObj.question}`;
+    wrapper.appendChild(q);
+
+    qObj.choices.forEach((choice, cIdx) => {
+      const label = document.createElement("label");
+      label.className = "flex items-center gap-2 text-xs";
+
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = `ela_q_${idx}`;
+      input.value = cIdx;
+
+      label.appendChild(input);
+      const span = document.createElement("span");
+      span.textContent = choice;
+      label.appendChild(span);
+
+      wrapper.appendChild(label);
+    });
+
+    storyQuizQuestions.appendChild(wrapper);
+  });
+}
+
+submitStoryQuizBtn.addEventListener("click", () => {
+  if (!currentElaStory) return;
+
+  let correctCount = 0;
+
+  currentElaStory.questions.forEach((qObj, idx) => {
+    const selected = document.querySelector(`input[name="ela_q_${idx}"]:checked`);
+    if (!selected) return;
+    const chosenIndex = parseInt(selected.value, 10);
+    if (chosenIndex === qObj.correctIndex) correctCount++;
+  });
+
+  const total = currentElaStory.questions.length;
+  const rewardCoins = correctCount * 20;
+
+  if (correctCount === total) {
+    storyQuizFeedback.textContent =
+      `Perfect! You answered all correctly. +${rewardCoins} Coins, +30 XP.`;
+    storyQuizFeedback.className = "text-xs text-emerald-300";
+    addCoins(rewardCoins);
+    addXP(30);
+    spawnConfetti();
+  } else if (correctCount > 0) {
+    storyQuizFeedback.textContent =
+      `Nice job! You got ${correctCount}/${total}. +${rewardCoins} Coins, +15 XP.`;
+    storyQuizFeedback.className = "text-xs text-cyan-300";
+    addCoins(rewardCoins);
+    addXP(15);
+  } else {
+    storyQuizFeedback.textContent =
+      `Keep practicing! Try reading carefully next time.`;
+    storyQuizFeedback.className = "text-xs text-rose-300";
+  }
+
+  state.storiesCompleted++;
+  incrementStreak();
+  storyLastReward.textContent = rewardCoins;
+  saveState();
+});
+
+/* Initialize app */
+updateAvatarTitle();
+updateHUD();
+updateHomeStats();
+showRoute("home");
+</script>
+
 </body>
 </html>
