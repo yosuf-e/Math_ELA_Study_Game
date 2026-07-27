@@ -2,6 +2,8 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="utf-8" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.magnific.com/512/732/732600.png">
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.magnific.com/512/732/732600.png">
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>BrainQuest Academy</title>
 
@@ -672,7 +674,7 @@
       btn.addEventListener("click", () => {
         const url = btn.dataset.url;
         const cost = parseInt(btn.dataset.cost,10);
-        const timeLimit = parseInt(btn.dataset.time,10) || 60;
+        const timeLimit = parseInt(btn.dataset.time,10) || 180;
 
         if (state.coins < cost) { alert("Not enough Brain Coins!"); return; }
 
