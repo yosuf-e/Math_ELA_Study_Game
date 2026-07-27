@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4185/4185714.png">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/4185/4185714.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Story Comprehension Suite</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --container-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --success: #10b981;
+            --danger: #ef4444;
+            --border-color: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .app-container {
+            background-color: var(--container-bg);
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            border: 1px solid var(--border-color);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+            letter-spacing: -0.025em;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .level-selection {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: auto 0;
+        }
+
+        .level-card {
+            background-color: #334155;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 300px;
+        }
+
+        .level-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            background-color: #3b4252;
+        }
+
+        .level-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .level-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        button.action-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            font-weight: 600;
+        }
+
+        button.action-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        button.action-btn:active {
+            transform: scale(0.98);
+        }
+
+        .story-area {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-left: 6px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .quiz-container {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .question-block {
+            margin-bottom: 20px;
+        }
+
+        .question-text {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .option-btn {
+            background-color: #334155;
+            text-align: left;
+            padding: 18px 20px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:hover {
+            background-color: #475569;
+            border-color: var(--text-muted);
+        }
+
+        .option-btn.selected {
+            border-color: var(--accent);
+            background-color: rgba(59, 130, 246, 0.25);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .progress-text {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .results-area {
+            text-align: center;
+            margin: auto 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .results-area h2 {
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+
+        .results-area p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+        }
+
+        .error-box {
+            background-color: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--danger);
+            padding: 20px;
+            border-radius: 8px;
+            color: var(--danger);
+            text-align: center;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1>Advanced Literary & Analytical Suite</h1>
+            <p class="subtitle">Comprehensive Reading & Textual Critique Engine</p>
+        </header>
+
+        <!-- Screen 1: Level Selection -->
+        <div id="level-screen" class="level-selection">
+            <div class="level-card" onclick="loadLevel('Middle School')">
+                <h3>Middle School</h3>
+                <p>Engage with foundational analytical texts, targeted vocabulary contexts, and thematic parsing designed for intermediate learners.</p>
+            </div>
+            <div class="level-card" onclick="loadLevel('High School')">
+                <h3>High School</h3>
+                <p>Evaluate advanced philosophical frameworks, high-level textual ambiguity, structural irony, and intricate narrative constructs.</p>
+            </div>
+        </div>
+
+        <!-- Screen 2: Game Screen -->
+        <div id="game-screen" class="hidden quiz-container">
+            <div id="story-content" class="story-area"></div>
+            
+            <div id="quiz-area" class="quiz-container">
+                <div class="question-block">
+                    <div id="question-text" class="question-text"></div>
+                    <div id="options-container" class="options-grid"></div>
+                </div>
+                
+                <div class="controls">
+                    <span id="progress-text" class="progress-text"></span>
+                    <button id="next-btn" class="action-btn" onclick="nextQuestion()">Next Question</button>
+                </div>
+            </div>
+
+            <div id="results-area" class="results-area hidden">
+                <h2 id="final-score-title">Assessment Complete</h2>
+                <p id="final-score-desc"></p>
+                <button class="action-btn" onclick="resetToMenu()">Return to Main Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ==========================================================================
+           Application State Management Infrastructure
+           ========================================================================== */
+        class ApplicationState {
+            constructor() {
+                this.gameData = [];
+                this.currentStory = null;
+                this.currentQuestionIndex = 0;
+                this.userScore = 0;
+                this.selectedOptionIndex = null;
+                this.isInitialized = false;
+            }
+
+            setGameData(data) {
+                this.gameData = data;
+                this.isInitialized = true;
+            }
+
+            setCurrentStory(story) {
+                this.currentStory = story;
+                this.currentQuestionIndex = 0;
+                this.userScore = 0;
+                this.selectedOptionIndex = null;
+            }
+
+            incrementScore() {
+                this.userScore++;
+            }
+
+            setSelection(index) {
+                this.selectedOptionIndex = index;
+            }
+
+            advanceQuestion() {
+                this.currentQuestionIndex++;
+                this.selectedOptionIndex = null;
+            }
+
+            isComplete() {
+                if (!this.currentStory) return true;
+                return this.currentQuestionIndex >= this.currentStory.questions.length;
+            }
+        }
+
+        const state = new ApplicationState();
+
+        /* ==========================================================================
+           Data Fetching Layer
+           ========================================================================== */
+        async function initializeApplication() {
+            try {
+                const response = await fetch('story_data.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                state.setGameData(data);
+            } catch (error) {
+                console.error("Critical failure fetching story data payload:", error);
+                handleInitializationError();
+            }
+        }
+
+        function handleInitializationError() {
+            const levelScreen = document.getElementById('level-screen');
+            levelScreen.innerHTML = `
+                <div class="error-box">
+                    <h3>Configuration Error</h3>
+                    <p>Unable to locate or parse 'story_data.json'. Please ensure your JSON file is correctly formatted and hosted in the same local directory or active server environment.</p>
+                </div>
+            `;
+        }
+
+        /* ==========================================================================
+           UI Controller & Navigation Logic
+           ========================================================================== */
+        function loadLevel(level) {
+            if (!state.isInitialized || state.gameData.length === 0) {
+                alert("Data payload not yet synchronized. Please verify your connection or local server status.");
+                return;
+            }
+
+            const filteredStories = state.gameData.filter(item => item.level.toLowerCase() === level.toLowerCase());
+            
+            if (filteredStories.length === 0) {
+                alert(`No structural configurations found for level: ${level}`);
+                return;
+            }
+
+            const randomIndex = Math.floor(Math.random() * filteredStories.length);
+            state.setCurrentStory(filteredStories[randomIndex]);
+
+            transitionToGameScreen();
+            renderCurrentQuestion();
+        }
+
+        function transitionToGameScreen() {
+            document.getElementById('level-screen').classList.add('hidden');
+            document.getElementById('game-screen').classList.remove('hidden');
+            document.getElementById('quiz-area').classList.remove('hidden');
+            document.getElementById('results-area').classList.add('hidden');
+            document.getElementById('story-content').innerText = state.currentStory.story;
+        }
+
+        function renderCurrentQuestion() {
+            const questionData = state.currentStory.questions[state.currentQuestionIndex];
+            
+            document.getElementById('question-text').innerText = `${state.currentQuestionIndex + 1}. ${questionData.question}`;
+            document.getElementById('progress-text').innerText = `Analytical Query ${state.currentQuestionIndex + 1} of ${state.currentStory.questions.length}`;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            questionData.options.forEach((optionText, optionIndex) => {
+                const optionButton = document.createElement('button');
+                optionButton.className = 'option-btn';
+                optionButton.innerText = optionText;
+                optionButton.onclick = () => handleOptionSelection(optionButton, optionIndex);
+                optionsContainer.appendChild(optionButton);
+            });
+
+            updateControlButtons();
+        }
+
+        function handleOptionSelection(buttonElement, optionIndex) {
+            state.setSelection(optionIndex);
+            
+            const allOptionButtons = document.querySelectorAll('.option-btn');
+            allOptionButtons.forEach(btn => btn.classList.remove('selected'));
+            
+            buttonElement.classList.add('selected');
+        }
+
+        function updateControlButtons() {
+            const nextButton = document.getElementById('next-btn');
+            if (state.currentQuestionIndex === state.currentStory.questions.length - 1) {
+                nextButton.innerText = "Finalize & Submit Evaluation";
+            } else {
+                nextButton.innerText = "Proceed to Next Query";
+            }
+        }
+
+        function nextQuestion() {
+            if (state.selectedOptionIndex === null) {
+                alert("Please select a valid option before advancing.");
+                return;
+            }
+
+            const currentQuestion = state.currentStory.questions[state.currentQuestionIndex];
+            if (state.selectedOptionIndex === currentQuestion.correctAnswer) {
+                state.incrementScore();
+            }
+
+            state.advanceQuestion();
+
+            if (!state.isComplete()) {
+                renderCurrentQuestion();
+            } else {
+                displayResults();
+            }
+        }
+
+        function displayResults() {
+            document.getElementById('quiz-area').classList.add('hidden');
+            const resultsArea = document.getElementById('results-area');
+            resultsArea.classList.remove('hidden');
+
+            const totalQuestions = state.currentStory.questions.length;
+            const finalScore = state.userScore;
+            const percentageValue = Math.round((finalScore / totalQuestions) * 100);
+
+            let performanceSummary = "";
+            if (percentageValue >= 85) {
+                performanceSummary = "Exceptional textual parsing and profound analytical insight demonstrated.";
+            } else if (percentageValue >= 50) {
+                performanceSummary = "Competent comprehension baseline established. Refine structural inferences for optimal performance.";
+            } else {
+                performanceSummary = "Sub-optimal comprehension metrics registered. Re-evaluation of foundational source text recommended.";
+            }
+
+            document.getElementById('final-score-title').innerText = `Score: ${finalScore} / ${totalQuestions} (${percentageValue}%)`;
+            document.getElementById('final-score-desc').innerText = performanceSummary;
+        }
+
+        function resetToMenu() {
+            document.getElementById('game-screen').classList.add('hidden');
+            document.getElementById('level-screen').classList.remove('hidden');
+        }
+
+        window.onload = initializeApplication;
+    </script>
+</body>
+</html>
