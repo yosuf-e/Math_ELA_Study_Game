@@ -1,518 +1,433 @@
 {
   "stories": [
     {
-      "id": "age5_bunny_pebble_01",
+      "id": "age5_friendship_01",
       "level": 1,
       "citation": [
-        "Once upon a sunny morning, a tiny bunny named Fluffy hopped through a rainbow meadow. The grass tickled Fluffy’s paws and the flowers smelled sweet.",
-        "Fluffy loved to count clouds. Today the clouds looked like giant marshmallows drifting slowly above the meadow.",
-        "Suddenly Fluffy heard a soft chirp. A little bird had dropped its shiny pebble and looked very sad.",
-        "Fluffy helped search under leaves and behind rocks until they found the pebble glowing in the sunlight. The bird sang a happy song."
+        "Lily played with Tom in the park every day.",
+        "They shared their toys and laughed together.",
+        "Friendship means being kind to each other.",
+        "Lily felt happy when she played with Tom."
       ],
       "questions": [
         {
-          "question": "Who did Fluffy help in the story?",
+          "question": "Who did Lily play with?",
           "choices": [
-            "A little bird",
-            "A lost kitten",
-            "A sleepy turtle",
-            "A busy bee"
+            "Her dog",
+            "Tom",
+            "A teacher",
+            "A brother"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "What did they do together?",
+          "choices": [
+            "Played games",
+            "Watched TV",
+            "Ate ice cream",
+            "Read books"
           ],
           "correctIndex": 0
         },
         {
-          "question": "What did Fluffy like to count?",
+          "question": "What is friendship?",
           "choices": [
-            "Flowers",
-            "Pebbles",
-            "Clouds",
-            "Trees"
-          ],
-          "correctIndex": 2
-        },
-        {
-          "question": "Where did they find the pebble?",
-          "choices": [
-            "In a nest",
-            "Behind a rock",
-            "Under a log",
-            "In the stream"
+            "Being mean",
+            "Being kind to each other",
+            "Playing alone",
+            "Shouting"
           ],
           "correctIndex": 1
         }
       ]
     },
     {
-      "id": "age5_kitten_song_02",
+      "id": "age5_animal_rescue_02",
       "level": 1,
       "citation": [
-        "Momo the kitten loved to sing. Every morning Momo practiced a little tune by the window.",
-        "One day Momo’s voice sounded different because a gentle breeze carried new words from the garden.",
-        "Momo learned a short rhyme about the sun and the moon and shared it with friends.",
-        "They all clapped and danced, and Momo felt proud to sing for everyone."
+        "Benny the bunny found a lost ball under a big bush.",
+        "He helped the little squirrel find it.",
+        "They worked together to bring the ball back.",
+        "The squirrel was very thankful."
       ],
       "questions": [
         {
-          "question": "What did Momo like to do each morning?",
+          "question": "Who found the lost ball?",
           "choices": [
-            "Paint pictures",
-            "Sing a tune",
-            "Build blocks",
-            "Fly a kite"
+            "A bear",
+            "A bunny",
+            "A squirrel",
+            "A dog"
           ],
           "correctIndex": 1
         },
         {
-          "question": "What helped Momo learn new words?",
+          "question": "Who helped find the ball?",
           "choices": [
-            "A book",
-            "A breeze",
-            "A teacher",
-            "A radio"
+            "The squirrel",
+            "Benny the bunny",
+            "A bird",
+            "A fox"
           ],
           "correctIndex": 1
         },
         {
-          "question": "How did Momo feel after singing for friends?",
+          "question": "How did the squirrel feel?",
           "choices": [
             "Sad",
-            "Tired",
-            "Proud",
-            "Angry"
+            "Thankful",
+            "Angry",
+            "Tired"
+          ],
+          "correctIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "age5_counting_game_03",
+      "level": 1,
+      "citation": [
+        "Tom and his friends played a counting game with colorful blocks.",
+        "They counted red, blue, and yellow blocks together.",
+        "They learned how to add numbers as they filled the boxes.",
+        "Counting made them feel smart."
+      ],
+      "questions": [
+        {
+          "question": "What did Tom count?",
+          "choices": [
+            "Animals",
+            "Colors and blocks",
+            "Trees",
+            "Toys"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "What did they sort the blocks by?",
+          "choices": [
+            "Size",
+            "Color",
+            "Shape",
+            "Material"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "How did counting make them feel?",
+          "choices": [
+            "Bored",
+            "Smart and happy",
+            "Angry",
+            "Tired"
+          ],
+          "correctIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "age5_rainy_day_04",
+      "level": 1,
+      "citation": [
+        "It started raining heavily outside.",
+        "The children stayed inside and watched the rain fall on the window.",
+        "They read a story about the rain and made warm cups of cocoa.",
+        "It was a cozy and fun rainy day."
+      ],
+      "questions": [
+        {
+          "question": "What happened outside?",
+          "choices": [
+            "It was sunny",
+            "It was raining",
+            "It was snowing",
+            "It was windy"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "What did they do inside?",
+          "choices": [
+            "They played outside",
+            "They watched TV",
+            "They read a story",
+            "They ran around"
+          ],
+          "correctIndex": 2
+        },
+        {
+          "question": "What did they drink?",
+          "choices": [
+            "Juice",
+            "Water",
+            "Hot cocoa",
+            "Milkshake"
           ],
           "correctIndex": 2
         }
       ]
     },
     {
-      "id": "age5_robot_beep_03",
+      "id": "age5_building_fun_05",
       "level": 1,
       "citation": [
-        "Beep the little robot loved to collect shiny buttons. He kept them in a small tin box.",
-        "One rainy afternoon, Beep found a bright blue button that sparkled like a tiny star.",
-        "He showed the button to his friend and they made a tiny crown for a toy frog.",
-        "They laughed and pretended the frog was a king who liked to hop and dance."
+        "Tom and his friends used big building blocks.",
+        "They carefully stacked the blocks one on top of the other.",
+        "They made a strong castle.",
+        "Building with blocks was a lot of fun."
       ],
       "questions": [
         {
-          "question": "What did Beep collect?",
+          "question": "What did Tom build?",
           "choices": [
-            "Stones",
-            "Buttons",
-            "Leaves",
-            "Shells"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What did they make for the toy frog?",
-          "choices": [
-            "A hat",
-            "A crown",
-            "A cape",
+            "A car",
+            "A tower/castle",
+            "A house",
             "A boat"
           ],
           "correctIndex": 1
         },
         {
-          "question": "What weather was it when Beep found the button?",
+          "question": "How did they make the castle strong?",
           "choices": [
-            "Sunny",
-            "Windy",
-            "Rainy",
-            "Snowy"
+            "They used glue",
+            "They stacked blocks carefully",
+            "They painted it",
+            "They taped it up"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "What did they enjoy the most?",
+          "choices": [
+            "The building",
+            "Playing outside",
+            "Building with blocks",
+            "Eating lunch"
           ],
           "correctIndex": 2
         }
       ]
     },
     {
-      "id": "age5_treehouse_game_04",
+      "id": "age5_boat_trip_06",
       "level": 1,
       "citation": [
-        "In a cozy treehouse, friends played a counting game with colorful pebbles.",
-        "They took turns adding pebbles to a jar and counted together slowly.",
-        "When the jar was full, they shared a small snack and told silly stories.",
-        "Everyone agreed it was the best counting game they had ever played."
+        "Mia and her family went for a boat trip on the calm lake.",
+        "They watched the water sparkle under the bright sun.",
+        "They learned how to paddle the boat together.",
+        "The trip was a wonderful adventure."
       ],
       "questions": [
         {
-          "question": "Where did the friends play the counting game?",
+          "question": "Where did Mia and her family go?",
           "choices": [
-            "In a treehouse",
-            "At the beach",
-            "In a classroom",
-            "At the park"
-          ],
-          "correctIndex": 0
-        },
-        {
-          "question": "What did they use to count?",
-          "choices": [
-            "Buttons",
-            "Pebbles",
-            "Sticks",
-            "Coins"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What did they do when the jar was full?",
-          "choices": [
-            "Cry",
-            "Share a snack",
-            "Go home",
-            "Start a new game"
-          ],
-          "correctIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "age5_sandcastle_05",
-      "level": 1,
-      "citation": [
-        "Lina and Jay built a tiny sandcastle by the stream. They used shells to decorate it.",
-        "A friendly frog hopped by and watched them work with curious eyes.",
-        "When the tide came in, they moved the castle higher and saved their shells.",
-        "They promised to build another castle tomorrow and invited the frog to visit."
-      ],
-      "questions": [
-        {
-          "question": "What did Lina and Jay build?",
-          "choices": [
-            "A fort",
-            "A sandcastle",
-            "A snowman",
-            "A treehouse"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What did they use to decorate the castle?",
-          "choices": [
-            "Leaves",
-            "Shells",
-            "Buttons",
-            "Stones"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Who watched them build?",
-          "choices": [
-            "A bird",
-            "A frog",
-            "A cat",
-            "A dog"
-          ],
-          "correctIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "age5_balloon_trip_06",
-      "level": 1,
-      "citation": [
-        "A small balloon floated above the playground carrying a tiny note tied to its string.",
-        "Momo found the note and read a friendly message that said 'Hello from a new friend.'",
-        "They drew a picture and tied it to another balloon to send back.",
-        "Soon the sky was dotted with colorful balloons and happy waves below."
-      ],
-      "questions": [
-        {
-          "question": "What did the balloon carry?",
-          "choices": [
-            "A toy",
-            "A note",
-            "A cookie",
-            "A ribbon"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What did Momo do with the note?",
-          "choices": [
-            "Tore it",
-            "Threw it away",
-            "Drew a picture and sent it back",
-            "Kept it hidden"
+            "To the beach",
+            "To the city",
+            "To the lake",
+            "To the mountains"
           ],
           "correctIndex": 2
         },
         {
-          "question": "What filled the sky?",
+          "question": "What did they do in the boat?",
           "choices": [
-            "Kites",
-            "Birds",
-            "Balloons",
-            "Clouds"
-          ],
-          "correctIndex": 2
-        }
-      ]
-    },
-    {
-      "id": "age5_picnic_surprise_07",
-      "level": 1,
-      "citation": [
-        "Fluffy planned a small picnic and invited friends to share sandwiches and berries.",
-        "They spread a bright blanket and counted how many berries each friend had.",
-        "A gentle breeze carried the scent of flowers and everyone giggled.",
-        "At the end they sang a short song and packed up with happy hearts."
-      ],
-      "questions": [
-        {
-          "question": "What did Fluffy invite friends to share?",
-          "choices": [
-            "Toys",
-            "Sandwiches and berries",
-            "Books",
-            "Puzzles"
+            "They swam",
+            "They paddled",
+            "They ran",
+            "They slept"
           ],
           "correctIndex": 1
         },
         {
-          "question": "What did they do at the end?",
+          "question": "How was the trip?",
           "choices": [
-            "Cry",
-            "Sing a song",
-            "Run away",
-            "Hide the food"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What carried the scent of flowers?",
-          "choices": [
-            "A breeze",
-            "A bird",
-            "A car",
-            "A cloud"
-          ],
-          "correctIndex": 0
-        }
-      ]
-    },
-    {
-      "id": "age5_lost_toy_08",
-      "level": 1,
-      "citation": [
-        "A little toy car rolled under a bush and could not be seen.",
-        "Beep the robot and Momo the kitten looked carefully and found it near a shiny stone.",
-        "They cleaned the car and took turns pushing it along a small track.",
-        "Everyone cheered when the car zoomed across the finish line."
-      ],
-      "questions": [
-        {
-          "question": "Where did the toy car roll?",
-          "choices": [
-            "Into the pond",
-            "Under a bush",
-            "On the roof",
-            "Into a box"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Who helped find the car?",
-          "choices": [
-            "Fluffy and Lina",
-            "Beep and Momo",
-            "Sam and Jay",
-            "A stranger"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What did they do after finding the car?",
-          "choices": [
-            "Throw it away",
-            "Clean it and play",
-            "Hide it",
-            "Sell it"
+            "Tiring",
+            "Wonderful",
+            "Boring",
+            "Scary"
           ],
           "correctIndex": 1
         }
       ]
     },
     {
-      "id": "age5_bedtime_star_09",
+      "id": "age5_stargazing_07",
       "level": 1,
       "citation": [
-        "At bedtime, Fluffy looked out the window and counted the twinkling stars.",
-        "Each star seemed to tell a tiny story about a faraway place.",
-        "Fluffy whispered a wish and drifted to sleep with a smile.",
-        "In the morning the wish felt like a warm memory to share with friends."
+        "Eliza loved looking up at the night sky from her window.",
+        "She learned that stars twinkled and looked very far away.",
+        "She felt peaceful watching the beautiful, dark sky.",
+        "Every night was a chance to look for new stars."
       ],
       "questions": [
         {
-          "question": "What did Fluffy do at bedtime?",
+          "question": "What did Eliza love doing at night?",
           "choices": [
-            "Count stars",
-            "Play outside",
-            "Eat dinner",
-            "Read a book"
-          ],
-          "correctIndex": 0
-        },
-        {
-          "question": "What did Fluffy whisper?",
-          "choices": [
-            "A secret",
-            "A wish",
-            "A joke",
-            "A song"
+            "Playing games",
+            "Stargazing (looking at stars)",
+            "Eating dinner",
+            "Sleeping"
           ],
           "correctIndex": 1
         },
         {
-          "question": "How did Fluffy feel in the morning?",
+          "question": "What did the stars do?",
           "choices": [
-            "Sad",
+            "They ran away",
+            "They twinkled",
+            "They hid",
+            "They slept"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "How did Eliza feel while stargazing?",
+          "choices": [
+            "Scared",
+            "Peaceful",
             "Angry",
-            "Happy",
             "Tired"
           ],
-          "correctIndex": 2
+          "correctIndex": 1
         }
       ]
     },
     {
-      "id": "age5_garden_party_10",
+      "id": "age5_garden_play_08",
       "level": 1,
       "citation": [
-        "Friends gathered in a small garden to celebrate a tiny party with cupcakes.",
-        "They decorated paper hats and counted sprinkles on each cupcake.",
-        "A gentle song played while they danced in a circle holding hands.",
-        "When the party ended they cleaned up together and promised to meet again."
+        "Leo and his friends played in the garden every afternoon.",
+        "They ran around the flowers and watched the busy bees.",
+        "They learned that plants need water to grow big and strong.",
+        "Playing outside made them feel energetic."
       ],
       "questions": [
         {
-          "question": "What did the friends count on the cupcakes?",
+          "question": "Where did Leo play?",
           "choices": [
-            "Candles",
-            "Sprinkles",
-            "Stickers",
-            "Buttons"
+            "In the house",
+            "In the garden",
+            "In the park",
+            "In the kitchen"
           ],
           "correctIndex": 1
         },
         {
-          "question": "What did they do while the song played?",
+          "question": "What did they watch in the garden?",
           "choices": [
-            "Sleep",
-            "Dance in a circle",
-            "Run away",
-            "Hide"
+            "Birds and bees",
+            "Cars",
+            "Trees",
+            "Houses"
           ],
-          "correctIndex": 1
+          "correctIndex": 0
         },
         {
-          "question": "What did they promise at the end?",
+          "question": "What do plants need to grow?",
           "choices": [
-            "To never meet again",
-            "To meet again",
-            "To throw the hats",
-            "To eat all the cupcakes"
-          ],
-          "correctIndex": 1
-        }
-      ]
-    },
-
-    {
-      "id": "ms_secret_map_01",
-      "level": 2,
-      "citation": [
-        "Sam found a folded map tucked behind an old cabinet in the school basement. The map showed hidden corridors and a room marked with a star.",
-        "Curiosity pulled Sam to follow the map after classes. The hallway lights flickered and the air smelled like old books.",
-        "Sam met Lina and Jay and together they decided to explore carefully, leaving notes for each other as they moved deeper into the building.",
-        "At the end of the corridor they discovered a small door that opened into a forgotten study filled with dusty journals."
-      ],
-      "questions": [
-        {
-          "question": "Where did Sam find the map?",
-          "choices": [
-            "In the library",
-            "Behind a cabinet in the basement",
-            "On the playground",
-            "In a locker"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "Who joined Sam on the exploration?",
-          "choices": [
-            "Momo and Beep",
-            "Lina and Jay",
-            "Fluffy and Momo",
-            "A teacher and a parent"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What did they find at the end of the corridor?",
-          "choices": [
-            "A gym",
-            "A forgotten study",
-            "A cafeteria",
-            "A rooftop garden"
-          ],
-          "correctIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "ms_library_mystery_02",
-      "level": 2,
-      "citation": [
-        "Lina discovered a book with a missing title on a high shelf. When she opened it, a folded note slipped out with a riddle.",
-        "The riddle hinted at a secret code hidden in the library’s old catalog cards. Lina and Sam worked together to decode the message.",
-        "Their search led them to a small locked box behind the card catalog. Inside they found a collection of old postcards and a key.",
-        "The postcards told stories of students long ago and inspired Lina to create a display for the school museum."
-      ],
-      "questions": [
-        {
-          "question": "What slipped out of the book Lina found?",
-          "choices": [
-            "A bookmark",
-            "A folded note with a riddle",
-            "A photograph",
-            "A ticket"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What did the riddle point to?",
-          "choices": [
-            "A hidden map",
-            "A secret code in catalog cards",
-            "A treasure chest",
-            "A lost pet"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What did Lina decide to create for the school?",
-          "choices": [
-            "A museum display",
-            "A new book",
-            "A playground",
-            "A science fair"
+            "Sunlight and water",
+            "Candy and toys",
+            "Sleep and rest",
+            "Sound"
           ],
           "correctIndex": 0
         }
       ]
     },
     {
-      "id": "ms_science_club_03",
+      "id": "age5_train_adventure_09",
+      "level": 1,
+      "citation": [
+        "Maya loved riding the train to see new places.",
+        "She saw mountains and fields rushing by the window.",
+        "The train made a rhythmic sound as it traveled along the tracks.",
+        "It was a fun adventure for Maya."
+      ],
+      "questions": [
+        {
+          "question": "What did Maya love to ride?",
+          "choices": [
+            "A bus",
+            "A boat",
+            "A train",
+            "A car"
+          ],
+          "correctIndex": 2
+        },
+        {
+          "question": "What did she see outside the window?",
+          "choices": [
+            "Big houses",
+            "Mountains and fields",
+            "Trees",
+            "Buildings"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "What sound did the train make?",
+          "choices": [
+            "A whistle",
+            "A roar",
+            "A rhythmic sound",
+            "A beep"
+          ],
+          "correctIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "age5_puzzle_fun_10",
+      "level": 1,
+      "citation": [
+        "Tom worked on a fun puzzle with his dad.",
+        "They carefully put the pieces together to see a colorful picture.",
+        "When they finished, they celebrated their success.",
+        "Solving puzzles is a great way to learn new things."
+      ],
+      "questions": [
+        {
+          "question": "What did Tom do with his dad?",
+          "choices": [
+            "Played outside",
+            "Solved a puzzle",
+            "Watched TV",
+            "Ate dinner"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "What did they put together?",
+          "choices": [
+            "Blocks",
+            "Puzzles",
+            "Books",
+            "Toys"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "How did they feel when they finished?",
+          "choices": [
+            "Tired",
+            "Proud",
+            "Bored",
+            "Angry"
+          ],
+          "correctIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "ms_science_lab_01",
       "level": 2,
       "citation": [
-        "The science club built a small weather station on the roof to measure wind and rain. Jay recorded the data each morning.",
-        "One week the readings showed a strange pattern of gusts that seemed to come from the old oak tree.",
-        "Lina and Sam investigated and found a small wind tunnel created by the tree’s branches and the building’s shape.",
-        "They wrote a short report and presented their findings to the class, who applauded their careful observations."
+        "The science club built a small weather station on the roof to measure wind and rain.",
+        "Jay recorded the data each morning very carefully.",
+        "They used simple tools to observe how the weather changed over time.",
+        "They learned that careful observation leads to accurate results."
       ],
       "questions": [
         {
@@ -526,81 +441,123 @@
           "correctIndex": 1
         },
         {
-          "question": "What caused the strange gusts?",
+          "question": "What did they measure?",
           "choices": [
-            "A broken fan",
-            "A wind tunnel near the oak tree",
-            "A storm far away",
-            "A helicopter"
+            "Temperature and wind",
+            "Wind and rain",
+            "Light and sound",
+            "Water levels"
           ],
           "correctIndex": 1
         },
         {
-          "question": "What did they do with their findings?",
+          "question": "What was the main lesson learned?",
           "choices": [
-            "Hide them",
-            "Write a report and present it",
-            "Throw them away",
-            "Sell them"
+            "Quick guessing is best",
+            "Careful observation leads to accurate results",
+            "Only robots are smart",
+            "Data doesn't matter"
           ],
           "correctIndex": 1
         }
       ]
     },
     {
-      "id": "ms_art_project_04",
+      "id": "ms_history_map_02",
       "level": 2,
       "citation": [
-        "Jay proposed an art project to paint a mural in the school hallway. The design showed students helping each other.",
-        "They gathered sketches and asked classmates for ideas. Lina suggested adding small hidden symbols that told short stories.",
-        "Working together after school, the team painted bright colors and tiny scenes that students could discover as they walked by.",
-        "The mural became a favorite spot for photos and inspired other classes to create collaborative projects."
+        "Sam found an old map hidden behind a cabinet in the school basement.",
+        "The map showed secret corridors and a room marked with a star.",
+        "He worked with friends to explore the hallway and find a forgotten study.",
+        "They discovered a door leading to a place filled with old, dusty journals."
       ],
       "questions": [
         {
-          "question": "What did Jay propose?",
+          "question": "Where was the map hidden?",
           "choices": [
-            "A science fair",
+            "In the library",
+            "Behind a cabinet in the basement",
+            "On the playground",
+            "In a locker"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "What did they explore?",
+          "choices": [
+            "A gym",
+            "Hidden corridors and a study",
+            "A cafeteria",
+            "A rooftop garden"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "What was inside the forgotten room?",
+          "choices": [
+            "Dusty journals",
+            "New books",
+            "Toys",
+            "Machines"
+          ],
+          "correctIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "ms_art_mural_03",
+      "level": 2,
+      "citation": [
+        "Jay proposed painting a mural in the hallway showing students helping each other.",
+        "Lina suggested adding hidden symbols that told short stories to the viewers.",
+        "Working together, they painted bright colors and created a collaborative piece.",
+        "The mural became an inspiring spot for everyone to see."
+      ],
+      "questions": [
+        {
+          "question": "What did Jay propose to paint?",
+          "choices": [
+            "A science chart",
             "A mural project",
-            "A sports day",
-            "A music concert"
+            "A sports poster",
+            "A landscape"
           ],
           "correctIndex": 1
         },
         {
           "question": "What did Lina suggest adding?",
           "choices": [
-            "Hidden symbols with short stories",
-            "A playground",
+            "Hidden symbols with stories",
+            "A new window",
             "A fountain",
-            "A stage"
+            "A sign"
           ],
           "correctIndex": 0
         },
         {
-          "question": "What did the mural inspire?",
+          "question": "How did the mural affect people?",
           "choices": [
-            "More collaborative projects",
-            "A new cafeteria menu",
-            "A school closure",
-            "A test"
+            "It caused trouble",
+            "It inspired collaborative projects",
+            "It made them sad",
+            "They ignored it"
           ],
-          "correctIndex": 0
+          "correctIndex": 1
         }
       ]
     },
     {
-      "id": "ms_robot_competition_05",
+      "id": "ms_robot_logic_04",
       "level": 2,
       "citation": [
-        "Sam and Jay entered a small robotics competition where teams programmed robots to follow a path.",
-        "Their robot struggled at first but learned to correct its course after they adjusted the sensors.",
-        "On the day of the event the robot completed the course and the team celebrated with high fives.",
-        "They reflected on how small changes and careful testing made a big difference in performance."
+        "Sam and Jay entered a robotics competition to program robots to follow a path.",
+        "They had to adjust the sensors and test their code repeatedly to fix errors.",
+        "They learned that small changes in programming lead to big results.",
+        "The team celebrated successfully completing the challenging course."
       ],
       "questions": [
         {
-          "question": "What did the teams program their robots to do?",
+          "question": "What did the teams program the robots to do?",
           "choices": [
             "Sing songs",
             "Follow a path",
@@ -610,7 +567,7 @@
           "correctIndex": 1
         },
         {
-          "question": "What helped the robot improve?",
+          "question": "How did they make the robot better?",
           "choices": [
             "Adjusting sensors and testing",
             "Adding more weight",
@@ -620,29 +577,29 @@
           "correctIndex": 0
         },
         {
-          "question": "How did the team celebrate?",
+          "question": "What did they learn about programming?",
           "choices": [
-            "With high fives",
-            "By sleeping",
-            "By hiding the robot",
-            "By quitting"
+            "Mistakes help learning",
+            "Only winners matter",
+            "Code is easy",
+            "Programming takes no time"
           ],
           "correctIndex": 0
         }
       ]
     },
     {
-      "id": "ms_garden_club_06",
+      "id": "ms_garden_study_05",
       "level": 2,
       "citation": [
-        "The garden club planted native flowers to attract butterflies. Lina kept a journal of the species she saw.",
-        "One morning she noticed a rare butterfly visiting the new patch and sketched it carefully.",
-        "The club labeled the plants and created a small guide for other students to learn about pollinators.",
-        "Their project helped the school grounds feel more alive and taught students about caring for nature."
+        "The garden club planted native flowers to help attract butterflies.",
+        "Lina kept a journal to record the rare butterfly species she saw.",
+        "They created a small guide to teach other students about nature and pollinators.",
+        "Their project made the school grounds feel more alive."
       ],
       "questions": [
         {
-          "question": "Why did the garden club plant native flowers?",
+          "question": "Why did the club plant native flowers?",
           "choices": [
             "To attract butterflies",
             "To block the view",
@@ -674,17 +631,227 @@
       ]
     },
     {
-      "id": "ms_history_project_07",
+      "id": "ms_coding_challenge_06",
       "level": 2,
       "citation": [
-        "For a history project, students interviewed grandparents about school life long ago.",
-        "Sam recorded stories about old games and how students walked to school together.",
-        "They compiled the interviews into a booklet and shared it at a school assembly.",
-        "The project helped everyone appreciate how life had changed and what traditions remained."
+        "Sam created a small maze game using code blocks.",
+        "He tested the game with friends and found bugs that needed fixing.",
+        "He learned that patience is important when debugging code.",
+        "By fixing the errors, Sam successfully completed his project."
       ],
       "questions": [
         {
-          "question": "Who did students interview for the project?",
+          "question": "What did Sam create?",
+          "choices": [
+            "A song",
+            "A maze game",
+            "A sculpture",
+            "A storybook"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "What did he need to fix in the game?",
+          "choices": [
+            "The colors",
+            "The bugs (errors)",
+            "The shapes",
+            "The sounds"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "What lesson did he learn about coding?",
+          "choices": [
+            "Only winners matter",
+            "Mistakes help learning",
+            "Code is easy",
+            "You must be fast"
+          ],
+          "correctIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "ms_music_team_07",
+      "level": 2,
+      "citation": [
+        "Students from different grades formed a small band to perform at the school fair.",
+        "They practiced harmonies and learned how to listen to each other's musical parts.",
+        "Their music created a warm atmosphere for families and friends.",
+        "The experience taught them about teamwork and sharing joy."
+      ],
+      "questions": [
+        {
+          "question": "What did the students form?",
+          "choices": [
+            "A sports team",
+            "A band",
+            "A debate club",
+            "A science team"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "What was the most important skill they learned?",
+          "choices": [
+            "To argue well",
+            "To listen to each other",
+            "To play alone",
+            "To ignore others"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "How did their music affect the audience?",
+          "choices": [
+            "It caused confusion",
+            "It created a warm atmosphere",
+            "It made people leave",
+            "It caused a fight"
+          ],
+          "correctIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "ms_math_challenge_08",
+      "level": 2,
+      "citation": [
+        "The math club hosted a challenge where teams solved puzzles under a time limit.",
+        "Lina’s team used the strategy of checking each step carefully before moving on.",
+        "They focused on finding the right method rather than just guessing the answer.",
+        "The competition encouraged friendly rivalry and problem-solving skills."
+      ],
+      "questions": [
+        {
+          "question": "What did the math club host?",
+          "choices": [
+            "A concert",
+            "A challenge with puzzles",
+            "A picnic",
+            "A movie night"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "What strategy did Lina’s team use?",
+          "choices": [
+            "Guessing answers",
+            "Checking each step carefully",
+            "Skipping hard problems",
+            "Copying other teams"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "What was the goal of the challenge?",
+          "choices": [
+            "To win by cheating",
+            "Friendly competition and problem solving",
+            "To be the fastest",
+            "To avoid talking"
+          ],
+          "correctIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "ms_literature_debate_09",
+      "level": 2,
+      "citation": [
+        "Students debated whether memory defines who we are or if present choices shape identity.",
+        "They used stories and ideas to explore how past events influence the present self.",
+        "The discussion helped them understand the complex relationship between memory and free will.",
+        "They learned that while memory is important, our actions define our future."
+      ],
+      "questions": [
+        {
+          "question": "What was the main topic of the debate?",
+          "choices": [
+            "Sports rules",
+            "Whether memory defines identity",
+            "Cooking techniques",
+            "Geography"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "What did they use to support their arguments?",
+          "choices": [
+            "Only personal stories",
+            "Literature and neuroscience",
+            "Only movies",
+            "Only songs"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "What was the final conclusion?",
+          "choices": [
+            "Memory fully determines identity",
+            "Memory matters but does not fully determine identity",
+            "Identity is fixed at birth",
+            "Memory is useless"
+          ],
+          "correctIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "ms_tech_ethics_010",
+      "level": 2,
+      "citation": [
+        "A startup proposed a wearable device that plays positive memories to help users feel healthier.",
+        "Critics worried about the risk of manipulation and whether it was ethical to influence emotions.",
+        "Engineers worked with ethicists to set limits on how much memory could be played.",
+        "They designed the system with safety measures and clear consent guidelines."
+      ],
+      "questions": [
+        {
+          "question": "What did the startup propose?",
+          "choices": [
+            "A new snack",
+            "A wearable that replays positive memories",
+            "A video game",
+            "A social network"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "What was the main concern of the critics?",
+          "choices": [
+            "Battery life",
+            "Manipulation and coercion",
+            "Color choices",
+            "Price only"
+          ],
+          "correctIndex": 1
+        },
+        {
+          "question": "What did engineers design first?",
+          "choices": [
+            "A new logo",
+            "Consent flows and limits",
+            "A marketing plan",
+            "A secret feature"
+          ],
+          "correctIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "hs_research_data_01",
+      "level": 3,
+      "citation": [
+        "Students interviewed grandparents about life in the past.",
+        "Sam recorded stories about old games and how people traveled.",
+        "They compiled these interviews into a booklet to show how life has changed.",
+        "The project helped everyone see the importance of history."
+      ],
+      "questions": [
+        {
+          "question": "Who did students interview?",
           "choices": [
             "Teachers",
             "Grandparents",
@@ -716,356 +883,145 @@
       ]
     },
     {
-      "id": "ms_math_challenge_08",
-      "level": 2,
-      "citation": [
-        "The math club hosted a challenge where teams solved puzzles under a time limit.",
-        "Lina’s team used a strategy of checking each step carefully before moving on.",
-        "They finished with a strong score and learned new tricks from other teams.",
-        "The event encouraged friendly competition and helped students enjoy problem solving."
-      ],
-      "questions": [
-        {
-          "question": "What did the math club host?",
-          "choices": [
-            "A concert",
-            "A challenge with puzzles",
-            "A picnic",
-            "A movie night"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What strategy did Lina’s team use?",
-          "choices": [
-            "Guessing answers",
-            "Checking each step carefully",
-            "Skipping hard problems",
-            "Copying other teams"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What did the event encourage?",
-          "choices": [
-            "Boredom",
-            "Friendly competition",
-            "Cheating",
-            "Isolation"
-          ],
-          "correctIndex": 1
-        }
-      ]
-    },
-    {
-      "id": "ms_music_collab_09",
-      "level": 2,
-      "citation": [
-        "Students from different grades formed a small band to perform at the school fair.",
-        "They practiced harmonies and learned to listen to each other’s parts.",
-        "On the day of the fair their music brought families together and created a warm atmosphere.",
-        "The experience taught them about teamwork and the joy of sharing music."
-      ],
-      "questions": [
-        {
-          "question": "What did the students form?",
-          "choices": [
-            "A sports team",
-            "A band",
-            "A debate club",
-            "A science team"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What did they learn while practicing?",
-          "choices": [
-            "To ignore others",
-            "To listen to each other",
-            "To play alone",
-            "To argue"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What did their music do at the fair?",
-          "choices": [
-            "Create a warm atmosphere",
-            "Make people leave",
-            "Cause confusion",
-            "Start a fight"
-          ],
-          "correctIndex": 0
-        }
-      ]
-    },
-    {
-      "id": "ms_coding_workshop_10",
-      "level": 2,
-      "citation": [
-        "A weekend coding workshop introduced students to simple game design using blocks of code.",
-        "Sam created a small maze game and tested it with friends, fixing bugs as they appeared.",
-        "The workshop emphasized patience and the idea that mistakes help learning.",
-        "By the end, everyone had a small project to show and felt proud of their progress."
-      ],
-      "questions": [
-        {
-          "question": "What did the workshop teach?",
-          "choices": [
-            "Cooking",
-            "Game design with code blocks",
-            "Car repair",
-            "Painting"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What did Sam create?",
-          "choices": [
-            "A song",
-            "A maze game",
-            "A sculpture",
-            "A storybook"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What idea did the workshop emphasize?",
-          "choices": [
-            "Mistakes help learning",
-            "Never try again",
-            "Only winners matter",
-            "Work alone"
-          ],
-          "correctIndex": 0
-        }
-      ]
-    },
-
-    {
-      "id": "hs_memory_device_01",
+      "id": "hs_public_forum_02",
       "level": 3,
       "citation": [
-        "Mira discovered a sleek device in a research lab that could record and replay memories. The device’s screen pulsed with shifting patterns.",
-        "Encrypted notes warned of subtle side effects: users sometimes felt detached from their present after replaying a memory.",
-        "Mira debated whether to report the device, study it carefully, or lock it away to protect others.",
-        "The choice forced Mira to consider ethical questions about memory, identity, and consent."
+        "A public forum discussed how technology affects memory and our community life.",
+        "Attendees debated policies about keeping records safe, accessible, and transparent.",
+        "The goal was to find community recommendations for the ethical use of information.",
+        "The forum led to suggestions for better ways to manage historical data."
       ],
       "questions": [
         {
-          "question": "What did the device do?",
+          "question": "What was the public forum about?",
           "choices": [
-            "Play music",
-            "Record and replay memories",
-            "Measure temperature",
-            "Translate languages"
+            "Sports rules",
+            "How technology affects memory and civic life",
+            "Cooking techniques",
+            "Fashion trends"
           ],
           "correctIndex": 1
         },
         {
-          "question": "What concern did the notes mention?",
+          "question": "What did attendees discuss?",
           "choices": [
-            "Battery life",
-            "Users feeling detached from the present",
-            "High cost",
-            "No instructions"
+            "Only entertainment",
+            "Policies for transparency and preservation",
+            "How to hide records",
+            "How to stop archives"
           ],
           "correctIndex": 1
         },
         {
-          "question": "What ethical question did Mira face?",
+          "question": "What was the main outcome?",
           "choices": [
-            "Whether to use or report the device",
-            "How to sell the device",
-            "How to hide it",
-            "How to make it louder"
-          ],
-          "correctIndex": 0
-        }
-      ]
-    },
-    {
-      "id": "hs_parallel_world_02",
-      "level": 3,
-      "citation": [
-        "Ravi noticed small glitches in the city’s augmented displays—images that repeated and then shifted slightly out of sync.",
-        "He traced the anomalies to a hidden server cluster that seemed to mirror the city in a parallel simulation.",
-        "As he dug deeper, Ravi found logs suggesting someone was experimenting with rewriting small public memories.",
-        "He had to decide whether to expose the experiment, risking chaos, or to investigate quietly and gather proof."
-      ],
-      "questions": [
-        {
-          "question": "What did Ravi notice in the city displays?",
-          "choices": [
-            "Perfect images",
-            "Small glitches and shifts",
-            "No power",
-            "New advertisements"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What did the server cluster appear to do?",
-          "choices": [
-            "Store weather data",
-            "Mirror the city in a simulation",
-            "Play music",
-            "Control traffic lights"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What dilemma did Ravi face?",
-          "choices": [
-            "Expose the experiment or gather proof quietly",
-            "Buy new hardware",
-            "Leave the city",
-            "Join the experiment"
-          ],
-          "correctIndex": 0
-        }
-      ]
-    },
-    {
-      "id": "hs_literary_club_03",
-      "level": 3,
-      "citation": [
-        "Aisha organized a literary club to explore themes of memory and belonging through short stories and essays.",
-        "Members debated how narrative perspective shapes truth and whether memory can be trusted as evidence.",
-        "They wrote pieces that blended personal recollection with imaginative reconstruction, then shared feedback.",
-        "The club’s discussions deepened their understanding of voice, reliability, and the ethics of storytelling."
-      ],
-      "questions": [
-        {
-          "question": "What theme did the club explore?",
-          "choices": [
-            "Sports strategy",
-            "Memory and belonging",
-            "Cooking recipes",
-            "Mathematical proofs"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What did members debate?",
-          "choices": [
-            "How to cook",
-            "How narrative perspective shapes truth",
-            "How to build robots",
-            "How to paint"
-          ],
-          "correctIndex": 1
-        },
-        {
-          "question": "What did their writing blend?",
-          "choices": [
-            "Recipes and songs",
-            "Personal recollection and imagination",
-            "Math and science",
-            "Maps and charts"
+            "A secret plan",
+            "Community recommendations",
+            "A new product",
+            "A festival"
           ],
           "correctIndex": 1
         }
       ]
     },
     {
-      "id": "hs_research_ethics_04",
+      "id": "hs_ethics_memory_03",
       "level": 3,
       "citation": [
-        "A university lab published a paper about a device that could alter short-term memory traces in lab animals.",
-        "The paper sparked debate about consent, long-term effects, and the responsibility of researchers to disclose risks.",
-        "Students organized a forum where scientists, ethicists, and community members discussed safeguards and oversight.",
-        "The forum emphasized transparency, peer review, and the need to balance innovation with human dignity."
+        "Mira studied a device that could record and replay memories.",
+        "She debated the ethical risks of manipulating personal experience.",
+        "The core question was about consent: should anyone be able to alter their past?",
+        "Mira decided that technology must respect human dignity above all else."
       ],
       "questions": [
         {
-          "question": "What did the published paper describe?",
+          "question": "What was Mira's main debate about?",
           "choices": [
-            "A new paint",
-            "A device altering short-term memory traces",
-            "A cooking method",
-            "A sports technique"
+            "Whether memory defines identity",
+            "The ethics of altering personal experience",
+            "How to build the device",
+            "The cost of technology"
           ],
           "correctIndex": 1
         },
         {
-          "question": "What concerns did the paper raise?",
+          "question": "What principle did Mira prioritize?",
           "choices": [
-            "Consent and long-term effects",
-            "Color choices",
-            "Ticket prices",
-            "Weather"
-          ],
-          "correctIndex": 0
-        },
-        {
-          "question": "What did the forum emphasize?",
-          "choices": [
-            "Secrecy",
-            "Transparency and safeguards",
             "Profit only",
+            "Human dignity and consent",
+            "Secrecy",
             "Ignoring ethics"
           ],
           "correctIndex": 1
+        },
+        {
+          "question": "How did Mira resolve the ethical dilemma?",
+          "choices": [
+            "She used the device to fix history.",
+            "She focused on safety and consent guidelines",
+            "She locked it away forever.",
+            "She told everyone about it."
+          ],
+          "correctIndex": 1
         }
       ]
     },
     {
-      "id": "hs_cybersecurity_05",
+      "id": "hs_cyber_history_04",
       "level": 3,
       "citation": [
-        "A string of subtle data manipulations in a city archive suggested someone was altering public records.",
-        "Mira and Ravi worked with a cybersecurity team to trace the edits and found a pattern of small, targeted changes.",
-        "They developed a verification tool that compared multiple independent sources to detect tampering.",
-        "Their work highlighted the importance of digital literacy and resilient systems in protecting shared history."
+        "Subtle data changes in public archives suggested someone was altering historical records.",
+        "Mira and Ravi developed a verification tool to spot these edits by cross-referencing multiple sources.",
+        "Their work emphasized that digital history requires strong protection against tampering.",
+        "They highlighted the critical role of digital literacy in safeguarding shared information."
       ],
       "questions": [
         {
-          "question": "What did the data manipulations affect?",
+          "question": "What was the problem with the public records?",
           "choices": [
-            "Weather forecasts",
-            "Public records",
-            "Music playlists",
-            "Traffic signals"
+            "They were outdated",
+            "Someone was altering them (tampering)",
+            "They were too easy to read",
+            "They lacked power"
           ],
           "correctIndex": 1
         },
         {
-          "question": "What did they build to detect tampering?",
+          "question": "How did Mira and Ravi solve the problem?",
           "choices": [
-            "A verification tool comparing sources",
-            "A new game",
-            "A painting",
-            "A robot"
+            "By hiding the data",
+            "By creating a verification tool comparing sources",
+            "By ignoring the changes",
+            "By deleting all records"
           ],
-          "correctIndex": 0
+          "correctIndex": 1
         },
         {
-          "question": "What did their work highlight?",
+          "question": "What did their work teach about history?",
           "choices": [
-            "The need for secrecy",
+            "History is unimportant",
             "The importance of digital literacy and resilient systems",
-            "That history is unimportant",
-            "That only one source matters"
+            "Only one source matters",
+            "Secrecy is best"
           ],
           "correctIndex": 1
         }
       ]
     },
     {
-      "id": "hs_philosophy_debate_06",
+      "id": "hs_philosophy_self_05",
       "level": 3,
       "citation": [
-        "In a philosophy seminar students debated whether memory defines identity or if identity is shaped by present choices.",
-        "Arguments referenced literature, neuroscience, and personal anecdotes to explore how memory and agency interact.",
-        "The discussion remained respectful but probing, with students challenging assumptions and refining their positions.",
-        "By the end, many agreed that memory matters but does not fully determine who we become."
+        "Students debated whether memory determines identity or if identity is shaped by present choices.",
+        "Arguments referenced psychology and personal experience to explore the link between past events and current self.",
+        "They concluded that while memory provides context, free will remains essential in shaping who we become.",
+        "The discussion highlighted the complex interplay between the past and the present."
       ],
       "questions": [
         {
-          "question": "What was the seminar topic?",
+          "question": "What was the main focus of the philosophy seminar?",
           "choices": [
-            "Sports rules",
+            "Sports strategy",
             "Whether memory defines identity",
             "Cooking techniques",
             "Geography"
@@ -1073,35 +1029,35 @@
           "correctIndex": 1
         },
         {
-          "question": "What sources did students reference?",
+          "question": "What did they use to support their arguments?",
           "choices": [
-            "Literature and neuroscience",
+            "Only personal stories",
+            "Literature and psychology",
             "Only movies",
-            "Only songs",
-            "Only weather reports"
+            "Only songs"
           ],
-          "correctIndex": 0
+          "correctIndex": 1
         },
         {
-          "question": "What conclusion did many reach?",
+          "question": "What was the final consensus?",
           "choices": [
             "Memory fully determines identity",
             "Memory matters but does not fully determine identity",
-            "Memory is useless",
-            "Identity is fixed at birth"
+            "Identity is fixed at birth",
+            "Memory is useless"
           ],
           "correctIndex": 1
         }
       ]
     },
     {
-      "id": "hs_innovation_ethics_07",
+      "id": "hs_innovation_safety_06",
       "level": 3,
       "citation": [
-        "A startup proposed a wearable that could nudge users toward healthier habits by replaying positive memories.",
-        "Critics worried about manipulation and the line between helpful reminders and coercion.",
-        "Engineers and ethicists met to design consent flows and limits on automated nudges.",
-        "The dialogue showed how technology design must include ethical guardrails from the start."
+        "A startup proposed a wearable device to nudge users toward healthier habits by replaying positive memories.",
+        "Ethicists demanded strict limits on the technology to prevent manipulation and coercion.",
+        "Engineers prioritized designing systems that were safe and transparent, embedding ethical constraints from the start.",
+        "This approach ensured that innovation was balanced with human well-being."
       ],
       "questions": [
         {
@@ -1115,39 +1071,39 @@
           "correctIndex": 1
         },
         {
-          "question": "What concern did critics raise?",
+          "question": "What was the main demand of the ethicists?",
           "choices": [
-            "Battery life",
-            "Manipulation and coercion",
-            "Color choices",
-            "Price only"
+            "Profit only",
+            "Strict limits to prevent manipulation",
+            "Total control by the startup",
+            "No testing"
           ],
           "correctIndex": 1
         },
         {
-          "question": "What did engineers and ethicists design?",
+          "question": "How did engineers ensure safety?",
           "choices": [
-            "Consent flows and limits",
-            "A new logo",
-            "A marketing plan",
-            "A secret feature"
+            "By ignoring critics",
+            "By designing with consent flows and limits",
+            "By making the device secret",
+            "By only focusing on performance"
           ],
-          "correctIndex": 0
+          "correctIndex": 1
         }
       ]
     },
     {
-      "id": "hs_documentary_project_08",
+      "id": "hs_documentary_archive_07",
       "level": 3,
       "citation": [
-        "Students produced a short documentary about local memory projects that preserve oral histories.",
-        "They interviewed elders, recorded stories, and learned how to archive audio responsibly.",
-        "The documentary emphasized listening, consent, and the value of preserving diverse voices.",
-        "It premiered at a community event and sparked conversations about memory and belonging."
+        "Students created a documentary to preserve the oral histories of local elders about school life.",
+        "They learned the importance of responsible interviewing, listening, and archiving these stories accurately.",
+        "The documentary emphasized respecting diverse voices and ensuring informed consent from participants.",
+        "It successfully sparked community discussions about memory and belonging."
       ],
       "questions": [
         {
-          "question": "What did students produce?",
+          "question": "What did the students produce?",
           "choices": [
             "A painting",
             "A short documentary",
@@ -1157,35 +1113,35 @@
           "correctIndex": 1
         },
         {
-          "question": "What did the documentary emphasize?",
+          "question": "What was the focus of their project?",
           "choices": [
-            "Listening and consent",
             "Only technology",
+            "Listening, consent, and preserving oral histories",
             "Only profits",
             "Ignoring elders"
           ],
-          "correctIndex": 0
+          "correctIndex": 1
         },
         {
-          "question": "Where did it premiere?",
+          "question": "What was the impact of the documentary?",
           "choices": [
-            "A private home",
-            "A community event",
-            "A closed lab",
-            "A sports stadium"
+            "It only premiered privately",
+            "It sparked community discussions about memory and belonging",
+            "It caused an argument",
+            "It changed nothing"
           ],
           "correctIndex": 1
         }
       ]
     },
     {
-      "id": "hs_social_media_study_09",
+      "id": "hs_social_media_impact_08",
       "level": 3,
       "citation": [
-        "A study examined how social media reshapes collective memory by amplifying certain events and voices.",
-        "Researchers found that repeated sharing can make small incidents feel larger in public memory.",
-        "The team recommended media literacy programs to help people evaluate sources and context.",
-        "Students used the findings to design a short curriculum for local schools."
+        "A study examined how social media amplifies certain events, changing collective public memory.",
+        "Researchers found that repeated sharing makes small incidents feel larger and more significant in public opinion.",
+        "The research led to calls for media literacy programs to help people critically evaluate online sources.",
+        "Students used these findings to design educational curricula on digital history."
       ],
       "questions": [
         {
@@ -1199,39 +1155,39 @@
           "correctIndex": 1
         },
         {
-          "question": "What can repeated sharing cause?",
+          "question": "What is the effect of repeated sharing on memory?",
           "choices": [
-            "Make small incidents feel larger",
-            "Make things disappear",
-            "Stop memory",
-            "Create silence"
+            "It makes small incidents feel larger",
+            "It causes memories to disappear",
+            "It stops memory entirely",
+            "It creates silence"
           ],
           "correctIndex": 0
         },
         {
-          "question": "What did students design from the findings?",
+          "question": "What did students create from the study?",
           "choices": [
-            "A curriculum for media literacy",
             "A new app",
+            "A curriculum for media literacy",
             "A game",
             "A recipe book"
           ],
-          "correctIndex": 0
+          "correctIndex": 1
         }
       ]
     },
     {
-      "id": "hs_public_forum_10",
+      "id": "hs_public_policy_09",
       "level": 3,
       "citation": [
-        "A public forum invited citizens to discuss how technology affects memory and civic life.",
-        "Speakers shared stories of how records and archives shaped community identity.",
-        "Attendees debated policies for transparency, access, and preservation of public information.",
-        "The forum concluded with a set of community recommendations for ethical stewardship."
+        "A public forum discussed how technology influences civic life and the way communities keep records.",
+        "Attendees debated policies regarding transparency, access, and responsible preservation of public information.",
+        "They developed community recommendations for ethical stewardship of historical data.",
+        "The event led to new policies aimed at balancing technological innovation with democratic values."
       ],
       "questions": [
         {
-          "question": "What was the forum about?",
+          "question": "What was the main topic of the forum?",
           "choices": [
             "Sports rules",
             "How technology affects memory and civic life",
@@ -1241,24 +1197,24 @@
           "correctIndex": 1
         },
         {
-          "question": "What did attendees debate?",
+          "question": "What policies did attendees debate?",
           "choices": [
+            "Only entertainment rules",
             "Policies for transparency and preservation",
-            "Only entertainment",
-            "How to hide records",
+            "How to hide public information",
             "How to stop archives"
           ],
-          "correctIndex": 0
+          "correctIndex": 1
         },
         {
-          "question": "What resulted from the forum?",
+          "question": "What was the final outcome of the forum?",
           "choices": [
-            "Community recommendations",
-            "A new product",
-            "A secret plan",
+            "A secret plan by government",
+            "Community recommendations for ethical stewardship",
+            "A new product launch",
             "A festival"
           ],
-          "correctIndex": 0
+          "correctIndex": 1
         }
       ]
     }
