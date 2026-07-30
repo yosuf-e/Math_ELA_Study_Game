@@ -1,520 +1,854 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 
 <head>
   <meta charset="utf-8" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.magnific.com/512/732/732600.png">
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.magnific.com/512/732/732600.png">
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/7770/7770659.png">
-  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/7770/7770659.png">
-  <title>Yosuf Elshaer's Portfolio</title>
+  <title>BrainQuest Academy</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
   <style>
-    /* --- 1. Updated Color Palette and Background Animation --- */
     :root {
-      /* New professional palette (Deep Slate & Soft Teal Accent) */
-      --bg-start: #010b19;
-      /* Deep Navy/Slate for the dark background */
-      --bg-mid: #001135;
-      /* Slightly lighter slate */
-      --bg-end: #1f012e;
-      /* Lighter slate */
-      --accent: #48CAE4;
-      /* Bright, modern Teal Accent */
-      --text-color: #f0f6f9;
-      /* Light text color */
-      --card-bg: #1e232a;
-      /* Darker card background */
-      --muted: #8b949e;
-      /* Soft gray for secondary text */
-      --glass: rgba(30, 35, 42, 0.7);
-      /* Slightly more opaque glass effect */
-      --radius: 16px;
-      --maxw: 1000px;
+      --particle-color: #facc15;
     }
 
-    /* Animated Background Gradient using keyframes */
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
-      background: linear-gradient(60deg, var(--bg-start) 25%, var(--bg-mid) 50%, var(--bg-end) 75%);
-      color: var(--text-color);
-      animation: gradientBreathe 5s ease-in-out infinite;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      background-attachment: fixed;
-      /* Keeps the background static relative to scroll */
-      padding: 28px;
-      display: flex;
-      justify-content: center;
+    /* Floating animation */
+    .floating {
+      animation: float 6s ease-in-out infinite;
     }
 
-    /* Keyframes that mimic inhaling and exhaling */
-    @keyframes gradientBreathe {
-
-      0%,
-      100% {
-        background-size: 150% 150%;
-        background-position: 0% 50%;
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
       }
 
       50% {
-        /* Inhale: Expand the gradient size and shift position */
-        background-size: 250% 250%;
-        background-position: 100% 50%;
+        transform: translateY(-10px);
+      }
+
+      100% {
+        transform: translateY(0px);
       }
     }
 
-
-    /* --- Layout and Card Styles --- */
-    html,
-    body {
-      height: 100%
+    .wobble {
+      animation: wobble 0.4s ease;
     }
 
-    .wrap {
-      box-sizing: border-box;
-      width: var(--maxw);
-      max-width: 100%;
-      padding: 28px;
-      height: 140px;
-      /* Top Header Card Height */
-      background: var(--card-bg);
-      /* Set a darker card background */
-      border-radius: var(--radius);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-      /* Subtle shadow for depth */
+    @keyframes wobble {
+      0% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-4px);
+      }
+
+      50% {
+        transform: translateX(4px);
+      }
+
+      75% {
+        transform: translateX(-2px);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
     }
 
-    header {
-      display: flex;
-      flex-direction: column;
-      gap: 6px
+    .bounce {
+      animation: bounce 0.5s ease;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 32px;
-      letter-spacing: -0.5px;
-      color: var(--accent)
+    @keyframes bounce {
+      0% {
+        transform: scale(1);
+      }
+
+      30% {
+        transform: scale(1.1);
+      }
+
+      60% {
+        transform: scale(0.95);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
 
-    /* Highlight main name */
-    .title-sub {
-      color: var(--muted);
-      font-weight: 400
-    }
-
-    section {
-      margin-top: 28px
-    }
-
-    h2 {
-      margin: 0 0 15px 0;
-      font-size: 22px;
-      border-bottom: 2px solid rgba(72, 202, 228, 0.3);
-      padding-bottom: 5px;
-    }
-
-    /* Modern heading style */
-
-    .card {
-      background: var(--card-bg);
-      /* Use the dark background for cards */
-      border-radius: var(--radius);
-      padding: 20px;
-      border: 1px solid rgba(72, 202, 228, 0.1);
-      /* Subtle accent border */
-    }
-
-    /* Grid setup for two columns on desktop */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
-
-    /* --- Specific Component Styles --- */
-    .link-card {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .link-card img {
+    canvas#confettiCanvas {
+      position: fixed;
+      pointer-events: none;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 10px;
-      border: 1px solid rgba(72, 202, 228, 0.3)
+      height: 100%;
+      z-index: 60;
     }
 
-    .link-card.special-card img {
-      object-position: center bottom;
+    /* Unified theme variables (simple) */
+    .theme-dark {
+      --bg-main: #0f172a;
+      --bg-card: #0f172a;
+      --text-main: #f1f5f9;
+      --text-soft: #cbd5e1;
+      --card-border: #334155;
     }
 
-    .link-card a {
-      display: inline-block;
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s;
+    .theme-light {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #0f172a;
+      --text-soft: #475569;
+      --card-border: #cbd5e1;
     }
 
-    /* Smooth hover effect */
-    .link-card a:hover {
-      color: #a8d5ff;
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      transition: background-color .3s, color .3s;
     }
 
-    .muted {
-      color: var(--muted)
+    .theme-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--card-border);
     }
 
-    ul {
-      margin: 12px 0 0 24px
+    .theme-text-soft {
+      color: var(--text-soft);
     }
 
-    /* Skill Tags Style */
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px
+    /* Modal sizing */
+    #gameModal .modal-inner {
+      width: 80%;
+      height: 80%;
     }
 
-    .skill {
-      background: var(--glass);
-      padding: 8px 14px;
-      border-radius: 30px;
-      /* Pill shape */
-      color: var(--accent);
-      /* Accent color for skills */
-      font-weight: 600;
-      font-size: 14px;
-      border: 1px solid rgba(72, 202, 228, 0.3);
-    }
-
-    /* Helper Text/Links */
-    .banner-link {
-      display: block;
-      text-decoration: none;
-      color: inherit
-    }
-
-    .banner-title {
-      font-weight: 700;
-      margin-top: 6px;
-    }
-
-    .card ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .card li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-
-    /* --- Responsive Adjustment for Mobile (Single Column) --- */
-    @media(max-width:760px) {
-
-      /* Force the grid to display only one card per row on mobile */
-      .grid {
-        grid-template-columns: 1fr
-      }
-
-      body {
-        padding: 18px
-      }
-    }
-
-    /* --- Scroll Animation Styles --- */
-    /* Initial state: Hidden and slightly moved down */
-    .animate-in {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-
-    /* State when visible (will be applied by JS) */
-    .animate-in.is-visible {
-      opacity: 1;
-      transform: translateY(0);
+    /* Small helpers */
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 
-<body>
-  <main class="wrap" role="main">
-    <header style="display: flex; justify-content: space-between; align-items: center;">
-      <div>
-        <h1>Yosuf Ahmed Elshaer</h1>
-        <div class="title-sub">High School Student</div>
+<body class="theme-dark">
+
+  <!-- Confetti Canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Sounds -->
+  <audio id="soundCorrect">
+    <source src="https://cdn.pixabay.com/audio/2025/06/06/audio_033375aac8.mp3" type="audio/ogg">
+  </audio>
+  <audio id="soundWrong">
+    <source src="https://cdn.pixabay.com/audio/2022/03/10/audio_8b0fae46ef.mp3" type="audio/ogg">
+  </audio>
+
+  <div id="app" class="min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-opacity-80 backdrop-blur border-b" style="background:rgba(15,23,42,0.9);">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl text-yellow-400"><i class="fa-solid fa-brain"></i></span>
+            <div>
+              <h1 class="text-lg font-bold tracking-wide">BrainQuest Academy</h1>
+              <p class="text-xs theme-text-soft">Gamified Math & Reading Adventures</p>
+            </div>
+          </div>
+
+          <button id="themeToggle" class="ml-4 px-3 py-1 rounded-full border text-xs flex items-center gap-2">
+            <span class="theme-icon"><i class="fa-solid fa-sun text-yellow-300"></i></span>
+            <span id="themeLabel">Light Mode</span>
+          </button>
+        </div>
+
+        <!-- HUD -->
+        <div class="flex items-center gap-4 text-xs md:text-sm">
+          <div class="flex items-center gap-2"><i class="fa-solid fa-user-astronaut text-cyan-300"></i><span id="hudAvatar" class="font-semibold">Rookie Explorer</span></div>
+          <div class="flex items-center gap-2"><i class="fa-solid fa-star text-yellow-400"></i><span>Level</span><span id="hudLevel" class="font-bold">1</span></div>
+          <div class="flex items-center gap-2"><i class="fa-solid fa-bolt text-amber-400"></i><span>XP</span><span id="hudXP" class="font-bold">0</span></div>
+          <div class="flex items-center gap-2"><span class="text-orange-500"><i class="fa-solid fa-fire"></i></span><span>Streak</span><span id="hudStreak" class="font-bold">0</span></div>
+          <div class="flex items-center gap-2"><span class="text-emerald-400"><i class="fa-solid fa-coins"></i></span><span>Brain Coins</span><span id="hudCoins" class="font-bold">0</span></div>
+        </div>
       </div>
-      <img src="https://github.com/yosuf-e/Yosuf-Portfolio/blob/main/Assets/Profile%20Photo.JPG?raw=true"
-        alt="Profile Photo"
-        style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent);"
-        class="animate-in">
+
+      <!-- Nav -->
+      <nav class="max-w-6xl mx-auto px-4 pb-3 flex gap-2 md:gap-4 text-xs md:text-sm">
+        <button data-route="home"
+          class="route-btn px-3 py-2 rounded-full bg-slate-800 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-house"></i><span>Home</span></button>
+        <button data-route="math"
+          class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-calculator text-red-400"></i><span>Math Arena</span></button>
+        <button data-route="story"
+          class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-book-open text-blue-400"></i><span>Reading Lab (ELA)</span></button>
+        <button data-route="shop"
+          class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-store"></i><span>Reward Shop</span></button>
+        <button data-route="profile"
+          class="route-btn px-3 py-2 rounded-full bg-slate-700 text-slate-100 flex items-center gap-2"><i class="fa-solid fa-id-card"></i><span>Profile & Stats</span></button>
+      </nav>
     </header>
 
+    <!-- Main -->
+    <main class="flex-1">
+      <div class="max-w-6xl mx-auto px-4 py-6 space-y-6">
 
-    <!-- 2. About me -->
-    <section id="about" aria-labelledby="about-heading" class="animate-in">
-      <h2 id="about-heading">About Me</h2>
-      <div class="card">
-        <p id="about-text" class="typewriter-text"></p>
-      </div>
-    </section>
+        <!-- HOME -->
+        <section id="route-home" class="route-section">
+          <div class="grid md:grid-cols-2 gap-6 items-center">
+            <div class="space-y-4">
+              <h2 class="text-2xl md:text-3xl font-bold">Welcome to <span class="text-cyan-300">BrainQuest Academy</span></h2>
+              <p class="text-sm md:text-base theme-text-soft">Practice math, craft dynamic stories, and level up your brain with XP, streaks, and Brain Coins. Unlock avatars, themes, and special effects as you play.</p>
 
-    <!-- 3. Projects -->
-    <section id="projects" aria-labelledby="projects-heading" class="animate-in">
-      <h2 id="projects-heading">Projects & Achievements</h2>
-      <div class="grid">
-        <!-- YouTube Channel -->
-        <div class="card link-card">
-          <a class="banner-link" href="https://youtube.com/@arabteach_edu?si=88OZ9lJXyiIIPfCz" target="_blank"
-            rel="noopener">
-            <img
-              src="https://yt3.googleusercontent.com/nDl-C5QvNgyWduXanEKr1kD06Vk3UaCQ-shxdOF4SEf3I-xCM0rv5rfzHVx-LbD1lv3r0ZZ1_w=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj"
-              alt="YouTube channel banner">
-            <div class="banner-title">YouTube Channel</div>
-            <div class="muted">Educational Channel</div>
-          </a>
-        </div>
+              <div class="flex flex-wrap gap-3">
+                <div class="px-3 py-2 rounded-xl theme-card flex items-center gap-2 floating"><i class="fa-solid fa-stopwatch text-amber-400"></i><span class="text-xs">Beat the Clock Mode</span></div>
+                <div class="px-3 py-2 rounded-xl theme-card flex items-center gap-2 floating"><i class="fa-solid fa-peace text-emerald-400"></i><span class="text-xs">Take Your Time Mode</span></div>
+                <div class="px-3 py-2 rounded-xl theme-card flex items-center gap-2 floating"><i class="fa-solid fa-wand-magic-sparkles text-cyan-300"></i><span class="text-xs">AI-style Story Generator</span></div>
+              </div>
 
-        <!-- GitHub Project -->
-        <div class="card link-card">
-          <a class="banner-link" href="https://github.com/yosuf-e/OptiFetch/" target="_blank" rel="noopener">
-            <img src="https://github.com/yosuf-e/Yosuf-Portfolio/blob/main/Assets/GitHub_Background.png?raw=true"
-              alt="GitHub project banner">
-            <div class="banner-title">GitHub Project</div>
-            <div class="muted">OptiFetch (Developed at age 15)</div>
-          </a>
-        </div>
-
-        <!-- Aircarft Class Photo -->
-        <div class="card link-card">
-          <a class="banner-link" href="" target="_blank" rel="noopener">
-            <img src="https://github.com/yosuf-e/Yosuf-Portfolio/blob/main/Assets/Class_Photo_Aircrafts.jpg?raw=true"
-              alt="Project photo banner">
-            <div class="banner-title">9th Grade Project Photo</div>
-            <div class="muted">Aircraft Project (Class Photo 2025)</div>
-          </a>
-        </div>
-
-        <!-- Hall Of Fame -->
-        <div class="card link-card special-card">
-          <a class="banner-link"
-            href="https://github.com/yosuf-e/Yosuf-Portfolio/blob/main/Assets/Hall%20of%20Fame%20(Class%20of%202024).JPG?raw=true"
-            target="_blank" rel="noopener">
-            <img
-              src="https://github.com/yosuf-e/Yosuf-Portfolio/blob/main/Assets/Hall%20of%20Fame%20(Class%20of%202024).JPG?raw=true"
-              alt="Hall of Fame photo banner">
-            <div class="banner-title">Class Hall Of Fame</div>
-            <div class="muted">Located at Buttom Left ✨</div>
-          </a>
-        </div>
-        <!-- STEAM Video -->
-          <div class="card link-card special-card">
-          <a class="banner-link" href="https://www.youtube.com/watch?v=3iZfQ_wjrrI" target="_blank" rel="noopener">
-            <img
-              src="https://github.com/yosuf-e/Yosuf-Portfolio/blob/main/Assets/10th-Grade-STEAM-Thumbnail.webp?raw=true"
-              style="object-fit: cover; object-position: top;" alt="Video Thumbnail">
-            <div class="banner-title">STEAM Project</div>
-            <div class="muted">10th-Grade Q4 STEAM Project</div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. Education -->
-    <section id="education" aria-labelledby="education-heading" class="animate-in">
-      <h2 id="education-heading">Education</h2>
-      <div class="card">
-        <ul>
-          <li>
-            <div style="display:flex; align-items:center; gap:10px;">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7XziWhDu5Db1lbmdcBrkYKsCsvFPjSFcAkZA83MaWBYwAfl5m05HXxMmw&s=10" alt="Sama Logo" style="height:45px; border-radius: 5px;">
-                <strong style="font-size:1.1em;">Sama Winchester College (Cairo, EGY)</strong>
+              <div class="flex gap-3 mt-4">
+                <button data-route="math"
+                  class="route-btn px-4 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold shadow-lg">Enter Math Arena</button>
+                <button data-route="story"
+                  class="route-btn px-4 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold shadow-lg">Explore Story Lab</button>
+              </div>
             </div>
-            <p class="muted">Grade: N/A, 2025-2028</p>
-          </li>
-          <li>
-            <div style="display:flex; align-items:center; gap:10px;">
-                <img src="https://echalk-slate-prod.s3.amazonaws.com/private/schools/1330/site/settings/2e263e53-288e-47d0-8019-342b8629dc3b?AWSAccessKeyId=AKIAJSZKIBPXGFLSZTYQ&Expires=1849996334&response-cache-control=private%2C%20max-age%3D31536000&response-content-disposition=attachment%3Bfilename%3D%22AV%2520Logo%2520Transparent%2520Background.png%22&response-content-type=image%2Fpng&Signature=bZ226LCxQpytTSKSymbyK1N6mqM%3D" alt="Aviation Logo" class="Aviation-Logo" style="height:35px; border-radius: 5px;">
-                <strong style="font-size:1.1em;">Aviation High School (NYC, USA)</strong>
+
+            <div class="relative">
+              <div class="absolute -top-4 -left-4 w-24 h-24 rounded-full bg-cyan-500/30 blur-2xl"></div>
+              <div class="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-emerald-500/30 blur-2xl"></div>
+
+              <div class="relative theme-card rounded-3xl p-6 shadow-xl">
+                <h3 class="text-lg font-semibold mb-2 flex items-center gap-2"><i class="fa-solid fa-trophy text-yellow-400"></i>Live Stats Snapshot</h3>
+                <div class="grid grid-cols-2 gap-3 text-xs">
+                  <div class="rounded-xl p-3 theme-card-soft">
+                    <p class="theme-text-soft">Total XP</p>
+                    <p id="homeXP" class="text-xl font-bold text-cyan-300">0</p>
+                  </div>
+                  <div class="rounded-xl p-3 theme-card-soft">
+                    <p class="theme-text-soft">Best Streak</p>
+                    <p id="homeBestStreak" class="text-xl font-bold text-amber-300">0</p>
+                  </div>
+                  <div class="rounded-xl p-3 theme-card-soft">
+                    <p class="theme-text-soft">Math Problems Solved</p>
+                    <p id="homeMathSolved" class="text-xl font-bold text-emerald-300">0</p>
+                  </div>
+                  <div class="rounded-xl p-3 theme-card-soft">
+                    <p class="theme-text-soft">Stories Completed</p>
+                    <p id="homeStoriesCompleted" class="text-xl font-bold text-pink-300">0</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p class="muted">Grade: 96.19%, 2024-2025</p>
-          </li>
-        </ul>
+          </div>
+        </section>
+
+        <!-- MATH -->
+        <section id="route-math" class="route-section hidden">
+          <div class="flex flex-col md:flex-row gap-6">
+            <div class="md:w-1/3 space-y-4">
+              <h2 class="text-xl font-bold flex items-center gap-2"><i class="fa-solid fa-calculator text-red-400"></i>Math Arena</h2>
+              <p class="text-xs theme-text-soft">Choose a grade, select a mode, and solve as many problems as you can. Earn XP and Brain Coins for each correct answer.</p>
+
+              <div class="space-y-3 theme-card rounded-2xl p-4">
+                <h3 class="text-sm font-semibold mb-2">Grade Level</h3>
+                <select id="mathGrade" class="w-full rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-xs">
+                  <option value="1">Grade 1 – Apples & Counting</option>
+                  <option value="2">Grade 2 – Double Digits & Words</option>
+                  <option value="3">Grade 3 – Times & Sharing</option>
+                  <option value="4">Grade 4 – Long Division & Decimals</option>
+                  <option value="5">Grade 5 – Fractions & PEMDAS</option>
+                  <option value="6">Grade 6 – Algebra & Ratios</option>
+                </select>
+
+                <h3 class="text-sm font-semibold mt-3">Mode</h3>
+                <div class="flex gap-2">
+                  <button id="modeCalm"
+                    class="flex-1 px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 text-xs font-semibold">Calm Mode</button>
+                  <button id="modeSprint"
+                    class="flex-1 px-3 py-2 rounded-lg bg-amber-500 text-slate-900 text-xs font-semibold">Beat the Clock</button>
+                </div>
+
+                <div id="sprintTimerBox" class="mt-3 hidden text-xs flex items-center gap-2"><i class="fa-solid fa-stopwatch text-amber-400"></i><span>Time left:</span><span id="sprintTimer" class="font-bold text-amber-300">60s</span></div>
+
+                <button id="startMath"
+                  class="mt-4 w-full px-4 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold">Start Challenge</button>
+              </div>
+
+              <div class="theme-card rounded-2xl p-4 text-xs">
+                <h3 class="text-sm font-semibold mb-2">Math Progress</h3>
+                <p>Correct answers: <span id="mathCorrect" class="font-bold text-emerald-300">0</span></p>
+                <p>Incorrect answers: <span id="mathIncorrect" class="font-bold text-rose-300">0</span></p>
+                <p>Current streak: <span id="mathStreak" class="font-bold text-amber-300">0</span></p>
+              </div>
+            </div>
+
+            <div class="md:w-2/3">
+              <div class="theme-card rounded-3xl p-6 space-y-4">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-lg font-semibold">Current Problem</h3>
+                  <span id="mathGradeLabel" class="text-xs theme-text-soft">Select a grade to begin</span>
+                </div>
+
+                <div id="mathVisual" class="text-3xl text-center mb-2"></div>
+
+                <div class="text-center">
+                  <p id="mathQuestion" class="text-xl md:text-2xl font-bold mb-3"></p>
+                  <p id="mathWordProblem" class="text-xs theme-text-soft mb-3"></p>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-3">
+                  <input id="mathAnswer" type="text" placeholder="Type your answer here..."
+                    class="flex-1 rounded-lg bg-slate-900 border border-slate-700 px-3 py-2 text-sm" />
+                  <button id="submitMath"
+                    class="px-4 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold">Submit</button>
+                </div>
+
+                <p id="mathFeedback" class="text-sm mt-2"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- STORY / ELA -->
+        <section id="route-story" class="route-section hidden">
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="md:col-span-1 space-y-4">
+              <h2 class="text-xl font-bold flex items-center gap-2"><i class="fa-solid fa-book-open text-blue-400"></i>Reading Lab (ELA)</h2>
+              <p class="text-xs theme-text-soft">Choose a reading level, read a story citation, then answer multiple-choice questions. All story data is stored in a JSON file for easy maintenance.</p>
+
+              <div class="theme-card rounded-2xl p-4 space-y-3">
+                <h3 class="text-sm font-semibold">Reading Level</h3>
+                <label class="text-xs flex items-center justify-between"><span class="text-yellow-300"><i class="fa-solid fa-face-smile"></i></span><span>Age 5 – Simple & Fun</span></label>
+                <label class="text-xs flex items-center justify-between"><span class="text-cyan-300"><i class="fa-solid fa-dragon"></i></span><span>Middle School – Adventure & Drama</span></label>
+                <label class="text-xs flex items-center justify-between"><span class="text-pink-300"><i class="fa-solid fa-meteor"></i></span><span>High School – Deep Themes & Sci-Fi</span></label>
+
+                <input id="storyComplexity" type="range" min="1" max="3" value="1" class="w-full mt-2" />
+                <p id="storyComplexityLabel" class="text-xs theme-text-soft mt-1">Age 5 – Basic</p>
+
+                <button id="startStory"
+                  class="mt-3 w-full px-4 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold">Load Story & Questions</button>
+              </div>
+
+              <div class="theme-card rounded-2xl p-4 text-xs space-y-2">
+                <h3 class="text-sm font-semibold">Reading Progress</h3>
+                <p>Stories completed: <span id="storyCompletedCount" class="font-bold text-pink-300">0</span></p>
+                <p>Last reward: <span id="storyLastReward" class="font-bold text-emerald-300">0</span> Coins</p>
+              </div>
+            </div>
+
+            <div class="md:col-span-2 space-y-4">
+              <div class="theme-card rounded-3xl p-6 space-y-4">
+                <h3 class="text-lg font-semibold flex items-center gap-2"><i class="fa-solid fa-scroll text-yellow-300"></i>Story Citation</h3>
+                <div id="storyText" class="text-sm md:text-base leading-relaxed space-y-3"></div>
+              </div>
+
+              <div id="storyQuizBox" class="theme-card rounded-3xl p-6 space-y-3 hidden">
+                <h3 class="text-lg font-semibold flex items-center gap-2"><i class="fa-solid fa-question text-emerald-300"></i>Reading Comprehension MCQ</h3>
+                <div id="storyQuizQuestions" class="space-y-4 text-sm"></div>
+                <button id="submitStoryQuiz"
+                  class="mt-2 px-4 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold">Submit Answers</button>
+                <p id="storyQuizFeedback" class="text-xs mt-2"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SHOP -->
+        <section id="route-shop" class="route-section hidden">
+          <div class="space-y-4">
+            <h2 class="text-xl font-bold flex items-center gap-2"><i class="fa-solid fa-gamepad text-amber-300"></i>Game Rewards Zone</h2>
+            <p class="text-xs theme-text-soft">Play short embedded sessions. Each session costs 100 coins and closes automatically when time ends.</p>
+
+            <div class="grid md:grid-cols-3 gap-4">
+              <!-- Car Games -->
+              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+                <img src="https://imgs.crazygames.com/smash-karts_1x1/20260210123937/smash-karts_1x1-cover?format=auto&quality=100&metadata=none&width=1200" height="100" width="100" class="rounded-xl">
+                <h3 class="text-sm font-semibold">Smash Karts</h3>
+                <button class="open-game px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold"
+                  data-url="https://smashkarts.io/" data-cost="130">
+                  Play 3‑Mins (130 Coins)
+                </button>
+              </div>
+
+              <!-- Adventure Games -->
+              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+                <img src="https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=188,height=188,fit=cover,f=auto/94f0d123275fb73da13aaed4a2725184/adventure-logo.png" height="100" width="100" class="rounded-xl">
+                <h3 class="text-sm font-semibold">Adventure Game</h3>
+                <button class="open-game px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold"
+                  data-url="https://vectaria.io/" data-cost="90">
+                  Play 3‑Mins (90 Coins)
+                </button>
+              </div>
+
+              <!-- Subway Surfers Game-->
+              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+                <img src="https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=1200,height=1200,fit=cover,f=png/1c920b9279c2bedec567c1b58129ae8f/subway-surfers-logo.png" height="100" width="100" class="rounded-xl">
+                <h3 class="text-sm font-semibold">Subway Surfers Game</h3>
+                <button class="open-game px-3 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold"
+                  data-url="https://running-games.io/subway-run" data-cost="150">
+                  Play 3‑Mins (150 Coins)
+                </button>
+              </div>
+
+              <!-- Temple Run Game-->
+              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+                <img src="https://upload.wikimedia.org/wikipedia/en/c/c4/TempleRun.jpg" height="100" width="100" class="rounded-xl">
+                <h3 class="text-sm font-semibold">Temple Run Game</h3>
+                <button class="open-game px-3 py-2 rounded-lg bg-cyan-500 text-slate-900 font-semibold"
+                  data-url="https://temple-run.com/" data-cost="150">
+                  Play 3‑Mins (150 Coins)
+                </button>
+              </div>
+
+              <!-- Fire Boy & Water Girl Game-->
+              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk7e0y5fGlmD5aNGyyX6AF7P-fJFyg6RS1LiS2Kk6X4WW_qZeyZR4HHkBQfe1AZsU31_mUrqcq2nYH2djKAiBgbchq-YofK0CX8IBT&s=10" height="100" width="100" class="rounded-xl">
+                <h3 class="text-sm font-semibold">Fire Boy & Water Girl Game</h3>
+                <button class="open-game px-3 py-2 rounded-lg bg-emerald-500 text-slate-900 font-semibold"
+                  data-url="https://www.fireboynwatergirl.com/?p=game&id=1" data-cost="120">
+                  Play 3‑Mins (120 Coins)
+                </button>
+              </div>
+
+              <!-- World Guessr Game-->
+              <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-4 space-y-2">
+                <img src="https://imgs.crazygames.com/worldguessr_1x1/20241018082521/worldguessr_1x1-cover?format=auto&quality=100&metadata=none&width=1200" height="100" width="100" class="rounded-xl">
+                <h3 class="text-sm font-semibold">World Guessr Game</h3>
+                <button class="open-game px-3 py-2 rounded-lg bg-pink-500 text-slate-900 font-semibold"
+                  data-url="https://www.worldguessr.com/" data-cost="80">
+                  Play 3‑Mins (80 Coins)
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PROFILE -->
+        <section id="route-profile" class="route-section hidden">
+          <div class="space-y-4">
+            <h2 class="text-xl font-bold flex items-center gap-2"><i class="fa-solid fa-id-card text-cyan-300"></i>Profile & Stats</h2>
+            <p class="text-xs theme-text-soft">Review your lifetime stats, unlocked items, and current avatar. All data is stored locally in your browser.</p>
+
+            <div class="grid md:grid-cols-2 gap-4 text-xs">
+              <div class="theme-card rounded-2xl p-4 space-y-2">
+                <h3 class="text-sm font-semibold mb-2">Player Overview</h3>
+                <p>Current Level: <span id="profileLevel" class="font-bold text-cyan-300">1</span></p>
+                <p>Total XP: <span id="profileXP" class="font-bold text-emerald-300">0</span></p>
+                <p>Brain Coins: <span id="profileCoins" class="font-bold text-yellow-300">0</span></p>
+                <p>Best Streak: <span id="profileBestStreak" class="font-bold text-amber-300">0</span></p>
+                <p>Avatar Title: <span id="profileAvatar" class="font-bold text-pink-300">Rookie Explorer</span></p>
+              </div>
+
+              <div class="theme-card rounded-2xl p-4 space-y-2">
+                <h3 class="text-sm font-semibold mb-2">Unlocked Items</h3>
+                <p>Magic Sound FX: <span id="profileSoundMagic" class="font-bold text-slate-200">Locked</span></p>
+              </div>
+            </div>
+
+            <button id="resetProgress"
+              class="mt-3 px-4 py-2 rounded-lg bg-rose-500 text-slate-900 font-semibold">Reset Progress (Local Only)</button>
+          </div>
+        </section>
+
       </div>
-    </section>
+    </main>
 
-    <!-- 5. Certifications / Training -->
-    <section id="certs" aria-labelledby="certs-heading" class="animate-in">
-      <h2 id="certs-heading">Certifications & Training</h2>
-      <div class="card">
-        <ul>
-          <li>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Cisco_Networking_Academy.svg/3840px-Cisco_Networking_Academy.svg.png" alt="Cisco-NetCad-Logo" class="Cisco-NetCad-Logo" style="height:12px; margin-right: 10px;">
-            <a href="https://notavaliable" target="_blank" rel="noopener" style="color:var(--accent); display: inline-block; text-align: left; width: 90%;">Python Essentials 1</a>
-            <span class="muted">Cisco Networking Academy</span>
-          </li>
-          <li>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Cisco_Networking_Academy.svg/3840px-Cisco_Networking_Academy.svg.png" alt="Cisco-NetCad-Logo" class="Cisco-NetCad-Logo" style="height:12px; margin-right: 10px;">
-            <a href="https://www.credly.com/badges/69412dd0-6d7e-4c85-abb1-09ace5302756/public_url" style="color:var(--accent); display: inline-block; text-align: left; width: 90%;">Introduction to Cybersecurity</a>
-            <span class="muted">Cisco Networking Academy</span>
-          </li>
-          <li>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Cisco_Networking_Academy.svg/3840px-Cisco_Networking_Academy.svg.png" alt="Cisco-NetCad-Logo" class="Cisco-NetCad-Logo" style="height:12px; margin-right: 10px;">
-            <a href="https://www.credly.com/badges/e81ec231-7cf4-4d51-ada8-0b54002a4288/public_url" style="color:var(--accent); display: inline-block; text-align: left; width: 90%;">Digital Safety and Security Awareness</a>
-            <span class="muted">Cisco Networking Academy</span>
-          </li>
-          <li>
-             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Cisco_Networking_Academy.svg/3840px-Cisco_Networking_Academy.svg.png" alt="Cisco-NetCad-Logo" class="Cisco-NetCad-Logo" style="height:12px; margin-right: 10px;">
-            <a href="https://www.credly.com/badges/36c232c0-e53d-4896-a27d-ae6bd93e8384/public_url" style="color:var(--accent); display: inline-block; text-align: left; width: 90%;">English for IT: Advice and Time</a>
-            <span class="muted">Cisco Networking Academy</span>
-          </li>
-        </ul>
-      </div>
-    </section>
+  </div>
 
-    <!-- 6. Skills -->
-    <section id="skills" aria-labelledby="skills-heading" class="animate-in">
-      <h2 id="skills-heading">Skills & Expertise</h2>
-      <div class="card">
-        <div class="skills">
-          <span class="skill">Python 🐍</span>
-          <span class="skill">HTML 🌐</span>
-          <span class="skill">Remotion 🎥</span>
-          <span class="skill">Time Management ⌚</span>
-          <span class="skill">Cybersecurity 🧑🏻‍💻</span>
-          <span class="skill">Artificial Intelligence (AI) 🤖</span>
-          <span class="skill">STEAM 🏫</span>
-          <span class="skill">Team-Collaboration 🤝</span>
-          <span class="skill">Project/Content Creation 🎨</span>
-          <span class="skill">Self-Learning 📖</span>
-          <span class="skill">Swimming 🏊🏻‍♂️</span>
-        </div>
-      </div>
-    </section>
+  <!-- Game Modal (embedded iframe) -->
+  <div id="gameModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur flex items-center justify-center z-50">
+    <div class="bg-slate-900 rounded-3xl p-4 modal-inner relative w-[80%] h-[80%]">
+      <iframe id="gameFrame" src="" class="w-full h-full rounded-xl border-0"></iframe>
+      <button id="closeGame"
+        class="absolute top-3 right-3 px-3 py-2 bg-rose-500 text-white rounded-lg font-semibold">Close</button>
+      <p id="gameTimer" class="absolute bottom-3 right-3 text-sm text-yellow-300 font-bold"></p>
+    </div>
+  </div>
 
-    <!-- 7. Recommendation Letters -->
-    <section class="recommendations-section" style="margin-top:40px;" class="animate-in">
-      <h2>Recommendations</h2>
+  <!-- Scripts -->
+  <script>
+    /* ---------- Utilities & State ---------- */
+    const defaultState = {
+      level: 1, xp: 0, coins: 10, streak: 0, bestStreak: 0,
+      mathSolved: 0, storiesCompleted: 0,
+      unlocked: { sound_magic: true },
+      avatarTitle: "Rookie Explorer"
+    };
 
-      <div class="grid">
+    function loadState() {
+      try {
+        const s = localStorage.getItem("brainquest_state");
+        if (s) return JSON.parse(s);
+      } catch (e) { }
+      return { ...defaultState };
+    }
+    let state = loadState();
 
-        <!-- Card 1 -->
-        <div class="card" class="animate-in">
-          <header>
-            <h3 style="margin:0; font-size:20px; color:var(--accent);">Name Here...</h3>
-            <p style="margin:4px 0 10px 0; color:var(--muted);">Role/Position...</p>
-          </header>
-          <p style="margin:0; line-height:1.6;">
-            "Type Letter here..."
-          </p>
-        </div>
+    function saveState() {
+      localStorage.setItem("brainquest_state", JSON.stringify(state));
+      updateHUD();
+      updateHomeStats();
+    }
 
-        <!-- Card 2 -->
-        <div class="card" class="animate-in">
-          <header>
-            <h3 style="margin:0; font-size:20px; color:var(--accent);">Name Here...</h3>
-            <p style="margin:4px 0 10px 0; color:var(--muted);">Role/Position...</p>
-          </header>
-          <p style="margin:0; line-height:1.6;">
-            "Type Letter here..."
-          </p>
-        </div>
+    /* ---------- Confetti (2s) ---------- */
+    const confettiCanvas = document.getElementById("confettiCanvas");
+    const ctx = confettiCanvas.getContext("2d");
+    let confettiPieces = [];
+    function resizeCanvas() { confettiCanvas.width = innerWidth; confettiCanvas.height = innerHeight; }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
 
-      </div>
-    </section>
+    function spawnConfetti() {
+      confettiPieces = [];
+      for (let i = 0; i < 80; i++) {
+        confettiPieces.push({ x: Math.random() * confettiCanvas.width, y: Math.random() * confettiCanvas.height - 50, r: Math.random() * 6 + 2, c: `hsl(${Math.random() * 360},80%,60%)`, v: Math.random() * 3 + 2 });
+      }
+      const duration = 2000;
+      const start = performance.now();
+      function frame(t) {
+        const elapsed = t - start;
+        ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+        confettiPieces.forEach(p => { ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = p.c; ctx.fill(); p.y += p.v; });
+        if (elapsed < duration) requestAnimationFrame(frame);
+        else { confettiPieces = []; ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height); }
+      }
+      requestAnimationFrame(frame);
+    }
 
-    <!-- Contact Me -->
-    <section id="contact" class="contact-section" aria-labelledby="contact-heading" class="animate-in">
-      <h2 id="contact-heading" style="border-bottom: none; font-size:1.8em;">Get In Touch</h2>
+    /* ---------- Theme Toggle (simple) ---------- */
+    const themeToggle = document.getElementById("themeToggle");
+    const themeLabel = document.getElementById("themeLabel");
+    let isLight = false;
+    themeToggle.addEventListener("click", () => {
+      isLight = !isLight;
+      document.body.classList.toggle("theme-light", isLight);
+      document.body.classList.toggle("theme-dark", !isLight);
+      themeLabel.textContent = isLight ? "Dark Mode" : "Light Mode";
+      themeToggle.querySelector(".theme-icon").innerHTML = isLight ? '<i class="fa-solid fa-moon text-slate-700"></i>' : '<i class="fa-solid fa-sun text-yellow-300"></i>';
+    });
 
-      <!-- Flex container for logos -->
-      <div style="display:flex; gap:70px; align-items:center; margin-top:15px;">
+    /* ---------- Router ---------- */
+    const routeButtons = document.querySelectorAll(".route-btn");
+    const routeSections = document.querySelectorAll(".route-section");
+    routeButtons.forEach(btn => btn.addEventListener("click", () => showRoute(btn.dataset.route)));
+    function showRoute(route) { routeSections.forEach(sec => sec.classList.toggle("hidden", sec.id !== `route-${route}`)); }
 
-        <!-- Email logo -->
-        <a href="mailto:yosuf.elshaer+portfolio@gmail.com">
-          <img src="https://cdn-icons-png.flaticon.com/512/18154/18154191.png" alt="Mail logo" style="height:40px;" class="animate-in">
-        </a>
+    /* ---------- HUD / Profile (Fixed rendering logic) ---------- */
+    const hudLevel = document.getElementById("hudLevel");
+    const hudXP = document.getElementById("hudXP");
+    const hudCoins = document.getElementById("hudCoins");
+    const hudStreak = document.getElementById("hudStreak");
+    const hudAvatar = document.getElementById("hudAvatar");
+    const storyCompletedCount = document.getElementById("storyCompletedCount");
+    const storyLastReward = document.getElementById("storyLastReward");
+    const profileLevel = document.getElementById("profileLevel");
+    const profileXP = document.getElementById("profileXP");
+    const profileCoins = document.getElementById("profileCoins");
+    const profileBestStreak = document.getElementById("profileBestStreak");
+    const profileAvatar = document.getElementById("profileAvatar");
+    const profileSoundMagic = document.getElementById("profileSoundMagic");
 
-        <!-- GitHub logo -->
-        <a href="https://github.com/yosuf-e" target="_blank" rel="noopener">
-          <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/github-white-icon.png" class="animate-in" alt="GitHub logo" style="height:35px;">
-        </a>
-      </div>
-    </section>
+    function updateHUD() {
+      hudLevel.textContent = state.level;
+      hudXP.textContent = state.xp;
+      hudCoins.textContent = state.coins;
+      hudStreak.textContent = state.streak;
+      hudAvatar.textContent = state.avatarTitle;
+      storyCompletedCount.textContent = state.storiesCompleted;
 
-    <!-- Footer / end gap so page end is visible -->
-    <footer class="site-end" role="contentinfo" aria-label="Page end">
-      <div style="text-align: center; padding: 20px 0;">
-        <h6 style="margin:0;"> &copy; Yosuf A. Elshaer — 2026 (Developed at age 16)</h6>
-      </div>
-    </footer>
+      // Update Profile stats
+      profileLevel.textContent = state.level;
+      profileXP.textContent = state.xp;
+      profileCoins.textContent = state.coins;
+      profileBestStreak.textContent = state.bestStreak;
+      profileAvatar.textContent = state.avatarTitle;
+      profileSoundMagic.textContent = state.unlocked.sound_magic ? "Unlocked" : "Locked";
+    }
 
+    function updateHomeStats() {
+      document.getElementById("homeXP").textContent = state.xp;
+      document.getElementById("homeBestStreak").textContent = state.bestStreak;
+      document.getElementById("homeMathSolved").textContent = state.mathSolved;
+      document.getElementById("homeStoriesCompleted").textContent = state.storiesCompleted;
+    }
 
-<!----------------
- JavaScript Logic 
- ----------------->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        // --- SCROLL REVEAL IMPLEMENTATION ---
-        const observerOptions = {
-          root: null, // relative to the viewport
-          rootMargin: '0px',
-          threshold: 0.1 // Trigger when 10% of the element is visible
-        };
+    /* ---------- Sounds ---------- */
+    const soundCorrect = document.getElementById("soundCorrect");
+    const soundWrong = document.getElementById("soundWrong");
 
-        const observer = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            // If the element is intersecting (visible), add the 'is-visible' class
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target); // Stop observing once animated
-            }
-          });
-        }, observerOptions);
+    /* ---------- Shop: ensure sound enabled by default ---------- */
+    if (!state.unlocked) state.unlocked = { sound_magic: true };
+    state.unlocked.sound_magic = true;
 
-        // Select all elements that should be animated
-        const elementsToAnimate = document.querySelectorAll('.animate-in');
+    /* ---------- Reset ---------- */
+    document.getElementById("resetProgress").addEventListener("click", () => {
+      if (confirm("Reset all progress? This only affects local storage.")) { state = { ...defaultState }; saveState(); }
+    });
 
-        // Start observing each element
-        elementsToAnimate.forEach(el => {
-          observer.observe(el);
+    /* ---------- Math Logic ---------- */
+    const mathGrade = document.getElementById("mathGrade");
+    const mathGradeLabel = document.getElementById("mathGradeLabel");
+    const mathVisual = document.getElementById("mathVisual");
+    const mathQuestion = document.getElementById("mathQuestion");
+    const mathWordProblem = document.getElementById("mathWordProblem");
+    const mathAnswer = document.getElementById("mathAnswer");
+    const mathFeedback = document.getElementById("mathFeedback");
+    const mathCorrect = document.getElementById("mathCorrect");
+    const mathIncorrect = document.getElementById("mathIncorrect");
+    const mathStreak = document.getElementById("mathStreak");
+    const sprintTimerBox = document.getElementById("sprintTimerBox");
+    const sprintTimer = document.getElementById("sprintTimer");
+    const startMathBtn = document.getElementById("startMath");
+    const submitMathBtn = document.getElementById("submitMath");
+    const modeCalmBtn = document.getElementById("modeCalm");
+    const modeSprintBtn = document.getElementById("modeSprint");
+
+    let mathMode = "calm";
+    let sprintInterval = null;
+    let sprintTimeLeft = 60;
+    let currentMathAnswer = null;
+    let currentMathMeta = {};
+
+    modeCalmBtn.addEventListener("click", () => { mathMode = "calm"; sprintTimerBox.classList.add("hidden"); });
+    modeSprintBtn.addEventListener("click", () => { mathMode = "sprint"; sprintTimerBox.classList.remove("hidden"); });
+    startMathBtn.addEventListener("click", startMathSession);
+    submitMathBtn.addEventListener("click", submitMathAnswer);
+
+    function startMathSession() {
+      mathFeedback.textContent = ""; mathAnswer.value = ""; mathCorrect.textContent = "0"; mathIncorrect.textContent = "0"; mathStreak.textContent = "0";
+      currentMathMeta = { correct: 0, incorrect: 0, streak: 0 };
+      const grade = parseInt(mathGrade.value, 10);
+      mathGradeLabel.textContent = `Grade ${grade} Challenge`;
+      if (mathMode === "sprint") {
+        sprintTimeLeft = 60; sprintTimer.textContent = sprintTimeLeft + "s";
+        if (sprintInterval) clearInterval(sprintInterval);
+        sprintInterval = setInterval(() => { sprintTimeLeft--; sprintTimer.textContent = sprintTimeLeft + "s"; if (sprintTimeLeft <= 0) { clearInterval(sprintInterval); mathFeedback.textContent = "Time's up! Great effort."; mathFeedback.className = "text-xs text-amber-300"; } }, 1000);
+      } else if (sprintInterval) clearInterval(sprintInterval);
+      generateMathProblem();
+    }
+
+    function generateMathProblem() {
+      const grade = parseInt(mathGrade.value, 10);
+      let question = "", answer = null, wordProblem = "", visual = "";
+      if (grade === 1) {
+        let a = randInt(1, 10), b = randInt(1, 10);
+        if (b > a) [a, b] = [b, a];
+        const op = Math.random() < 0.5 ? "+" : "-";
+        question = `${a} ${op} ${b} = ?`;
+        answer = op === "+" ? a + b : a - b;
+        visual = "🍎".repeat(Math.min(a, 10)) + " " + "🍎".repeat(Math.min(b, 10));
+        wordProblem = `You have ${a} apples and ${op === "+" ? "get" : "lose"} ${b}. How many apples now?`;
+      } else if (grade === 2) {
+        let a = randInt(10, 99), b = randInt(10, 99);
+        if (b > a) [a, b] = [b, a];
+        const op = Math.random() < 0.5 ? "+" : "-";
+        question = `${a} ${op} ${b} = ?`;
+        answer = op === "+" ? a + b : a - b;
+        wordProblem = `A classroom has ${a} books. They ${op === "+" ? "receive" : "lose"} ${b}. Total books?`;
+      } else if (grade === 3) {
+        const type = Math.random() < 0.5 ? "mul" : "div";
+        const a = randInt(1, 10), b = randInt(1, 10);
+        if (type === "mul") { question = `${a} × ${b} = ?`; answer = a * b; wordProblem = `There are ${a} bags with ${b} marbles each. Total marbles?`; }
+        else { const product = a * b; question = `${product} ÷ ${a} = ?`; answer = b; wordProblem = `You share ${product} candies among ${a} friends. Each gets?`; }
+        visual = "🍰".repeat(Math.min(a, 10));
+      } else if (grade === 4) {
+        const type = Math.random() < 0.5 ? "longdiv" : "decimal";
+        if (type === "longdiv") { const divisor = randInt(2, 9), quotient = randInt(2, 9), dividend = divisor * quotient; question = `${dividend} ÷ ${divisor} = ?`; answer = quotient; wordProblem = `Divide ${dividend} students into groups of ${divisor}. Groups?`; }
+        else { const a = randInt(10, 99) / 10, b = randInt(10, 99) / 10, op = Math.random() < 0.5 ? "+" : "-"; question = `${a.toFixed(1)} ${op} ${b.toFixed(1)} = ?`; answer = parseFloat((op === "+" ? a + b : a - b).toFixed(1)); wordProblem = `You run ${a.toFixed(1)} km and ${b.toFixed(1)} km. Total?`; }
+      } else if (grade === 5) {
+        const type = Math.random() < 0.5 ? "fraction" : "pemdas";
+        if (type === "fraction") { const denom = randInt(2, 9), n1 = randInt(1, denom - 1), n2 = randInt(1, denom - 1); question = `${n1}/${denom} + ${n2}/${denom} = ?`; answer = `${n1 + n2}/${denom}`; wordProblem = `You drink ${n1}/${denom} of juice then ${n2}/${denom}. Total?`; }
+        else { const a = randInt(1, 9), b = randInt(1, 9), c = randInt(1, 9); question = `${a} + ${b} × ${c} = ?`; answer = a + b * c; wordProblem = `Use PEMDAS to solve.`; }
+      } else if (grade === 6) {
+        const type = randInt(1, 3);
+        if (type === 1) { const x = randInt(-10, 10), a = randInt(1, 10), b = randInt(-10, 10), y = a * x + b; question = `${a}x + ${b} = ${y}. Find x.`; answer = x; wordProblem = `Solve for x.`; }
+        else if (type === 2) { const a = randInt(-10, 10), b = randInt(-10, 10); question = `${a} + (${b}) = ?`; answer = a + b; wordProblem = `Add integers carefully.`; }
+        else { const a = randInt(2, 10), b = randInt(2, 10), gcd = greatestCommonDivisor(a, b); question = `Simplify ${a}:${b}`; answer = `${a / gcd}:${b / gcd}`; wordProblem = `Simplify the ratio.`; }
+      }
+      currentMathAnswer = answer;
+      mathQuestion.textContent = question;
+      mathWordProblem.textContent = wordProblem;
+      mathVisual.textContent = visual;
+    }
+
+    function submitMathAnswer() {
+      if (currentMathAnswer === null) return;
+      const raw = mathAnswer.value.trim();
+      if (!raw) return;
+      let correct = false;
+      // Handle floating point comparisons for decimal answers
+      if (typeof currentMathAnswer === "number") { 
+          const userVal = parseFloat(raw); 
+          correct = Math.abs(userVal - currentMathAnswer) < 0.0001; 
+      } else correct = raw === String(currentMathAnswer);
+
+      if (correct) {
+        if (state.unlocked.sound_magic) { soundCorrect.currentTime = 0; soundCorrect.play(); }
+        spawnConfetti();
+        currentMathMeta.correct++; currentMathMeta.streak++;
+        mathCorrect.textContent = currentMathMeta.correct; mathStreak.textContent = currentMathMeta.streak;
+        mathFeedback.textContent = "Correct! +10 XP, +5 Coins"; mathFeedback.className = "text-sm text-emerald-300 bounce";
+        addXP(10); addCoins(5); state.mathSolved++; incrementStreak(); saveState();
+        mathAnswer.value = ""; generateMathProblem();
+      } else {
+        if (state.unlocked.sound_magic) { soundWrong.currentTime = 0; soundWrong.play(); }
+        currentMathMeta.incorrect++; currentMathMeta.streak = 0;
+        mathIncorrect.textContent = currentMathMeta.incorrect; mathStreak.textContent = currentMathMeta.streak;
+        mathFeedback.textContent = "Incorrect. Try again!"; mathFeedback.className = "text-sm text-rose-300 wobble";
+        resetStreak(); saveState();
+      }
+    }
+
+    /* ---------- Helpers ---------- */
+    function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+    function greatestCommonDivisor(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { const t = b; b = a % b; a = t; } return a; }
+
+    /* ---------- XP / Coins / Streak helpers ---------- */
+    function addXP(amount) { state.xp += amount; state.level = Math.floor(state.xp / 100) + 1; updateAvatarTitle(); saveState(); }
+    function addCoins(amount) { state.coins += amount; saveState(); }
+    function incrementStreak() { state.streak++; if (state.streak > state.bestStreak) state.bestStreak = state.streak; saveState(); }
+    function resetStreak() { state.streak = 0; saveState(); }
+    function updateAvatarTitle() { if (state.level >= 10) state.avatarTitle = "Galactic Scholar"; else if (state.level >= 7) state.avatarTitle = "Quantum Thinker"; else if (state.level >= 4) state.avatarTitle = "Curious Voyager"; else state.avatarTitle = "Rookie Explorer"; }
+
+    /* ---------- ELA (JSON load) ---------- */
+    let elaData = [];
+    fetch("ela_data.json").then(r => r.json()).then(d => { elaData = d.stories || []; }).catch(() => { elaData = []; });
+
+    const storyComplexity = document.getElementById("storyComplexity");
+    const storyComplexityLabel = document.getElementById("storyComplexityLabel");
+    const startStoryBtn = document.getElementById("startStory");
+    const storyText = document.getElementById("storyText");
+    const storyQuizBox = document.getElementById("storyQuizBox");
+    const storyQuizQuestions = document.getElementById("storyQuizQuestions");
+    const submitStoryQuizBtn = document.getElementById("submitStoryQuiz");
+    const storyQuizFeedback = document.getElementById("storyQuizFeedback");
+    let currentElaStory = null;
+
+    storyComplexity.addEventListener("input", () => {
+      const v = parseInt(storyComplexity.value, 10);
+      storyComplexityLabel.textContent = v === 1 ? "Age 5 – Basic" : v === 2 ? "Middle School – Adventure" : "High School – Complex Sci-Fi";
+    });
+
+    startStoryBtn.addEventListener("click", () => {
+      storyText.innerHTML = ""; storyQuizQuestions.innerHTML = ""; storyQuizFeedback.textContent = ""; storyQuizBox.classList.add("hidden");
+      const level = parseInt(storyComplexity.value, 10);
+      const candidates = elaData.filter(s => s.level === level);
+      if (!candidates.length) { storyText.innerHTML = "<p class='text-sm text-rose-300'>No stories found for this level in JSON file.</p>"; return; }
+      currentElaStory = candidates[Math.floor(Math.random() * candidates.length)];
+      renderElaCitation(); renderElaQuiz();
+    });
+
+    function renderElaCitation() {
+      storyText.innerHTML = "";
+      currentElaStory.citation.forEach(p => { const el = document.createElement("p"); el.textContent = p; storyText.appendChild(el); });
+    }
+
+    function renderElaQuiz() {
+      storyQuizBox.classList.remove("hidden"); storyQuizQuestions.innerHTML = "";
+      currentElaStory.questions.forEach((qObj, idx) => {
+        const wrapper = document.createElement("div"); wrapper.className = "space-y-1";
+        const q = document.createElement("p"); q.textContent = `${idx + 1}. ${qObj.question}`; wrapper.appendChild(q);
+        qObj.choices.forEach((choice, cIdx) => {
+          const label = document.createElement("label"); label.className = "flex items-center gap-2 text-xs";
+          const input = document.createElement("input"); input.type = "radio"; input.name = `ela_q_${idx}`; input.value = cIdx;
+          label.appendChild(input); const span = document.createElement("span"); span.textContent = choice; label.appendChild(span);
+          wrapper.appendChild(label);
         });
-
-
-        // --- TYPEWRITER IMPLEMENTATION for About Me Card ---
-        const aboutTextElement = document.getElementById('about-text');
-        if (aboutTextElement) {
-          const fullText = "I am a highly adaptable High School student with extensive global exposure (Egypt, Saudi Arabia, UAE, US). I possess a strong foundation in coding, demonstrated by a GitHub project: OptiFetch, and a Python-Powered Telegram-Bot, and proficiency in utilizing advanced AI tools (Gemini, ElevenLabs, local AI models like Gemma/Qwen) for research and content creation. I have successfully applied these skills through educational STEAM projects and content creation through my YouTube channel: @ArabTeach_Edu; honing abilities in collaboration, time management, and multimedia production.";
-          let index = 0;
-          const typingSpeed = 10; // Speed of typing (milliseconds per character)
-
-          function typeWriter() {
-            if (index < fullText.length) {
-              // Display the next character
-              aboutTextElement.textContent += fullText.charAt(index);
-              index++;
-              setTimeout(typeWriter, typingSpeed);
-            } else {
-              // Typing finished
-            }
-          }
-
-          // Start the typewriter effect when the element is in view (or immediately on load)
-          // We start it immediately for a better initial impression.
-          typeWriter();
-        }
+        storyQuizQuestions.appendChild(wrapper);
       });
-    </script>
+    }
 
+    submitStoryQuizBtn.addEventListener("click", () => {
+      if (!currentElaStory) return;
+      let correctCount = 0;
+      currentElaStory.questions.forEach((qObj, idx) => {
+        const selected = document.querySelector(`input[name="ela_q_${idx}"]:checked`);
+        if (!selected) return;
+        const chosenIndex = parseInt(selected.value, 10);
+        if (chosenIndex === qObj.correctIndex) correctCount++;
+      });
+      const total = currentElaStory.questions.length;
+      const rewardCoins = correctCount * 20;
+      if (correctCount === total) {
+        storyQuizFeedback.textContent = `Perfect! You answered all correctly. +${rewardCoins} Coins, +30 XP.`; storyQuizFeedback.className = "text-xs text-emerald-300";
+        addCoins(rewardCoins); addXP(30); spawnConfetti();
+      } else if (correctCount > 0) {
+        storyQuizFeedback.textContent = `Nice job! You got ${correctCount}/${total}. +${rewardCoins} Coins, +15 XP.`; storyQuizFeedback.className = "text-xs text-cyan-300";
+        addCoins(rewardCoins); addXP(15);
+      } else {
+        storyQuizFeedback.textContent = `Keep practicing! Try reading carefully next time.`; storyQuizFeedback.className = "text-xs text-rose-300";
+      }
+      state.storiesCompleted++; incrementStreak(); storyLastReward.textContent = rewardCoins; saveState();
+    });
+
+    /* ---------- Game purchase + embedded modal logic ---------- */
+    const gameModal = document.getElementById("gameModal");
+    const gameFrame = document.getElementById("gameFrame");
+    const closeGame = document.getElementById("closeGame");
+    const gameTimer = document.getElementById("gameTimer");
+    let gameInterval = null;
+
+    // Single handler: deduct coins, open modal, start timer
+    document.querySelectorAll(".open-game").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const url = btn.dataset.url;
+        const cost = parseInt(btn.dataset.cost, 10);
+        // NOTE: The original code assumed a time limit was passed in data-time, but it wasn't explicitly set on the buttons. We keep this structure as is, assuming external games handle their own limits.
+        const timeLimit = parseInt(btn.dataset.time) || 180; // Default to 180s if no time is provided
+
+        if (state.coins < cost) { alert("Not enough Brain Coins!"); return; }
+
+        // Deduct once and save
+        state.coins -= cost;
+        saveState();
+
+        // Open embedded modal
+        gameFrame.src = url;
+        gameModal.classList.remove("hidden");
+
+        let timeLeft = timeLimit;
+        gameTimer.textContent = `Time Left: ${timeLeft}s`;
+
+        if (gameInterval) clearInterval(gameInterval);
+        gameInterval = setInterval(() => {
+          timeLeft--;
+          gameTimer.textContent = `Time Left: ${timeLeft}s`;
+          if (timeLeft <= 0) {
+            clearInterval(gameInterval);
+            gameFrame.src = "";
+            gameTimer.textContent = "Time’s up!";
+            if (state.unlocked.sound_magic) { soundCorrect.currentTime = 0; soundCorrect.play(); }
+            setTimeout(() => gameModal.classList.add("hidden"), 1200);
+          }
+        }, 1000);
+      });
+    });
+
+    closeGame.addEventListener("click", () => {
+      if (gameInterval) clearInterval(gameInterval);
+      gameFrame.src = "";
+      gameModal.classList.add("hidden");
+    });
+
+    /* ---------- Initialization ---------- */
+    updateAvatarTitle();
+    updateHUD();
+    updateHomeStats();
+    showRoute("home");
+
+    /* ---------- Expose some functions for debugging (optional) ---------- */
+    window._state = state;
+  </script>
 </body>
-
 </html>
